@@ -23,4 +23,44 @@ public class Service {
         this.info = info;
 
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<String> getIntrestArea() {
+        return intrestArea;
+    }
+
+    public void setIntrestArea(ArrayList<String> intrestArea) {
+        this.intrestArea = intrestArea;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public ArrayList<String> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(ArrayList<String> participants) {
+        this.participants = participants;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
 }
