@@ -16,6 +16,12 @@
             android:name=".kevin.SignUpActivity"
             android:exported="true" />
         <activity
+            android:name=".vico.ServiceOverviewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".vico.AddServiceActivity"
+            android:exported="true" />
+        <activity
             android:name=".kevin.AuthActivity"
             android:exported="true" />
         <activity

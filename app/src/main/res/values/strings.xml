@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">schoolstressreliever</string>
+    
+    <string-array name="serviceTypes">
+        <item>Academic</item>
+        <item>Sport</item>
+        <item>Fundraising</item>
+        <item>Social</item>
+        <item>Sustainability</item>
+    </string-array>
 </resources>

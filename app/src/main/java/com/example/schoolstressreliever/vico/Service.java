@@ -6,21 +6,21 @@ public class Service {
 
     private String name;
     private ArrayList<String> intrestArea;;
-    private int capacity;
+    private String email;
     private ArrayList<String> participants;
-    private String info;
+    private String description;
 
     public Service(String name,
-               String teacher,
-               ArrayList<String> intrestArea,
-               double price,
-               ArrayList<String> participants,
-               String info) {
+                   String email,
+                   ArrayList<String> intrestArea,
+                   ArrayList<String> participants,
+                   String description) {
 
         this.name = name;
+        this.email = email;
         this.intrestArea = intrestArea;
         this.participants = participants;
-        this.info = info;
+        this.description = description;
 
     }
 
@@ -40,12 +40,12 @@ public class Service {
         this.intrestArea = intrestArea;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public ArrayList<String> getParticipants() {
@@ -56,11 +56,11 @@ public class Service {
         this.participants = participants;
     }
 
-    public String getInfo() {
-        return info;
+    public String getDescription() {
+        return description;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
