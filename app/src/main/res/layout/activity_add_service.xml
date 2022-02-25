@@ -11,7 +11,7 @@
         android:id="@+id/editTextName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="46dp"
         android:ems="10"
         android:hint="Service Name"
         android:inputType="textPersonName"
@@ -25,7 +25,7 @@
         android:id="@+id/editTextEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Leader's Email"
         android:inputType="textPersonName"
@@ -37,12 +37,12 @@
 
     <Spinner
         android:id="@+id/serviceTypeSpinner"
-        android:layout_width="214dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="216dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="40dp"
         android:autofillHints="Select Service Type"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -51,7 +51,7 @@
         android:id="@+id/editTextDescription"
         android:layout_width="243dp"
         android:layout_height="209dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="120dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Description"
@@ -64,7 +64,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Select Service Type Below"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -76,9 +76,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:onClick="addService"
         android:text="Add Service"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="278dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:text="Select the number of hours demanded from vounteers below"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serviceTypeSpinner" />
+
+    <Spinner
+        android:id="@+id/hoursSpinner"
+        android:layout_width="206dp"
+        android:layout_height="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

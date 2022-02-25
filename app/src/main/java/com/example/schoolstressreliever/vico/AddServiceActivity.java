@@ -45,6 +45,13 @@ public class AddServiceActivity extends AppCompatActivity implements AdapterView
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
+        Spinner spinner2 = findViewById(R.id.hoursSpinner);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.hours, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(adapter2);
+        spinner2.setOnItemSelectedListener(this);
+
     }
 
     public void addService(View v)
@@ -56,26 +63,46 @@ public class AddServiceActivity extends AppCompatActivity implements AdapterView
         Spinner spinner = (Spinner)findViewById(R.id.serviceTypeSpinner);
         String interestArea = spinner.getSelectedItem().toString();
 
+        Spinner spinner2 = (Spinner)findViewById(R.id.hoursSpinner);
+        String hours = spinner2.getSelectedItem().toString();
+
         ArrayList<String> emptyList = new ArrayList<>();
 
         interestAreaList.add(interestArea);
 
-        if(!nameString.isEmpty() || !emailString.isEmpty() || !descriptionString.isEmpty() ||
-                !interestArea.isEmpty())
+        boolean parametersFilled = false;
+        boolean validEmail = false;
+
+        if(!nameString.isEmpty() && !emailString.isEmpty() && !descriptionString.isEmpty() &&
+                !interestArea.isEmpty() && !hours.isEmpty())
         {
-            Toast.makeText(this, "Parameters Missing", Toast.LENGTH_SHORT).show();
-        }
-        if(!emailString.contains("cis.edu.hk"))
-        {
-            Toast.makeText(this, "Email Invalid", Toast.LENGTH_SHORT).show();
+            parametersFilled = true;
         }
         else
             {
+                Toast.makeText(this, "Parameters Missing", Toast.LENGTH_SHORT).show();
+            }
+
+        if(emailString.contains("cis.edu.hk"))
+        {
+            validEmail = true;
+        }
+        else
+            {
+                Toast.makeText(this, "Email Invalid", Toast.LENGTH_SHORT).show();
+            }
+
+        if(parametersFilled && validEmail)
+            {
                 Service currService = new Service(nameString, emailString, interestArea,
-                        emptyList, descriptionString);
+                        emptyList, descriptionString, hours);
+
+                System.out.println("got service");
 
                 firestore.collection("everything").document("all services")
                         .collection("services").document(nameString).set(currService);
+
+                System.out.println("added service");
 
                 Toast.makeText(this, "Service Added", Toast.LENGTH_SHORT).show();
             }

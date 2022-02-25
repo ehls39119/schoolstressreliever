@@ -9,18 +9,21 @@ public class Service {
     private String email;
     private ArrayList<String> participants;
     private String description;
+    private String hours;
 
     public Service(String name,
                    String email,
                    String intrestArea,
                    ArrayList<String> participants,
-                   String description) {
+                   String description,
+                   String hours) {
 
         this.name = name;
         this.email = email;
         this.intrestArea = intrestArea;
         this.participants = participants;
         this.description = description;
+        this.hours = hours;
 
     }
 
@@ -62,5 +65,13 @@ public class Service {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getHours() {
+        return hours;
+    }
+
+    public void setHours(String hours) {
+        this.hours = hours;
     }
 }
