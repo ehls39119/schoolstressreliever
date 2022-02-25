@@ -8,8 +8,7 @@ public class User
     private String email;
     private String password;
     private String yearLevel;
-    public ArrayList userInfo = new ArrayList();
-    public ArrayList userSubject = new ArrayList();
+    public ArrayList userSubjectList = new ArrayList();
 
     public User(){}
 
@@ -62,19 +61,11 @@ public class User
         this.yearLevel = yearLevel;
     }
 
-    public ArrayList getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(ArrayList userInfo) {
-        this.userInfo = userInfo;
-    }
-
     public ArrayList getUserSubject() {
-        return userSubject;
+        return userSubjectList;
     }
 
     public void setUserSubject(ArrayList userSubject) {
-        this.userSubject = userSubject;
+        this.userSubjectList = userSubject;
     }
 }
