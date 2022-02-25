@@ -18,14 +18,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class AuthActivity extends AppCompatActivity {
+public class AuthActivity extends AppCompatActivity
+{
 
     private FirebaseAuth mAuth;
     private EditText email;
     private EditText password;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
@@ -34,22 +36,27 @@ public class AuthActivity extends AppCompatActivity {
         password = findViewById(R.id.Password);
     }
 
-    public void LogIn(View v){
+    public void LogIn(View v)
+    {
         System.out.println("Log in!");
         String emailInput = email.getText().toString();
         String passwordInput = password.getText().toString();
 
-        mAuth.signInWithEmailAndPassword(emailInput, passwordInput).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(emailInput, passwordInput).addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
+        {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
+            public void onComplete(@NonNull Task<AuthResult> task)
+            {
+                if (task.isSuccessful())
+                {
                     Log.w("Log in.", "Successfully log in with email and password.");
                     FirebaseUser currentUser = mAuth.getCurrentUser();
                     updateUI(currentUser);
 
                     Toast.makeText(getApplicationContext(), "Correct email and password, welcome!", Toast.LENGTH_SHORT).show();
                 }
-                else{
+                else
+                    {
                     Log.w("Log in.", "Log in with email and password failed.");
                     updateUI(null);
                     Toast.makeText(getApplicationContext(), "Incorrect email or password, please try again.", Toast.LENGTH_SHORT).show();
@@ -58,7 +65,8 @@ public class AuthActivity extends AppCompatActivity {
         });
     }
 
-    public void updateUI(FirebaseUser currentUser){
+    public void updateUI(FirebaseUser currentUser)
+    {
         if (currentUser != null){
             Intent startPage = new Intent(this, MainActivity.class);
             startActivity(startPage);
