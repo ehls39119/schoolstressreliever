@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class Service {
 
     private String name;
-    private ArrayList<String> intrestArea;;
+    private String intrestArea;
     private String email;
     private ArrayList<String> participants;
     private String description;
 
     public Service(String name,
                    String email,
-                   ArrayList<String> intrestArea,
+                   String intrestArea,
                    ArrayList<String> participants,
                    String description) {
 
@@ -32,11 +32,11 @@ public class Service {
         this.name = name;
     }
 
-    public ArrayList<String> getIntrestArea() {
+    public String getIntrestArea() {
         return intrestArea;
     }
 
-    public void setIntrestArea(ArrayList<String> intrestArea) {
+    public void setIntrestArea(String intrestArea) {
         this.intrestArea = intrestArea;
     }
 

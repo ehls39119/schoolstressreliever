@@ -71,11 +71,13 @@ public class AddServiceActivity extends AppCompatActivity implements AdapterView
         }
         else
             {
-                Service currService = new Service(nameString, emailString, interestAreaList,
+                Service currService = new Service(nameString, emailString, interestArea,
                         emptyList, descriptionString);
 
                 firestore.collection("everything").document("all services")
-                        .collection("services").document(emailString).set(currService);
+                        .collection("services").document(nameString).set(currService);
+
+                Toast.makeText(this, "Service Added", Toast.LENGTH_SHORT).show();
             }
 
 

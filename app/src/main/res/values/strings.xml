@@ -3,6 +3,7 @@
     
     <string-array name="serviceTypes">
         <item>Academic</item>
+        <item>Arts</item>
         <item>Sport</item>
         <item>Fundraising</item>
         <item>Social</item>
