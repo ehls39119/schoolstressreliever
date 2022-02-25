@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Schoolstressreliever">
         <activity
+            android:name=".kevin.SignUpActivity"
+            android:exported="true" />
+        <activity
             android:name=".kevin.AuthActivity"
             android:exported="true" />
         <activity

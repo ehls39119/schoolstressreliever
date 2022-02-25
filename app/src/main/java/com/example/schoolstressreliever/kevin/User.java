@@ -9,10 +9,11 @@ public class User
     private String password;
     private String yearLevel;
     public ArrayList userInfo = new ArrayList();
+    public ArrayList userSubject = new ArrayList();
 
     public User(){}
 
-    public User(String ID, String name, String email, String password, String yearLevel)
+    public User(String ID, String name, String email, String yearLevel, String password)
     {
         this.ID = ID;
         this.name = name;
@@ -67,5 +68,13 @@ public class User
 
     public void setUserInfo(ArrayList userInfo) {
         this.userInfo = userInfo;
+    }
+
+    public ArrayList getUserSubject() {
+        return userSubject;
+    }
+
+    public void setUserSubject(ArrayList userSubject) {
+        this.userSubject = userSubject;
     }
 }
