@@ -65,9 +65,18 @@ public class AuthActivity extends AppCompatActivity
         });
     }
 
+    public void SignIn(View v)
+    {
+        //go to SignUpActivity
+        Intent startPage = new Intent(this, MainActivity.class);
+        startActivity(startPage);
+    }
+
     public void updateUI(FirebaseUser currentUser)
     {
-        if (currentUser != null){
+        if (currentUser != null)
+        {
+            //go to MainActivity
             Intent startPage = new Intent(this, MainActivity.class);
             startActivity(startPage);
         }

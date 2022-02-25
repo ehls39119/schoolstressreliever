@@ -3,6 +3,7 @@ package com.example.schoolstressreliever.kevin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -78,12 +79,15 @@ public class SignUpActivity extends AppCompatActivity
 
         User currentUser = new User(userID,userNameInput,userEmailInput,userYearLevelInput,userPasswordInput);
         fireStore.collection("User").document(userID).set(currentUser);
+        //maybe need to add the Info into an ArrayList.
+        //subjects are added after the Info.
     }
 
     public void updateUI(FirebaseUser currUser)
     {
         if(currUser != null){
-            System.out.println("It worked!");
+            Intent startPage = new Intent(this, AddSubjectActivity.class);
+            startActivity(startPage);
         }
     }
 }
