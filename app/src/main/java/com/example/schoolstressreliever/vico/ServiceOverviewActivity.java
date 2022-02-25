@@ -72,7 +72,7 @@ public class ServiceOverviewActivity extends AppCompatActivity {
                                 String currInterestArea = (String) docData.get("intrestArea");
                                 String currHours = (String) docData.get("hours");
 
-                                statusInfo.add("Interest Area: " + currInterestArea + " Hours: "
+                                statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
                                             + currHours);
 
                                 System.out.println(statusInfo);
