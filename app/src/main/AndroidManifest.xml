@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Schoolstressreliever">
         <activity
+            android:name=".kevin.ShowSubjectActivity"
+            android:exported="true" />
+        <activity
             android:name=".kevin.AddSubjectActivity"
             android:exported="true" />
         <activity
@@ -23,20 +26,16 @@
             android:exported="true" />
         <activity
             android:name=".kevin.AuthActivity"
-            android:exported="true" >
-
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

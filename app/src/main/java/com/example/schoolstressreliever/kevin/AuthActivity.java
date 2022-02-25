@@ -76,7 +76,7 @@ public class AuthActivity extends AppCompatActivity
         if (currentUser != null)
         {
             //go to MainActivity
-            Intent startPage = new Intent(this, MainActivity.class);
+            Intent startPage = new Intent(this, ShowSubjectActivity.class);
             startActivity(startPage);
         }
     }
