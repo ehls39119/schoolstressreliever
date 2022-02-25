@@ -20,7 +20,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class AuthActivity extends AppCompatActivity
 {
-
     private FirebaseAuth mAuth;
     private EditText email;
     private EditText password;
@@ -68,7 +67,7 @@ public class AuthActivity extends AppCompatActivity
     public void SignIn(View v)
     {
         //go to SignUpActivity
-        Intent startPage = new Intent(this, MainActivity.class);
+        Intent startPage = new Intent(this, SignUpActivity.class);
         startActivity(startPage);
     }
 
