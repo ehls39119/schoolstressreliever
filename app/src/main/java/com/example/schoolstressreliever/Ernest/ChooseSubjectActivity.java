@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class AddSubjectActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ChooseSubjectActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     FirebaseFirestore db;
     FirebaseUser mUser;

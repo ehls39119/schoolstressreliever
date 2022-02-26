@@ -1,11 +1,9 @@
 package com.example.schoolstressreliever.Ernest;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,14 +12,9 @@ import com.example.schoolstressreliever.R;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class AcademicOverviewActivity extends AppCompatActivity {
@@ -81,7 +74,7 @@ public class AcademicOverviewActivity extends AppCompatActivity {
 
     public void goToAddSubjects(View v){
         if (mUser != null){
-            Intent intent = new Intent(this, AddSubjectActivity.class);
+            Intent intent = new Intent(this, ChooseSubjectActivity.class);
             startActivity(intent);
         }
         else{
