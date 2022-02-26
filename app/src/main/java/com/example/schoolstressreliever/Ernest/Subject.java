@@ -1,4 +1,4 @@
-package com.example.schoolstressreliever.activities;
+package com.example.schoolstressreliever.Ernest;
 
 public class Subject {
 

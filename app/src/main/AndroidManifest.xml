@@ -10,19 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Schoolstressreliever">
         <activity
-            android:name=".activities.GradeVehicleHolder"
+            android:name=".Ernest.GradeVehicleHolder"
             android:exported="false" />
         <activity
-            android:name=".activities.GradeRecyclerViewAdapter"
+            android:name=".Ernest.GradeRecyclerViewAdapter"
             android:exported="false" />
         <activity
-            android:name=".activities.SubjectInfoActivity"
+            android:name=".Ernest.SubjectInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SubjectViewHolder"
+            android:name=".Ernest.SubjectViewHolder"
             android:exported="false" />
         <activity
-            android:name=".activities.NavigationActivity"
+            android:name=".Ernest.NavigationActivity"
             android:exported="false" />
         <activity
             android:name=".kevin.AddSubjectActivity"

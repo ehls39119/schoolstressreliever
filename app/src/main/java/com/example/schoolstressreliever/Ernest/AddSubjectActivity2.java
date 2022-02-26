@@ -1,4 +1,4 @@
-package com.example.schoolstressreliever.activities;
+package com.example.schoolstressreliever.Ernest;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ChooseSubjectActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddSubjectActivity2 extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     FirebaseFirestore db;
     FirebaseUser mUser;
