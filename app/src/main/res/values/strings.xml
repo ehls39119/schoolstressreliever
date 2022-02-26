@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">schoolstressreliever</string>
-    
+
     <string-array name="serviceTypes">
         <item>Academic</item>
         <item>Arts</item>
@@ -17,4 +17,56 @@
         <item>3</item>
     </string-array>
 
+    <string-array name="HigherLevelSubjects">
+        <item>English Language and Literature</item>
+        <item>English Literature</item>
+        <item>Chinese A Language and Literature Language</item>
+        <item>Chinese A Language </item>
+        <item>Chinese B </item>
+        <item>Economics</item>
+        <item>Geography</item>
+        <item>History</item>
+        <item>Psychology</item>
+        <item>Biology</item>
+        <item>Chemistry</item>
+        <item>Physics</item>
+        <item>Product Design</item>
+        <item>Computer Science</item>
+        <item>Sports Science</item>
+        <item>Mathematics Analysis and Approaches</item>
+        <item>Mathematics Applications and Interpretation</item>
+        <item>Film</item>
+        <item>Music</item>
+        <item>Theatre</item>
+        <item>Visual Arts</item>
+        <item>French B</item>
+        <item>Spanish B</item>
+    </string-array>
+
+
+    <string-array name="StandardLevelSubjects">
+        <item>English Language and Literature</item>
+        <item>English Literature</item>
+        <item>Chinese A Language and Literature Language</item>
+        <item>Chinese A Language </item>
+        <item>Chinese B </item>
+        <item>Economics</item>
+        <item>Geography</item>
+        <item>History</item>
+        <item>Psychology</item>
+        <item>Biology</item>
+        <item>Chemistry</item>
+        <item>Physics</item>
+        <item>Product Design</item>
+        <item>Computer Science</item>
+        <item>Sports Science</item>
+        <item>Mathematics Analysis and Approaches</item>
+        <item>Mathematics Applications and Interpretation</item>
+        <item>Film</item>
+        <item>Music</item>
+        <item>Theatre</item>
+        <item>Visual Arts</item>
+        <item>French B</item>
+        <item>Spanish B</item>
+    </string-array>
 </resources>
