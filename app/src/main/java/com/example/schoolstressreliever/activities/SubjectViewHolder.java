@@ -1,4 +1,4 @@
-package com.example.schoolstressreliever.Ernest;
+package com.example.schoolstressreliever.activities;
 
 import android.view.View;
 import android.widget.TextView;

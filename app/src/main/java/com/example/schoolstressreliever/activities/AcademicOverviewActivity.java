@@ -1,4 +1,4 @@
-package com.example.schoolstressreliever.Ernest;
+package com.example.schoolstressreliever.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
