@@ -21,8 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class SignUpActivity extends AppCompatActivity
-{
+public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private FirebaseFirestore fireStore;
@@ -34,8 +33,7 @@ public class SignUpActivity extends AppCompatActivity
     private EditText userPassword;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         mAuth = FirebaseAuth.getInstance();
@@ -49,27 +47,22 @@ public class SignUpActivity extends AppCompatActivity
         userPassword = findViewById(R.id.UserPassword);
     }
 
-    public void Signup(View v)
-    {
+    public void Signup(View v) {
         System.out.println("Sign up!");
         String userNameInput = userName.getText().toString();
         String userEmailInput = userEmail.getText().toString();
         String userYearLevelInput = userYearLevel.getText().toString();
         String userPasswordInput = userPassword.getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(userEmailInput,userPasswordInput).addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
-        {
+        mAuth.createUserWithEmailAndPassword(userEmailInput, userPasswordInput).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task)
-            {
-                if(task.isSuccessful())
-                {
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
                     Log.d("Sign up.", "SignUpWithEmail: success!");
                     FirebaseUser currUser = mAuth.getCurrentUser();
                     updateUI(currUser);
                     Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome" + userNameInput, Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     Log.w("Sign up.", "SignUpWithEmail: failed.");
                     updateUI(null);
                     Toast.makeText(getApplicationContext(), "Signing up by new user failed, maybe you have already signed up with this account", Toast.LENGTH_SHORT).show();
@@ -77,15 +70,14 @@ public class SignUpActivity extends AppCompatActivity
             }
         });
 
-        User currentUser = new User(userID,userNameInput,userEmailInput,userYearLevelInput,userPasswordInput);
-        fireStore.collection("User").document(userID).set(currentUser);
+        User currentUser = new User(userID, userNameInput, userEmailInput, userYearLevelInput, userPasswordInput);
+        fireStore.collection("User").document(mUser.getUid()).set(currentUser);
         //maybe need to add the Info into an ArrayList.
         //subjects are added after the Info.
     }
 
-    public void updateUI(FirebaseUser currUser)
-    {
-        if(currUser != null){
+    public void updateUI(FirebaseUser currUser) {
+        if (currUser != null) {
             Intent startPage = new Intent(this, AddSubjectActivity.class);
             startActivity(startPage);
         }

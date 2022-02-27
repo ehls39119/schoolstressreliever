@@ -26,9 +26,6 @@ public class AcademicOverviewActivity extends AppCompatActivity {
     RecyclerView recView;
     ArrayList<Integer> vehiclesList = new ArrayList<Integer>();
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

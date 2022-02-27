@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.schoolstressreliever.R;
 
-public class ShowSubjectActivity extends AppCompatActivity {
+public class InfoRecyclerViewAdapterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_subject);
+        setContentView(R.layout.activity_info_recycler_view_adapter);
     }
 }

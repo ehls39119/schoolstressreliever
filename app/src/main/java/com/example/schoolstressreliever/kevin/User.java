@@ -1,8 +1,8 @@
 package com.example.schoolstressreliever.kevin;
+
 import java.util.ArrayList;
 
-public class User
-{
+public class User {
     private String ID;
     private String name;
     private String email;
@@ -10,10 +10,10 @@ public class User
     private String yearLevel;
     ArrayList userSubjectList = new ArrayList();
 
-    public User(){}
+    public User() {
+    }
 
-    public User(String ID, String name, String email, String yearLevel, String password)
-    {
+    public User(String ID, String name, String email, String yearLevel, String password) {
         this.ID = ID;
         this.name = name;
         this.email = email;
