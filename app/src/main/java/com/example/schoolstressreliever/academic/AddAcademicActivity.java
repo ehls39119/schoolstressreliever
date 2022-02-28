@@ -1,5 +1,4 @@
-package com.example.schoolstressreliever.Ernest;
-
+package com.example.schoolstressreliever.academic;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class AddSubjectActivity2 extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddAcademicActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     FirebaseFirestore db;
     FirebaseUser mUser;
@@ -39,7 +38,7 @@ public class AddSubjectActivity2 extends AppCompatActivity implements AdapterVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_subject);
+        setContentView(R.layout.activity_add_academic);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();

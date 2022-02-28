@@ -1,4 +1,4 @@
-package com.example.schoolstressreliever.Ernest;
+package com.example.schoolstressreliever.academic;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -71,7 +71,7 @@ public class AcademicOverviewActivity extends AppCompatActivity {
 
     public void goToAddSubjects(View v){
         if (mUser != null){
-            Intent intent = new Intent(this, AddSubjectActivity2.class);
+            Intent intent = new Intent(this, AddAcademicActivity.class);
             startActivity(intent);
         }
         else{
