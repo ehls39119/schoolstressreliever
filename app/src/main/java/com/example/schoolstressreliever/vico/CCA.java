@@ -10,21 +10,21 @@ public class CCA {
     private double price;
     private int capacity;
     private ArrayList<String> participants;
-    private String info;
+    private String hours;
 
     public CCA(String name,
                String teacher,
                ArrayList<String> intrestArea,
                double price,
                ArrayList<String> participants,
-               String info) {
+               String hours) {
 
         this.name = name;
         this.teacher = teacher;
         this.intrestArea = intrestArea;
         this.price = price;
         this.participants = participants;
-        this.info = info;
+        this.hours = hours;
 
     }
 
@@ -76,11 +76,11 @@ public class CCA {
         this.participants = participants;
     }
 
-    public String getInfo() {
-        return info;
+    public String getHours() {
+        return hours;
     }
 
     public void setInfo(String info) {
-        this.info = info;
+        this.hours = hours;
     }
 }

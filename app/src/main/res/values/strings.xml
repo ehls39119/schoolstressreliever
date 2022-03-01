@@ -10,12 +10,29 @@
         <item>Sustainability</item>
     </string-array>
 
+    <string-array name="activityTypes">
+        <item>Academic</item>
+        <item>Arts</item>
+        <item>Sport</item>
+        <item>Fundraising</item>
+        <item>Social</item>
+        <item>Sustainability</item>
+    </string-array>
+
     <string-array name="hours">
+        <item>0.5</item>
+        <item>1.0</item>
+        <item>2.0</item>
+        <item>3.0</item>
+    </string-array>
+
+    <string-array name="actHours">
         <item>0.5</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
     </string-array>
+
 
     <string-array name="HigherLevelSubjects">
         <item>English Language and Literature</item>
