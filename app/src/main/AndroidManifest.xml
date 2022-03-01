@@ -13,6 +13,9 @@
             android:name=".vico.BookServiceActivity"
             android:exported="true" />
         <activity
+            android:name=".justin.AddActivityActivity"
+            android:exported="true" />
+        <activity
             android:name=".kevin.ShowSubjectActivity"
             android:exported="true" />
         <activity
@@ -26,6 +29,9 @@
             android:exported="true" />
         <activity
             android:name=".vico.AddServiceActivity"
+            android:exported="true" />
+        <activity
+            android:name=".justin.ECInfoActivity"
             android:exported="true" />
         <activity
             android:name=".kevin.AuthActivity"

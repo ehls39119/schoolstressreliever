@@ -8,17 +8,38 @@ public class User {
     private String email;
     private String password;
     private String yearLevel;
+    private double hoursAvailable;
+    private String areaOfInterest;
     ArrayList userSubjectList = new ArrayList();
 
-    public User() {
-    }
 
-    public User(String ID, String name, String email, String yearLevel, String password) {
+
+    public User(String ID, String name, String email, String yearLevel, String password, double hoursAvailable, String areaOfInterest ) {
         this.ID = ID;
         this.name = name;
         this.email = email;
         this.password = password;
         this.yearLevel = yearLevel;
+        this.hoursAvailable = hoursAvailable;
+        this.areaOfInterest = areaOfInterest;
+    }
+
+    public String getAreaOfInterest() {
+        return areaOfInterest;
+    }
+
+    public void setAreaOfInterest(String areaOfInterest) {
+        this.areaOfInterest = areaOfInterest;
+    }
+
+    public double getHoursAvailable()
+    {
+        return hoursAvailable;
+    }
+
+    public void setHoursAvailable(double hoursAvailable)
+    {
+        this.hoursAvailable = hoursAvailable;
     }
 
     public String getID() {
@@ -45,7 +66,8 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
+    public String getPassword()
+    {
         return password;
     }
 
