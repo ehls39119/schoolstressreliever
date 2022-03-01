@@ -78,7 +78,7 @@ public class ServiceRecyclerViewAdapter extends RecyclerView.Adapter <ServiceVie
 
     public void updateUI(String serviceString)
     {
-        Intent intent = new Intent(this.screen, MainActivity.class);
+        Intent intent = new Intent(this.screen, BookServiceActivity.class);
         intent.putExtra("currService", serviceString);
         intent.putExtra("currUser", emailString);
 

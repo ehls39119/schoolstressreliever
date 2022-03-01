@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.schoolstressreliever.R;
+import com.example.schoolstressreliever.vico.ServiceOverviewActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -67,5 +68,10 @@ public class AuthActivity extends AppCompatActivity {
             Intent startPage = new Intent(this, ShowInfoActivity.class);
             startActivity(startPage);
         }
+    }
+
+    public void goToServiceOverview(View v){
+        Intent newIntent = new Intent(this, ServiceOverviewActivity.class);
+        startActivity(newIntent);
     }
 }

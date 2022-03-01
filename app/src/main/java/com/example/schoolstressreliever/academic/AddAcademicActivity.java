@@ -53,13 +53,13 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
 
 
         //////spinner
-        hlSubject1 = findViewById(R.id.HLSpinner1);
-        hlSubject2 = findViewById(R.id.HLSpinner2);
-        hlSubject3 = findViewById(R.id.HLSpinner3);
-
-        slSubject1 = findViewById(R.id.SLSpinner1);
-        slSubject2 = findViewById(R.id.SLSpinner2);
-        slSubject3 = findViewById(R.id.SLSpinner3);
+//        hlSubject1 = findViewById(R.id.HLSpinner1);
+//        hlSubject2 = findViewById(R.id.HLSpinner2);
+//        hlSubject3 = findViewById(R.id.HLSpinner3);
+//
+//        slSubject1 = findViewById(R.id.SLSpinner1);
+//        slSubject2 = findViewById(R.id.SLSpinner2);
+//        slSubject3 = findViewById(R.id.SLSpinner3);
 
         ArrayAdapter<CharSequence> hlSubjectAdapter = ArrayAdapter.createFromResource(this,
                 R.array.HigherLevelSubjects, android.R.layout.simple_spinner_item);
