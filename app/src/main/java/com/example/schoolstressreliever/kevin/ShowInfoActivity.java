@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.schoolstressreliever.Ernest.Subject;
+import com.example.schoolstressreliever.academic.Subject;
 import com.example.schoolstressreliever.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
