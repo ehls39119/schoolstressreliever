@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Schoolstressreliever">
         <activity
+            android:name=".justin.AddActivityActivity"
+            android:exported="true" />
+        <activity
             android:name=".kevin.ShowSubjectActivity"
             android:exported="true" />
         <activity
@@ -25,6 +28,9 @@
             android:name=".vico.AddServiceActivity"
             android:exported="true" />
         <activity
+            android:name=".justin.ECInfoActivity"
+            android:exported="true" />
+        <activity
             android:name=".kevin.AuthActivity"
             android:exported="true">
             <intent-filter>
@@ -35,7 +41,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
