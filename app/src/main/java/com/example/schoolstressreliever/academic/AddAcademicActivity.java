@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -14,8 +15,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AddAcademicActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -30,13 +33,8 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
     private Spinner slSubject1;
     private Spinner slSubject2;
     private Spinner slSubject3;
+    private EditText userName;
 
-//
-//    private EditText originLocation;
-//    private EditText carModel;
-//    private EditText capacityAvailable;
-//    private EditText vehicleRating;
-//    private EditText vehicleOwner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +44,8 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         mUser = mAuth.getCurrentUser();
-//
-//        originLocation = findViewById(R.id.originLocationID);
-//        carModel = findViewById(R.id.vehicleModelID);
-//        vehicleRating = findViewById(R.id.vehicleCapacityID);
-//        capacityAvailable = findViewById(R.id.ratingID);
-//        vehicleOwner = findViewById(R.id.vehicleOwnerID);
-//
+
+        userName = findViewById(R.id.userNameID);
 
         //////spinner
         hlSubject1 = findViewById(R.id.HLSpinner1);
@@ -88,18 +81,18 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
         slSubject3.setOnItemSelectedListener(this);
     }
 
-    public ArrayList<ArrayList<HashMap<String, Integer>>> getSubjects() {
-        ArrayList<ArrayList<HashMap<String, Integer>>> combined = new ArrayList<>();
+    public ArrayList<ArrayList<Map<String, Integer>>> getSubjects() {
+        ArrayList<ArrayList<Map<String, Integer>>> combined = new ArrayList<>();
 
-        ArrayList<HashMap<String, Integer>> hlSubjects = new ArrayList<HashMap<String, Integer>>();
-        ArrayList<HashMap<String, Integer>> sLSubjects = new ArrayList<HashMap<String, Integer>>();
-        HashMap<String, Integer> currentSubject = new HashMap<>();
+        ArrayList<Map<String, Integer>> hlSubjects = new ArrayList<Map<String, Integer>>();
+        ArrayList<Map<String, Integer>> sLSubjects = new ArrayList<Map<String, Integer>>();
+        Map<String, Integer> currentSubject = new HashMap<>();
 
         File file1 = new File("hl.txt");
         File file2 = new File("sl.txt");
         Scanner sc1 = new Scanner(file1);
         Scanner sc2 = new Scanner(file2);
-        while (sc1.hasNextLine() && sc2.hasNextLine()){
+        while (sc1.hasNextLine() && sc2.hasNextLine()) {
             String[] dataHl = sc1.nextLine().split(":");
             String[] dataSl = sc2.nextLine().split(":");
             currentSubject.put(dataHl[0], null);
@@ -121,7 +114,6 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
             currentSubject.put("2", Integer.parseInt(dataHl[6]));
             currentSubject.put("1", Integer.parseInt(dataHl[7]));
             sLSubjects.add(currentSubject);
-
         }
         combined.add(hlSubjects);
         combined.add(sLSubjects);
@@ -136,69 +128,71 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+    }
+
+    public boolean formValid(String str1, String str2, String str3, String str4, String str5, String str6) {
+        return str1 != null && str2 != null && str3 != null && str4 != null && str5 != null && str6 != null;
+    }
+
+    public void filterSubjects() {
 
     }
 
-    public boolean formValid(String str1, String str2, int str3, String str4, String str5, String str6) {
-        return str1 != null && str2 != null && str3  > 0 && str4 != null && str5 != null && str6!=null;
-    }
+    public void addSubject(View v) {
+        String hl1 = hlSubject1.getSelectedItem().toString();
+        String hl2 = hlSubject2.getSelectedItem().toString();
+        String hl3 = hlSubject3.getSelectedItem().toString();
+        String sl1 = slSubject1.getSelectedItem().toString();
+        String sl2 = slSubject2.getSelectedItem().toString();
+        String sl3 = slSubject3.getSelectedItem().toString();
+        String name = userName.getText().toString();
 
-    public void addNewVehicle(View v) {
-//        String ownerString = vehicleOwner.getText().toString();
-//        String locationString = originLocation.getText().toString();
-//        String modelString = carModel.getText().toString();
-//        String txtSpinner2 = sVehicleType.getSelectedItem().toString();
-//        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//
-//        int rating = Integer.parseInt((vehicleRating.getText().toString()));
-//        int fakeCapacity = Integer.parseInt((capacityAvailable).getText().toString());
-//        ArrayList<String> creator = new ArrayList<>();
-//        creator.add(userID);
-//
-//
-////        if ((formValid(locationString, modelString, rating, ratingString, ownerString, vehicleType))) {
-//        if (txtSpinner2.equals("Car")) {
-//            txtSpinner2 = "Car";
-//            Vehicle newCar = new Car(locationString, modelString, creator, rating, fakeCapacity, ownerString, txtSpinner2);
-//            db.collection("Vehicle").document(ownerString).set(newCar);
-//
-////            db.collection("Vehicle").add(newCar).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-////                @Override
-////                public void onComplete(@NonNull Task<DocumentReference> task) {
-////                    if (task.isSuccessful()) {
-////                        Toast.makeText(AddVehicleActivity.this, "NEW CAR ADDED", Toast.LENGTH_SHORT).show();
-////
-////                    } else {
-////                        Toast.makeText(AddVehicleActivity.this, "Sorry auth failed.", Toast.LENGTH_SHORT).show();
-////                    }
-////
-////                }
-////            });
-//        }
-//
-//        if (txtSpinner2.equals("ElectricCar")) {
-//            txtSpinner2 = "ElectricCar";
-//            Vehicle newElectric = new ElectricCar(locationString, modelString, creator, rating, fakeCapacity, ownerString, txtSpinner2);
-//            db.collection("Vehicle").document(ownerString).set(newElectric);
-////                @Override
-////                public void onComplete(@NonNull Task<DocumentReference> task) {
-////                    if (task.isSuccessful()) {
-////                        Toast.makeText(AddVehicleActivity.this, "NEW ELECTRIC", Toast.LENGTH_SHORT).show();
-////
-////                    } else {
-////                        Toast.makeText(AddVehicleActivity.this, "Sorry auth failed.", Toast.LENGTH_SHORT).show();
-////
-////                    }
-////
-////                }
-//
-//        }
+        if ((formValid(hl1, hl2, hl3, sl1, sl2, sl3))) {
+            ArrayList<ArrayList<Map<String, Integer>>> subjectData = getSubjects();
 
-        Intent intent = new Intent(this, SubjectInfoActivity.class);
-        startActivity(intent);
+            Map<String, Integer> hlMap = new HashMap<String, Integer>();
+            Map<String, Integer> slMap = new HashMap<String, Integer>();
 
+            ArrayList<Map<String, Integer>> data1 = subjectData.get(0);
+            ArrayList<Map<String, Integer>> data2 = subjectData.get(1);
+
+            for (int a = 0; a < data1.size(); a++) {
+                //e.g [{x:1, y:2}]
+                Map<String, Integer> test1 = (HashMap<String, Integer>) data1.get(a);
+                //get the map from the arraylist
+                for (String key : test1.keySet()) {
+
+
+                }
+            }
+        }
     }
 }
+
+
+
+//
+//            Vehicle newCar = new Car(locationString, modelString, creator, rating, fakeCapacity, ownerString, txtSpinner2);
+//            db.collection("Vehicle").document(ownerString).set(newCar);
+//            db.collection("Vehicle").add(newCar).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+//                @Override
+//                public void onComplete(@NonNull Task<DocumentReference> task) {
+//                    if (task.isSuccessful()) {
+//                        Toast.makeText(AddVehicleActivity.this, "Subjects Added", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(AddVehicleActivity.this, "Sorry auth failed.", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                }
+//            });
+//        }
+////
+
+////        }
+////        Intent intent = new Intent(this, SubjectInfoActivity.class);
+////        startActivity(intent);
+//
+//}
 
 
 

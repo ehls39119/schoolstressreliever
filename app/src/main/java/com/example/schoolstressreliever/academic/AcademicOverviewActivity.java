@@ -44,8 +44,6 @@ public class AcademicOverviewActivity extends AppCompatActivity {
 
 
     public void getAndPopulateData(View v) {
-
-
 //        db.collection("Vehicle").addSnapshotListener(new EventListener<QuerySnapshot>() {
 //                    @SuppressLint("NotifyDataSetChanged")
 //                    @Override
