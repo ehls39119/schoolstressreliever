@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -81,43 +82,49 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
         slSubject3.setOnItemSelectedListener(this);
     }
 
-    public ArrayList<ArrayList<Map<String, Integer>>> getSubjects() {
-        ArrayList<ArrayList<Map<String, Integer>>> combined = new ArrayList<>();
+    public ArrayList<ArrayList<Map<String, Integer>>> getSubjects() throws FileNotFoundException {
 
-        ArrayList<Map<String, Integer>> hlSubjects = new ArrayList<Map<String, Integer>>();
-        ArrayList<Map<String, Integer>> sLSubjects = new ArrayList<Map<String, Integer>>();
-        Map<String, Integer> currentSubject = new HashMap<>();
+        try{
+            ArrayList<ArrayList<Map<String, Integer>>> combined = new ArrayList<>();
 
-        File file1 = new File("hl.txt");
-        File file2 = new File("sl.txt");
-        Scanner sc1 = new Scanner(file1);
-        Scanner sc2 = new Scanner(file2);
-        while (sc1.hasNextLine() && sc2.hasNextLine()) {
-            String[] dataHl = sc1.nextLine().split(":");
-            String[] dataSl = sc2.nextLine().split(":");
-            currentSubject.put(dataHl[0], null);
-            currentSubject.put("7", Integer.parseInt(dataHl[1]));
-            currentSubject.put("6", Integer.parseInt(dataHl[2]));
-            currentSubject.put("5", Integer.parseInt(dataHl[3]));
-            currentSubject.put("4", Integer.parseInt(dataHl[4]));
-            currentSubject.put("3", Integer.parseInt(dataHl[5]));
-            currentSubject.put("2", Integer.parseInt(dataHl[6]));
-            currentSubject.put("1", Integer.parseInt(dataHl[7]));
-            hlSubjects.add(currentSubject);
+            ArrayList<Map<String, Integer>> hlSubjects = new ArrayList<Map<String, Integer>>();
+            ArrayList<Map<String, Integer>> sLSubjects = new ArrayList<Map<String, Integer>>();
+            Map<String, Integer> currentSubject = new HashMap<>();
 
-            currentSubject.put(dataSl[0], null);
-            currentSubject.put("7", Integer.parseInt(dataSl[1]));
-            currentSubject.put("6", Integer.parseInt(dataSl[2]));
-            currentSubject.put("5", Integer.parseInt(dataHl[3]));
-            currentSubject.put("4", Integer.parseInt(dataHl[4]));
-            currentSubject.put("3", Integer.parseInt(dataHl[5]));
-            currentSubject.put("2", Integer.parseInt(dataHl[6]));
-            currentSubject.put("1", Integer.parseInt(dataHl[7]));
-            sLSubjects.add(currentSubject);
+            File file1 = new File("hl.txt");
+            File file2 = new File("sl.txt");
+            Scanner sc1 = new Scanner(file1);
+            Scanner sc2 = new Scanner(file2);
+            while (sc1.hasNextLine() && sc2.hasNextLine()) {
+                String[] dataHl = sc1.nextLine().split(":");
+                String[] dataSl = sc2.nextLine().split(":");
+                currentSubject.put(dataHl[0], null);
+                currentSubject.put("7", Integer.parseInt(dataHl[1]));
+                currentSubject.put("6", Integer.parseInt(dataHl[2]));
+                currentSubject.put("5", Integer.parseInt(dataHl[3]));
+                currentSubject.put("4", Integer.parseInt(dataHl[4]));
+                currentSubject.put("3", Integer.parseInt(dataHl[5]));
+                currentSubject.put("2", Integer.parseInt(dataHl[6]));
+                currentSubject.put("1", Integer.parseInt(dataHl[7]));
+                hlSubjects.add(currentSubject);
+
+                currentSubject.put(dataSl[0], null);
+                currentSubject.put("7", Integer.parseInt(dataSl[1]));
+                currentSubject.put("6", Integer.parseInt(dataSl[2]));
+                currentSubject.put("5", Integer.parseInt(dataHl[3]));
+                currentSubject.put("4", Integer.parseInt(dataHl[4]));
+                currentSubject.put("3", Integer.parseInt(dataHl[5]));
+                currentSubject.put("2", Integer.parseInt(dataHl[6]));
+                currentSubject.put("1", Integer.parseInt(dataHl[7]));
+                sLSubjects.add(currentSubject);
+            }
+            combined.add(hlSubjects);
+            combined.add(sLSubjects);
+            return combined;
         }
-        combined.add(hlSubjects);
-        combined.add(sLSubjects);
-        return combined;
+        catch(FileNotFoundException fileNotFoundException) {
+            throw new FileNotFoundException("File not found");
+        }
     }
 
     @Override
@@ -138,7 +145,7 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
 
     }
 
-    public void addSubject(View v) {
+    public void addSubject(View v) throws FileNotFoundException {
         String hl1 = hlSubject1.getSelectedItem().toString();
         String hl2 = hlSubject2.getSelectedItem().toString();
         String hl3 = hlSubject3.getSelectedItem().toString();
