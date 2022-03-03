@@ -8,10 +8,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.schoolstressreliever.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
@@ -123,7 +127,7 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
             return combined;
         }
         catch(FileNotFoundException fileNotFoundException) {
-            throw new FileNotFoundException("File not found");
+            throw new FileNotFoundException("NO FILE");
         }
     }
 
@@ -141,65 +145,66 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
         return str1 != null && str2 != null && str3 != null && str4 != null && str5 != null && str6 != null;
     }
 
-    public void filterSubjects() {
-
-    }
-
     public void addSubject(View v) throws FileNotFoundException {
         String hl1 = hlSubject1.getSelectedItem().toString();
         String hl2 = hlSubject2.getSelectedItem().toString();
         String hl3 = hlSubject3.getSelectedItem().toString();
+
         String sl1 = slSubject1.getSelectedItem().toString();
         String sl2 = slSubject2.getSelectedItem().toString();
         String sl3 = slSubject3.getSelectedItem().toString();
+
         String name = userName.getText().toString();
 
         if ((formValid(hl1, hl2, hl3, sl1, sl2, sl3))) {
             ArrayList<ArrayList<Map<String, Integer>>> subjectData = getSubjects();
 
-            Map<String, Integer> hlMap = new HashMap<String, Integer>();
-            Map<String, Integer> slMap = new HashMap<String, Integer>();
+            ArrayList<Map<String, Integer>> hlMap = new ArrayList<Map<String, Integer>>();
+            ArrayList<Map<String, Integer>> slMap = new ArrayList<Map<String, Integer>>();
 
             ArrayList<Map<String, Integer>> data1 = subjectData.get(0);
             ArrayList<Map<String, Integer>> data2 = subjectData.get(1);
 
-            for (int a = 0; a < data1.size(); a++) {
+            for (int hlArray = 0; hlArray < data1.size(); hlArray++) {
                 //e.g [{x:1, y:2}]
-                Map<String, Integer> test1 = (HashMap<String, Integer>) data1.get(a);
+                Map<String, Integer> test1 = (HashMap<String, Integer>) data1.get(hlArray);
                 //get the map from the arraylist
                 for (String key : test1.keySet()) {
-
-
+                    if (hl1.equals(key) || (hl2.equals(key) || (hl3.equals(key)))) {
+                        hlMap.add(test1);
+                    }
                 }
             }
+
+            for (int slArray = 0; slArray < data2.size(); slArray++) {
+                //e.g [{x:1, y:2}]
+                Map<String, Integer> test2 = (HashMap<String, Integer>) data1.get(slArray);
+                //get the map from the arraylist
+                for (String key : test2.keySet()) {
+                    if (sl1.equals(key) || (sl2.equals(key) || (sl3.equals(key)))) {
+                        slMap.add(test2);
+                    }
+                }
+            }
+
+            Student newStudent = new Student(hlMap, slMap, name);
+            db.collection("Students").add(newStudent).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentReference> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(AddAcademicActivity.this, "Subjects Added", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(AddAcademicActivity.this, "Sorry auth failed.", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
         }
+
+        Intent intent = new Intent(this, AcademicOverviewActivity.class);
+        startActivity(intent);
     }
 }
-
-
-
-//
-//            Vehicle newCar = new Car(locationString, modelString, creator, rating, fakeCapacity, ownerString, txtSpinner2);
-//            db.collection("Vehicle").document(ownerString).set(newCar);
-//            db.collection("Vehicle").add(newCar).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-//                @Override
-//                public void onComplete(@NonNull Task<DocumentReference> task) {
-//                    if (task.isSuccessful()) {
-//                        Toast.makeText(AddVehicleActivity.this, "Subjects Added", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(AddVehicleActivity.this, "Sorry auth failed.", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                }
-//            });
-//        }
-////
-
-////        }
-////        Intent intent = new Intent(this, SubjectInfoActivity.class);
-////        startActivity(intent);
-//
-//}
 
 
 

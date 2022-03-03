@@ -36,10 +36,10 @@ public class AcademicOverviewActivity extends AppCompatActivity {
 
         recView = (RecyclerView) findViewById(R.id.recycler1ID);
 //        SubjectRecyclerViewAdapter myAdapter = new SubjectRecyclerViewAdapter(vehiclesList, this);
-        SubjectRecyclerViewAdapter myAdapter = new SubjectRecyclerViewAdapter();
+//        SubjectRecyclerViewAdapter myAdapter = new SubjectRecyclerViewAdapter();
 
-        recView.setAdapter(myAdapter);
-        recView.setLayoutManager(new LinearLayoutManager(this));
+//        recView.setAdapter(myAdapter);
+//        recView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 
@@ -67,7 +67,7 @@ public class AcademicOverviewActivity extends AppCompatActivity {
     }
 
 
-    public void goToAddSubjects(View v){
+    public void addSubjects(View v){
         if (mUser != null){
             Intent intent = new Intent(this, AddAcademicActivity.class);
             startActivity(intent);

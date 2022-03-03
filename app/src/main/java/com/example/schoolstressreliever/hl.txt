@@ -1,23 +1,23 @@
-English Language and Literature:83:79:
-English Literature:81:67:54
-Chinese A Literature:::
-Chinese A Language and Literature:::
-Chinese B:87:72:
-Economics:::
-Geography:::
-History:::
-Psychology:::
-Biology:::
-Chemistry:::
-Physics:::
-Product Design:::
-Computer Science:80:70
+English Language and Literature:83:79:63
+English Literature:83:79:63
+Chinese A Literature:83:79:63
+Chinese A Language and Literature:83:79:63
+Chinese B::83:79:63
+Economics:83:79:63
+Geography:83:79:63
+History:83:79:63
+Psychology::83:79:63
+Biology:83:79:63
+Chemistry:83:79:63
+Physics:70:60:50
+Product Design:83:79:63
+Computer Science:80:70:60
 Mathematics Analysis and Approaches:83:70:57
 Mathematics Applications and Interpretation:83:70:57
-Film:::
-Music:::
-Theatre:::
-Visual Arts:::
-French B:::
-Spanish B:::
+Film:83:79:63
+Music:83:79:63
+Theatre:83:79:63
+Visual Arts:83:79:63
+French B:83:79:63
+Spanish B:83:79:63
 
