@@ -1,4 +1,4 @@
-package com.example.schoolstressreliever.academic;
+package com.example.schoolstressreliever.Ernest;
 
 import androidx.appcompat.app.AppCompatActivity;
 

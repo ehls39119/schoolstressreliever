@@ -1,7 +1,6 @@
-package com.example.schoolstressreliever.academic;
+package com.example.schoolstressreliever.Ernest;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Student {

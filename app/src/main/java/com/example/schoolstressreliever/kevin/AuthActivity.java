@@ -10,9 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.schoolstressreliever.Ernest.newAcademicOverview;
 import com.example.schoolstressreliever.R;
-import com.example.schoolstressreliever.academic.AcademicOverviewActivity;
-import com.example.schoolstressreliever.vico.Service;
 import com.example.schoolstressreliever.vico.ServiceOverviewActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,7 +27,7 @@ public class AuthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auth);
+        setContentView(R.layout.activity_new_academic_overview);
 
         mAuth = FirebaseAuth.getInstance();
         email = findViewById(R.id.Email);
@@ -78,7 +77,7 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     public void goToAcademicOverview(View v){
-        Intent newIntent = new Intent(this, AcademicOverviewActivity.class);
+        Intent newIntent = new Intent(this, newAcademicOverview.class);
         startActivity(newIntent);
     }
 }

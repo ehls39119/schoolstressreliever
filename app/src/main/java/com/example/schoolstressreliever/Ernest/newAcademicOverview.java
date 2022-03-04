@@ -1,11 +1,11 @@
-package com.example.schoolstressreliever.academic;
+package com.example.schoolstressreliever.Ernest;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.schoolstressreliever.R;
 
@@ -17,7 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 
-public class AcademicOverviewActivity extends AppCompatActivity {
+public class newAcademicOverview extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -28,13 +28,23 @@ public class AcademicOverviewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Button b;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_academic_overview);
+        setContentView(R.layout.activity_new_academic_overview);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
         recView = (RecyclerView) findViewById(R.id.recycler1ID);
+        b = findViewById(R.id.newAddID);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("add button");
+
+            }
+        });
+
 //        SubjectRecyclerViewAdapter myAdapter = new SubjectRecyclerViewAdapter(vehiclesList, this);
 //        SubjectRecyclerViewAdapter myAdapter = new SubjectRecyclerViewAdapter();
 
@@ -66,17 +76,17 @@ public class AcademicOverviewActivity extends AppCompatActivity {
 //                });
     }
 
-
-    public void addSubjects(View v){
-        if (mUser != null){
-            Intent intent = new Intent(this, AddAcademicActivity.class);
-            startActivity(intent);
-        }
-        else{
-            Intent intent = new Intent(this, NavigationActivity.class);
-            startActivity(intent);
-        }
+    public void goToAcademicOverview (View v){
+        Intent z = new Intent(this, AddAcademicActivity.class);
+        startActivity(z);
     }
+
+
+
+
+
+
+
 
 
 }

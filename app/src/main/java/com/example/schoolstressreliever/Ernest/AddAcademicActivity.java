@@ -1,4 +1,4 @@
-package com.example.schoolstressreliever.academic;
+package com.example.schoolstressreliever.Ernest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +20,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -201,7 +200,7 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
             });
         }
 
-        Intent intent = new Intent(this, AcademicOverviewActivity.class);
+        Intent intent = new Intent(this, newAcademicOverview.class);
         startActivity(intent);
     }
 }
