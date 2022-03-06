@@ -10,61 +10,53 @@
         android:id="@+id/SLSpinner3"
         android:layout_width="337dp"
         android:layout_height="48dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/userNameID"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SLSpinner2"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Spinner
         android:id="@+id/SLSpinner2"
         android:layout_width="337dp"
         android:layout_height="48dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="288dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/SLSpinner3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SLSpinner1"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Spinner
         android:id="@+id/HLSpinner3"
         android:layout_width="337dp"
         android:layout_height="48dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="220dp"
-        android:layout_marginEnd="27dp"
+        app:layout_constraintBottom_toTopOf="@+id/SLSpinner1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HLSpinner2"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Spinner
         android:id="@+id/SLSpinner1"
         android:layout_width="337dp"
         android:layout_height="48dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="379dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/SLSpinner2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HLSpinner3"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Spinner
         android:id="@+id/HLSpinner1"
         android:layout_width="337dp"
         android:layout_height="48dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="27dp"
+        app:layout_constraintBottom_toTopOf="@+id/HLSpinner2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -73,40 +65,37 @@
         android:id="@+id/HLSpinner2"
         android:layout_width="337dp"
         android:layout_height="48dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="27dp"
+        app:layout_constraintBottom_toTopOf="@+id/HLSpinner3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HLSpinner1"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/addAcademicID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="165dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="51dp"
         android:onClick="addSubject"
         android:text="@string/add_class"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNameID" />
 
     <EditText
         android:id="@+id/userNameID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="126dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Name"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/addAcademicID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SLSpinner3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

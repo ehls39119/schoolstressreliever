@@ -88,42 +88,58 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
     public ArrayList<ArrayList<Map<String, Integer>>> getSubjects() throws FileNotFoundException {
 
         try{
+            System.out.println("in path");
             ArrayList<ArrayList<Map<String, Integer>>> combined = new ArrayList<>();
 
             ArrayList<Map<String, Integer>> hlSubjects = new ArrayList<Map<String, Integer>>();
             ArrayList<Map<String, Integer>> sLSubjects = new ArrayList<Map<String, Integer>>();
             Map<String, Integer> currentSubject = new HashMap<>();
 
-            File file1 = new File("hl.txt");
-            File file2 = new File("sl.txt");
+            System.out.println("checkpoint1");
+
+
+            File file1 = new File("/Users/Ernest/Desktop/hl.txt");
+            File file2 = new File("/Users/Ernest/Desktop/sl.txt");
+
+            System.out.println("checkpoint2");
+
             Scanner sc1 = new Scanner(file1);
             Scanner sc2 = new Scanner(file2);
-            while (sc1.hasNextLine() && sc2.hasNextLine()) {
+
+
+            while (sc1.hasNextLine()) {
+
                 String[] dataHl = sc1.nextLine().split(":");
-                String[] dataSl = sc2.nextLine().split(":");
                 currentSubject.put(dataHl[0], null);
                 currentSubject.put("7", Integer.parseInt(dataHl[1]));
                 currentSubject.put("6", Integer.parseInt(dataHl[2]));
                 currentSubject.put("5", Integer.parseInt(dataHl[3]));
-                currentSubject.put("4", Integer.parseInt(dataHl[4]));
-                currentSubject.put("3", Integer.parseInt(dataHl[5]));
-                currentSubject.put("2", Integer.parseInt(dataHl[6]));
-                currentSubject.put("1", Integer.parseInt(dataHl[7]));
+//                currentSubject.put("4", Integer.parseInt(dataHl[4]));
+//                currentSubject.put("3", Integer.parseInt(dataHl[5]));
+//                currentSubject.put("2", Integer.parseInt(dataHl[6]));
+//                currentSubject.put("1", Integer.parseInt(dataHl[7]));
                 hlSubjects.add(currentSubject);
+            }
 
+            while (sc2.hasNextLine()){
+                String[] dataSl = sc2.nextLine().split(":");
                 currentSubject.put(dataSl[0], null);
                 currentSubject.put("7", Integer.parseInt(dataSl[1]));
                 currentSubject.put("6", Integer.parseInt(dataSl[2]));
-                currentSubject.put("5", Integer.parseInt(dataHl[3]));
-                currentSubject.put("4", Integer.parseInt(dataHl[4]));
-                currentSubject.put("3", Integer.parseInt(dataHl[5]));
-                currentSubject.put("2", Integer.parseInt(dataHl[6]));
-                currentSubject.put("1", Integer.parseInt(dataHl[7]));
+                currentSubject.put("5", Integer.parseInt(dataSl[3]));
+//                currentSubject.put("4", Integer.parseInt(dataSl[4]));
+//                currentSubject.put("3", Integer.parseInt(dataSl[5]));
+//                currentSubject.put("2", Integer.parseInt(dataSl[6]));
+//                currentSubject.put("1", Integer.parseInt(dataSl[7]));
                 sLSubjects.add(currentSubject);
             }
             combined.add(hlSubjects);
             combined.add(sLSubjects);
+
+            System.out.println("combined" + combined);
             return combined;
+
+
         }
         catch(FileNotFoundException fileNotFoundException) {
             throw new FileNotFoundException("NO FILE");
@@ -145,63 +161,68 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
     }
 
     public void addSubject(View v) throws FileNotFoundException {
-        String hl1 = hlSubject1.getSelectedItem().toString();
-        String hl2 = hlSubject2.getSelectedItem().toString();
-        String hl3 = hlSubject3.getSelectedItem().toString();
+        try {
+            String hl1 = hlSubject1.getSelectedItem().toString();
+            String hl2 = hlSubject2.getSelectedItem().toString();
+            String hl3 = hlSubject3.getSelectedItem().toString();
 
-        String sl1 = slSubject1.getSelectedItem().toString();
-        String sl2 = slSubject2.getSelectedItem().toString();
-        String sl3 = slSubject3.getSelectedItem().toString();
+            String sl1 = slSubject1.getSelectedItem().toString();
+            String sl2 = slSubject2.getSelectedItem().toString();
+            String sl3 = slSubject3.getSelectedItem().toString();
 
-        String name = userName.getText().toString();
+            String name = userName.getText().toString();
 
-        if ((formValid(hl1, hl2, hl3, sl1, sl2, sl3))) {
-            ArrayList<ArrayList<Map<String, Integer>>> subjectData = getSubjects();
+            if ((formValid(hl1, hl2, hl3, sl1, sl2, sl3))) {
+                ArrayList<ArrayList<Map<String, Integer>>> subjectData = getSubjects();
 
-            ArrayList<Map<String, Integer>> hlMap = new ArrayList<Map<String, Integer>>();
-            ArrayList<Map<String, Integer>> slMap = new ArrayList<Map<String, Integer>>();
+                ArrayList<Map<String, Integer>> hlMap = new ArrayList<Map<String, Integer>>();
+                ArrayList<Map<String, Integer>> slMap = new ArrayList<Map<String, Integer>>();
 
-            ArrayList<Map<String, Integer>> data1 = subjectData.get(0);
-            ArrayList<Map<String, Integer>> data2 = subjectData.get(1);
+                ArrayList<Map<String, Integer>> data1 = subjectData.get(0);
+                ArrayList<Map<String, Integer>> data2 = subjectData.get(1);
 
-            for (int hlArray = 0; hlArray < data1.size(); hlArray++) {
-                //e.g [{x:1, y:2}]
-                Map<String, Integer> test1 = (HashMap<String, Integer>) data1.get(hlArray);
-                //get the map from the arraylist
-                for (String key : test1.keySet()) {
-                    if (hl1.equals(key) || (hl2.equals(key) || (hl3.equals(key)))) {
-                        hlMap.add(test1);
+                for (int hlArray = 0; hlArray < data1.size(); hlArray++) {
+                    //e.g [{x:1, y:2}]
+                    Map<String, Integer> test1 = (HashMap<String, Integer>) data1.get(hlArray);
+                    //get the map from the arraylist
+                    for (String key : test1.keySet()) {
+                        if (hl1.equals(key) || (hl2.equals(key) || (hl3.equals(key)))) {
+                            hlMap.add(test1);
+                        }
                     }
                 }
+
+                for (int slArray = 0; slArray < data2.size(); slArray++) {
+                    //e.g [{x:1, y:2}]
+                    Map<String, Integer> test2 = (HashMap<String, Integer>) data1.get(slArray);
+                    //get the map from the arraylist
+                    for (String key : test2.keySet()) {
+                        if (sl1.equals(key) || (sl2.equals(key) || (sl3.equals(key)))) {
+                            slMap.add(test2);
+                        }
+                    }
+                }
+
+                Student newStudent = new Student(hlMap, slMap, name);
+                db.collection("Students").add(newStudent).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(AddAcademicActivity.this, "Subjects Added", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(AddAcademicActivity.this, "Sorry auth failed.", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
             }
 
-            for (int slArray = 0; slArray < data2.size(); slArray++) {
-                //e.g [{x:1, y:2}]
-                Map<String, Integer> test2 = (HashMap<String, Integer>) data1.get(slArray);
-                //get the map from the arraylist
-                for (String key : test2.keySet()) {
-                    if (sl1.equals(key) || (sl2.equals(key) || (sl3.equals(key)))) {
-                        slMap.add(test2);
-                    }
-                }
-            }
-
-            Student newStudent = new Student(hlMap, slMap, name);
-            db.collection("Students").add(newStudent).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentReference> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(AddAcademicActivity.this, "Subjects Added", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(AddAcademicActivity.this, "Sorry auth failed.", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-            });
+            Intent intent = new Intent(this, newAcademicOverview.class);
+            startActivity(intent);
         }
-
-        Intent intent = new Intent(this, newAcademicOverview.class);
-        startActivity(intent);
+        catch(FileNotFoundException fileNotFoundException) {
+            throw new FileNotFoundException("add class failed");
+        }
     }
 }
 
