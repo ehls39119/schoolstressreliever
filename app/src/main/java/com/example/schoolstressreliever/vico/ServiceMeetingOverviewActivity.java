@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.schoolstressreliever.R;
+import com.example.schoolstressreliever.vico.ServiceRecyclerViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -20,34 +21,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ServiceOverviewActivity extends AppCompatActivity {
+public class ServiceMeetingOverviewActivity extends AppCompatActivity {
 
     RecyclerView recView;
     private FirebaseFirestore firestore;
     ArrayList<String> nameInfo = new ArrayList<>();
     ArrayList<String> statusInfo = new ArrayList<>();
-    String myUserEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_overview);
+        setContentView(R.layout.activity_service_meeting_overview);
 
         recView = findViewById(R.id.recView);
-        firestore = FirebaseFirestore.getInstance();
 
-//        Intent intent = getIntent();
-//        String myUserEmail = intent.getExtras().getString("currUser");
-
-        myUserEmail = "justinIsGay@student.cis.edu.hk";
+        Intent intent = getIntent();
+        String currUser = intent.getExtras().getString("currUser");
 
         ServiceRecyclerViewAdapter myAdapter = new ServiceRecyclerViewAdapter(nameInfo, statusInfo
-                , this, myUserEmail);
+                , this, currUser);
 
         recView.setAdapter(myAdapter);
         recView.setLayoutManager(new LinearLayoutManager(this));
 
         updateRecView();
+
     }
 
     public void updateRecView()
@@ -74,7 +72,7 @@ public class ServiceOverviewActivity extends AppCompatActivity {
                                 String currHours = (String) docData.get("hours");
 
                                 statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
-                                            + currHours);
+                                        + currHours);
 
                                 System.out.println(statusInfo);
                             }
@@ -86,19 +84,12 @@ public class ServiceOverviewActivity extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 
-
-    public void goToAddService(View v){
+    public void goToAddServiceMeeting(View v){
         Intent newIntent = new Intent(this, AddServiceActivity.class);
-        startActivity(newIntent);
-    }
-
-    public void goToServiceMeetingActivity(View v){
-
-        Intent newIntent = new Intent(this, ServiceMeetingOverviewActivity.class);
-        newIntent.putExtra("currUser", myUserEmail);
+        Intent intent = getIntent();
+        String currUser = intent.getExtras().getString("currUser");
         startActivity(newIntent);
     }
 }
