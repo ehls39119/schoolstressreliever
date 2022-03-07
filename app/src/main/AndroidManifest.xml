@@ -16,6 +16,9 @@
             android:name=".vico.ServiceMeetingOverviewActivity"
             android:exported="true" />
         <activity
+            android:name=".justin.BookActivityActivity"
+            android:exported="true" />
+        <activity
             android:name=".Ernest.GradeVehicleHolder"
             android:exported="false" />
         <activity
@@ -23,6 +26,9 @@
             android:exported="true" />
         <activity
             android:name=".Ernest.AddAcademicActivity"
+            android:exported="true" />
+        <activity
+            android:name=".justin.ActivityOverviewActivity"
             android:exported="true" />
         <activity
             android:name=".vico.BookServiceActivity"

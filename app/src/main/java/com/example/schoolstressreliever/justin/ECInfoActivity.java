@@ -18,7 +18,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+import java.io.Serializable;
+
+public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Serializable {
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
     private EditText emailField;
@@ -26,8 +28,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
     private EditText nameField;
     private FirebaseUser mUser;
 
+    public String timeLeft;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecinfo);
 
@@ -41,8 +44,6 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
         adapterServices.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterServices);
         spinner.setOnItemSelectedListener(this);
-
-
 
         Spinner spinner2 = findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapterHours = ArrayAdapter.createFromResource(this, R.array.hours, android.R.layout.simple_spinner_item);
@@ -89,13 +90,19 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
 //
         if(dummyServiceTime == 0.5)
         {
+            timeLeft = "0.5";
+
             if(serviceOptions.equals("Arts"))
             {
-            User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Arts");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), "", "", 0.5, "Arts");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
+
             }
             if(serviceOptions.equals("Sport"))
             {
@@ -104,6 +111,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Academic"))
             {
@@ -112,6 +122,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Fundraising"))
             {
@@ -120,6 +133,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Social"))
             {
@@ -128,6 +144,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Sustainability"))
             {
@@ -136,12 +155,18 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
+
 
         }
 
         if(dummyServiceTime == 1.0)
         {
+            timeLeft = "1.0";
             if(serviceOptions.equals("Arts"))
             {
                 User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Arts");
@@ -149,6 +174,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Sport"))
             {
@@ -157,6 +185,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this,ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Academic"))
             {
@@ -165,6 +196,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Fundraising"))
             {
@@ -173,6 +207,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Social"))
             {
@@ -181,6 +218,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Sustainability"))
             {
@@ -189,6 +229,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
 
 
@@ -196,6 +239,8 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
 
         if(dummyServiceTime == 2.0)
         {
+            timeLeft = "2.0";
+
             if(serviceOptions.equals("Arts"))
             {
                 User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Arts");
@@ -203,6 +248,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Sport"))
             {
@@ -211,6 +259,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Academic"))
             {
@@ -219,6 +270,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Fundraising"))
             {
@@ -227,6 +281,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Social"))
             {
@@ -235,6 +292,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Sustainability"))
             {
@@ -243,12 +303,16 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
 
         }
 
         if(dummyServiceTime == 3.0)
         {
+            timeLeft = "3.0";
             if(serviceOptions.equals("Arts"))
             {
                 User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Arts");
@@ -256,6 +320,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Sport"))
             {
@@ -264,6 +331,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Academic"))
             {
@@ -272,6 +342,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Fundraising"))
             {
@@ -280,6 +353,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Social"))
             {
@@ -288,6 +364,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
             if(serviceOptions.equals("Sustainability"))
             {
@@ -296,18 +375,15 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
                 startActivity(intent);
+                Intent i = new Intent(this, BookActivityActivity.class);
+                i.putExtra("userObject", (Serializable) userObject);
+                startActivity(i);
             }
 
         }
 
 
 
-//                    <item>Academic</item>
-//        <item>Arts</item>
-//        <item>Sport</item>
-//        <item>Fundraising</item>
-//        <item>Social</item>
-//        <item>Sustainability</item>
 
 
     }

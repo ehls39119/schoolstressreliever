@@ -1,4 +1,4 @@
-package com.example.schoolstressreliever.vico;
+package com.example.schoolstressreliever.justin;
 
 import java.util.ArrayList;
 
@@ -6,26 +6,39 @@ public class CCA {
 
     private String name;
     private String teacher;
-    private ArrayList<String> intrestArea;;
+    private ArrayList<String> intrestArea;
+    ;
     private double price;
     private int capacity;
     private ArrayList<String> participants;
     private String hours;
+    private String interestArea;
 
     public CCA(String name,
                String teacher,
-               ArrayList<String> intrestArea,
                double price,
                ArrayList<String> participants,
-               String hours) {
+               String hours, String interestArea) {
 
         this.name = name;
         this.teacher = teacher;
-        this.intrestArea = intrestArea;
         this.price = price;
         this.participants = participants;
         this.hours = hours;
+        this.interestArea = interestArea;
 
+    }
+
+    public void setHours(String hours) {
+        this.hours = hours;
+    }
+
+    public String getInterestArea() {
+        return interestArea;
+    }
+
+    public void setInterestArea(String interestArea) {
+        this.interestArea = interestArea;
     }
 
     public String getName() {
@@ -44,13 +57,6 @@ public class CCA {
         this.teacher = teacher;
     }
 
-    public ArrayList<String> getIntrestArea() {
-        return intrestArea;
-    }
-
-    public void setIntrestArea(ArrayList<String> intrestArea) {
-        this.intrestArea = intrestArea;
-    }
 
     public double getPrice() {
         return price;

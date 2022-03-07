@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vico.BookServiceActivity">
+    tools:context=".justin.BookActivityActivity">
 
     <TextView
         android:id="@+id/interestAreaTextView"
-        android:layout_width="194dp"
-        android:layout_height="37dp"
+        android:layout_width="202dp"
+        android:layout_height="92dp"
         android:layout_marginTop="24dp"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activityNameTextView" />
 
@@ -52,11 +53,12 @@
         android:id="@+id/activityNameTextView"
         android:layout_width="332dp"
         android:layout_height="89dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="32dp"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.417"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,11 +67,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:onClick="addService"
+        android:onClick="addActivity"
         android:text="Sign Up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
+
+    <Button
+        android:id="@+id/ALGORITHM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="getCompatibility"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

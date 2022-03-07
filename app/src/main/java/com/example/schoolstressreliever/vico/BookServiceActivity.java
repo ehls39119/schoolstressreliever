@@ -45,11 +45,11 @@ public class BookServiceActivity extends AppCompatActivity {
         String currUser = intent.getExtras().getString("currUser");
         String currService = intent.getExtras().getString("currService");
 
-        TextView nameView = (TextView)findViewById(R.id.serviceNameTextView);
+        TextView nameView = (TextView)findViewById(R.id.activityNameTextView);
         TextView interestView = (TextView)findViewById(R.id.interestAreaTextView);
         TextView hoursView = (TextView)findViewById(R.id.hoursTextView);
         TextView emailView = (TextView)findViewById(R.id.emailTextView);
-        TextView descriptionView = (TextView)findViewById(R.id.descriptionTextView);
+        TextView descriptionView = (TextView)findViewById(R.id.priceView);
 
         firestore = FirebaseFirestore.getInstance();
 
