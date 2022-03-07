@@ -1,4 +1,4 @@
-package com.example.schoolstressreliever;
+package com.example.schoolstressreliever.vico;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.schoolstressreliever.R;
 import com.example.schoolstressreliever.vico.Service;
 import com.example.schoolstressreliever.vico.ServiceMeeting;
 import com.example.schoolstressreliever.vico.ServiceRecyclerViewAdapter;
@@ -26,7 +27,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class AddServiceMeeting extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AddServiceMeetingActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private String date;
     private EditText serviceField;
@@ -39,8 +40,10 @@ public class AddServiceMeeting extends AppCompatActivity implements DatePickerDi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_service_meeting);
 
+        firestore = FirebaseFirestore.getInstance();
+
         serviceField = findViewById(R.id.editTextService);
-        timeField = findViewById(R.id.editTextEmail);
+        timeField = findViewById(R.id.editTextTime);
         descriptionField = findViewById(R.id.editTextDescription);
 
         findViewById(R.id.showCalendar).setOnClickListener(new View.OnClickListener() {
@@ -52,18 +55,19 @@ public class AddServiceMeeting extends AppCompatActivity implements DatePickerDi
 
     }
 
-    private void addServiceMeeting()
+    public void addServiceMeeting(View v)
     {
         String serviceString = serviceField.getText().toString();
         String timeString = timeField.getText().toString();
         String descriptionString = descriptionField.getText().toString();
 
         boolean parametersFilled = false;
-        boolean validEmail = false;
 
         if(!serviceString.isEmpty() && !timeString.isEmpty() && !descriptionString.isEmpty())
         {
             parametersFilled = true;
+
+            System.out.println("changed parameter");
         }
         else
         {
@@ -74,6 +78,8 @@ public class AddServiceMeeting extends AppCompatActivity implements DatePickerDi
         String myUserEmail = intent.getExtras().getString("currUser");
 
         Boolean[] correctEmail = {false};
+
+        System.out.println("curr email is" + myUserEmail);
 
         firestore.collection("everything").document("all services")
                 .collection("services").get()
@@ -95,6 +101,9 @@ public class AddServiceMeeting extends AppCompatActivity implements DatePickerDi
                                     if (docData.get("email").equals(myUserEmail))
                                     {
                                         correctEmail[0] = true;
+
+                                        System.out.println("status changed");
+
                                     }
                                 }
                             }
@@ -102,13 +111,13 @@ public class AddServiceMeeting extends AppCompatActivity implements DatePickerDi
                     }
                 });
 
-        if(!correctEmail[0])
-        {
-            Toast.makeText(this, "You are not the leader of the service"
-                    , Toast.LENGTH_SHORT).show();
-        }
+//        if(!correctEmail[0])
+//        {
+//            Toast.makeText(this, "You are not the leader of the service"
+//                    , Toast.LENGTH_SHORT).show();
+//        }
 
-        if(parametersFilled && validEmail)
+        if(parametersFilled)
         {
             ServiceMeeting currMeeting = new ServiceMeeting(date, serviceString, timeString
                     , descriptionString, myUserEmail);

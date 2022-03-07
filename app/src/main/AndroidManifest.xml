@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Schoolstressreliever">
         <activity
-            android:name=".AddServiceMeeting"
+            android:name=".vico.AddServiceMeetingActivity"
             android:exported="true" />
         <activity
             android:name=".vico.ServiceMeetingOverviewActivity"

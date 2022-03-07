@@ -33,12 +33,14 @@ public class ServiceMeetingOverviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_meeting_overview);
 
+        firestore = FirebaseFirestore.getInstance();
+
         recView = findViewById(R.id.recView);
 
         Intent intent = getIntent();
         String currUser = intent.getExtras().getString("currUser");
 
-        ServiceRecyclerViewAdapter myAdapter = new ServiceRecyclerViewAdapter(nameInfo, statusInfo
+        ServiceMeetingRecyclerViewAdapter myAdapter = new ServiceMeetingRecyclerViewAdapter(nameInfo, statusInfo
                 , this, currUser);
 
         recView.setAdapter(myAdapter);
@@ -50,8 +52,8 @@ public class ServiceMeetingOverviewActivity extends AppCompatActivity {
 
     public void updateRecView()
     {
-        firestore.collection("everything").document("all services")
-                .collection("services").get()
+        firestore.collection("everything").document("all meetings")
+                .collection("meetings").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
                 {
                     @Override
@@ -65,19 +67,19 @@ public class ServiceMeetingOverviewActivity extends AppCompatActivity {
                             {
                                 Map<String, Object> docData = doc.getData();
 
-                                String currName = (String) docData.get("name");
-                                nameInfo.add(currName);
+                                String currService = (String) docData.get("service");
+                                nameInfo.add(currService);
 
-                                String currInterestArea = (String) docData.get("intrestArea");
-                                String currHours = (String) docData.get("hours");
+                                String currDate = (String) docData.get("date");
+                                String currTime = (String) docData.get("time");
 
-                                statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
-                                        + currHours);
+                                statusInfo.add("Date: " + currDate + "     Time: "
+                                        + currTime);
 
                                 System.out.println(statusInfo);
                             }
 
-                            ServiceRecyclerViewAdapter a = (ServiceRecyclerViewAdapter)
+                            ServiceMeetingRecyclerViewAdapter a = (ServiceMeetingRecyclerViewAdapter)
                                     recView.getAdapter();
                             a.changeInfo(nameInfo, statusInfo);
                             a.notifyDataSetChanged();
@@ -87,9 +89,11 @@ public class ServiceMeetingOverviewActivity extends AppCompatActivity {
     }
 
     public void goToAddServiceMeeting(View v){
-        Intent newIntent = new Intent(this, AddServiceActivity.class);
+
+        Intent newIntent = new Intent(this, AddServiceMeetingActivity.class);
         Intent intent = getIntent();
         String currUser = intent.getExtras().getString("currUser");
+        newIntent.putExtra("currUser", currUser);
         startActivity(newIntent);
     }
 }
