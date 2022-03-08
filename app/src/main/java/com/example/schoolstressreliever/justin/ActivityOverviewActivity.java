@@ -14,6 +14,7 @@ import android.view.View;
 import com.example.schoolstressreliever.R;
 import com.example.schoolstressreliever.justin.AddActivityActivity;
 import com.example.schoolstressreliever.justin.ActivityRecyclerViewAdapter;
+import com.example.schoolstressreliever.vico.ServiceRecyclerViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -61,6 +62,9 @@ public class ActivityOverviewActivity extends AppCompatActivity {
 
     }
 
+
+
+
     public void updateRecView() {
         firestore.collection("everything").document("all activities")
                 .collection("activities").get()
@@ -93,34 +97,93 @@ public class ActivityOverviewActivity extends AppCompatActivity {
                         }
                     }
                 });
-        Collections.sort(statusInfo, new Comparator<String>() {
-            @Override
-            public int compare(String s, String t1) {
-                /* sort based on the qt of compatibilityRating*/
 
-            }
-        });
 
-//            @Override
-//            public int compare(ArrayList<String> o1, ArrayList<String> o2)
-//            {
+//        ArrayList <Map> activityList = new ArrayList<>();
+//        String currInterest;
+//        String currHours;
 //
-//
-//                return 0;
-//
-//            }
-//
-//
-//            @Override
-//            public boolean equals(Object o) {
-//                return false;
-//            }
-//        })
+//        ArrayList <Map> doubleMatch = new ArrayList<>();
+//        ArrayList <Map> singleMatch = new ArrayList<>();
+//        ArrayList <Map> noMatch = new ArrayList<>();
+
+
+
+//        for(Map service : serviceList)
 //        {
-//            @Override
+//            Boolean interestMatch = false;
+//            Boolean hoursMatch = false;
 //
+//            if(service.get("interestArea").equals(currInterest))
+//            {
+//                interestMatch = true;
+//            }
 //
+//            if(service.get("hours").equals(currHours))
+//            {
+//                hoursMatch = true;
+//            }
+//
+//            if(hoursMatch && interestMatch)
+//            {
+//                doubleMatch.add(service);
+//            }
+//            else if(hoursMatch || interestMatch)
+//            {
+//                singleMatch.add(service);
+//            }
+//            else
+//            {
+//                noMatch.add(service);
+//            }
 //        }
+//
+//        for(Map currService : doubleMatch)
+//        {
+//            String currName = (String) currService.get("name");
+//            nameInfo.add(currName);
+//
+//            String currInterestArea = (String) currService.get("intrestArea");
+//            String currHours = (String) currService.get("hours");
+//
+//            statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+//                    + currHours);
+//
+//            System.out.println(statusInfo);
+//        }
+//
+//        for(Map currService : singleMatch)
+//        {
+//            String currName = (String) currService.get("name");
+//            nameInfo.add(currName);
+//
+//            String currInterestArea = (String) currService.get("intrestArea");
+//            String currHours = (String) currService.get("hours");
+//
+//            statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+//                    + currHours);
+//
+//            System.out.println(statusInfo);
+//        }
+//
+//        for(Map currService : noMatch)
+//        {
+//            String currName = (String) currService.get("name");
+//            nameInfo.add(currName);
+//
+//            String currInterestArea = (String) currService.get("intrestArea");
+//            String currHours = (String) currService.get("hours");
+//
+//            statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+//                    + currHours);
+//
+//            System.out.println(statusInfo);
+//        }
+//
+//        ServiceRecyclerViewAdapter a = (ServiceRecyclerViewAdapter)
+//                recView.getAdapter();
+//        a.changeInfo(nameInfo, statusInfo);
+//        a.notifyDataSetChanged();
 
 
     }

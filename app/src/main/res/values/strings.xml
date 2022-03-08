@@ -1,6 +1,24 @@
 <resources>
     <string name="app_name">schoolstressreliever</string>
 
+    <string-array name="meetingTimes">
+        <item>0:00-1:00</item>
+        <item>1:00-2:00</item>
+        <item>2:00-3:00</item>
+        <item>4:00-5:00</item>
+        <item>5:00-6:00</item>
+        <item>6:00-7:00</item>
+        <item>7:00-8:00</item>
+        <item>8:00-9:00</item>
+        <item>9:00-10:00</item>
+        <item>10:00-11:00</item>
+        <item>11:00-12:00</item>
+    </string-array>
+
+    <string-array name="AMtothePM">
+        <item>AM</item>
+        <item>PM</item>
+    </string-array>
     <string-array name="serviceTypes">
         <item>Academic</item>
         <item>Arts</item>
