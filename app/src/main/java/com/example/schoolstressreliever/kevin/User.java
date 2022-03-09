@@ -10,11 +10,9 @@ public class User {
     private String yearLevel;
     private double hoursAvailable;
     private String areaOfInterest;
-    ArrayList userSubjectList = new ArrayList();
+    private ArrayList<String> userSubjectList;
 
-
-
-    public User(String ID, String name, String email, String yearLevel, String password, double hoursAvailable, String areaOfInterest ) {
+    public User(String ID, String name, String email, String yearLevel, String password, double hoursAvailable, String areaOfInterest) {
         this.ID = ID;
         this.name = name;
         this.email = email;
@@ -83,19 +81,11 @@ public class User {
         this.yearLevel = yearLevel;
     }
 
-    public ArrayList getUserSubject() {
+    public ArrayList<String> getUserSubjectList() {
         return userSubjectList;
     }
 
-    public void setUserSubject(ArrayList userSubject) {
-        this.userSubjectList = userSubject;
-    }
-
-    public ArrayList getUserSubjectList() {
-        return userSubjectList;
-    }
-
-    public void setUserSubjectList(ArrayList userSubjectList) {
+    public void setUserSubjectList(ArrayList<String> userSubjectList) {
         this.userSubjectList = userSubjectList;
     }
 }
