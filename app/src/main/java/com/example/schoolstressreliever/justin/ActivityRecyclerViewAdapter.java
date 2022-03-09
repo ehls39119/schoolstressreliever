@@ -40,7 +40,7 @@ public class ActivityRecyclerViewAdapter extends RecyclerView.Adapter <ActivityV
     @Override
     public ActivityViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        View myView = LayoutInflater.from(parent.getContext()).inflate(R.layout.service_row_view,
+        View myView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_service_row_view,
                 parent, false);
 
         ActivityViewHolder holder = new ActivityViewHolder(myView);
