@@ -26,6 +26,7 @@ public class ServiceOverviewActivity extends AppCompatActivity {
     private FirebaseFirestore firestore;
     ArrayList<String> nameInfo = new ArrayList<>();
     ArrayList<String> statusInfo = new ArrayList<>();
+    String myUserEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class ServiceOverviewActivity extends AppCompatActivity {
 //        Intent intent = getIntent();
 //        String myUserEmail = intent.getExtras().getString("currUser");
 
-        String myUserEmail = "justinIsGay@student.cis.edu.hk";
+        myUserEmail = "justinIsGay@student.cis.edu.hk";
 
         ServiceRecyclerViewAdapter myAdapter = new ServiceRecyclerViewAdapter(nameInfo, statusInfo
                 , this, myUserEmail);
@@ -48,6 +49,10 @@ public class ServiceOverviewActivity extends AppCompatActivity {
 
         updateRecView();
     }
+
+    ArrayList <Map> serviceList = new ArrayList<>();
+    String currInterest;
+    String currHours;
 
     public void updateRecView()
     {
@@ -64,33 +69,132 @@ public class ServiceOverviewActivity extends AppCompatActivity {
 
                             for(DocumentSnapshot doc : ds)
                             {
-                                Map<String, Object> docData = doc.getData();
+                                Map<String, Object> serviceData = doc.getData();
+                                serviceList.add(serviceData);
 
-                                String currName = (String) docData.get("name");
-                                nameInfo.add(currName);
-
-                                String currInterestArea = (String) docData.get("intrestArea");
-                                String currHours = (String) docData.get("hours");
-
-                                statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
-                                            + currHours);
-
-                                System.out.println(statusInfo);
                             }
-
-                            ServiceRecyclerViewAdapter a = (ServiceRecyclerViewAdapter)
-                                    recView.getAdapter();
-                            a.changeInfo(nameInfo, statusInfo);
-                            a.notifyDataSetChanged();
                         }
                     }
                 });
+
+
+        firestore.collection("everything").document("all users")
+                .collection("users").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
+                {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task)
+                    {
+                        if (task.isSuccessful())
+                        {
+                            List<DocumentSnapshot> ds = task.getResult().getDocuments();
+
+                            for(DocumentSnapshot doc : ds)
+                            {
+                                Map<String, Object> userData = doc.getData();
+
+                                if(userData.get("email").equals(myUserEmail))
+                                {
+                                    currInterest = (String) userData.get("interestArea");
+                                    currHours = (String) userData.get("hours");
+                                }
+                            }
+                        }
+                    }
+                });
+
+        ArrayList <Map> doubleMatch = new ArrayList<>();
+        ArrayList <Map> singleMatch = new ArrayList<>();
+        ArrayList <Map> noMatch = new ArrayList<>();
+
+        for(Map service : serviceList)
+        {
+            Boolean interestMatch = false;
+            Boolean hoursMatch = false;
+
+            if(service.get("interestArea").equals(currInterest))
+            {
+                interestMatch = true;
+            }
+
+            if(service.get("hours").equals(currHours))
+            {
+                hoursMatch = true;
+            }
+
+            if(hoursMatch && interestMatch)
+            {
+                doubleMatch.add(service);
+            }
+            else if(hoursMatch || interestMatch)
+            {
+                singleMatch.add(service);
+            }
+            else
+            {
+                noMatch.add(service);
+            }
+        }
+
+        for(Map currService : doubleMatch)
+        {
+            String currName = (String) currService.get("name");
+            nameInfo.add(currName);
+
+            String currInterestArea = (String) currService.get("intrestArea");
+            String currHours = (String) currService.get("hours");
+
+            statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+                    + currHours);
+
+            System.out.println(statusInfo);
+        }
+
+        for(Map currService : singleMatch)
+        {
+            String currName = (String) currService.get("name");
+            nameInfo.add(currName);
+
+            String currInterestArea = (String) currService.get("intrestArea");
+            String currHours = (String) currService.get("hours");
+
+            statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+                    + currHours);
+
+            System.out.println(statusInfo);
+        }
+
+        for(Map currService : noMatch)
+        {
+            String currName = (String) currService.get("name");
+            nameInfo.add(currName);
+
+            String currInterestArea = (String) currService.get("intrestArea");
+            String currHours = (String) currService.get("hours");
+
+            statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+                    + currHours);
+
+            System.out.println(statusInfo);
+        }
+
+        ServiceRecyclerViewAdapter a = (ServiceRecyclerViewAdapter)
+                recView.getAdapter();
+        a.changeInfo(nameInfo, statusInfo);
+        a.notifyDataSetChanged();
 
     }
 
 
     public void goToAddService(View v){
         Intent newIntent = new Intent(this, AddServiceActivity.class);
+        startActivity(newIntent);
+    }
+
+    public void goToServiceMeetingActivity(View v){
+
+        Intent newIntent = new Intent(this, ServiceMeetingOverviewActivity.class);
+        newIntent.putExtra("currUser", myUserEmail);
         startActivity(newIntent);
     }
 }

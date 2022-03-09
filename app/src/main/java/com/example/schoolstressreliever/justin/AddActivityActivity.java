@@ -11,8 +11,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.schoolstressreliever.R;
-import com.example.schoolstressreliever.vico.CCA;
-import com.example.schoolstressreliever.vico.Service;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -27,6 +25,7 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
     private EditText teacherField;
     private EditText priceField;
     private EditText emailField;
+    private EditText interestField;
     private ArrayList<String> interestAreaList = new ArrayList<>();
     private EditText descriptionField;
 
@@ -44,7 +43,7 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
         nameField = findViewById(R.id.editTextName);
         teacherField = findViewById(R.id.editTextTeacher);
         emailField = findViewById(R.id.editTextEmail);
-        priceField = findViewById(R.id.editTextDescription);
+        priceField = findViewById(R.id.editTextPrice);
 
         Spinner spinner = findViewById(R.id.activityTypeSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -84,8 +83,8 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
         boolean parametersFilled = false;
         boolean validEmail = false;
 
-        if(!nameString.isEmpty() && !emailString.isEmpty() && !price.isEmpty() &&
-                !interestArea.isEmpty() && !hours.isEmpty())
+        if(!(nameString.isEmpty() && emailString.isEmpty() && price.isEmpty() &&
+                interestArea.isEmpty() && hours.isEmpty()))
         {
             parametersFilled = true;
         }
@@ -105,21 +104,18 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
 
         if(parametersFilled && validEmail)
         {
-            CCA activity = new CCA(nameString,teacherString, interestAreaList,  priceConverted, emptyList, hours  );
-
-//
+            CCA activity = new CCA(nameString,teacherString
+                    , priceConverted, emptyList, hours, interestArea);
 
             System.out.println("activity");
 
             firestore.collection("everything").document("all activities")
                     .collection("activities").document(nameString).set(activity);
 
-            System.out.println("added service");
+            System.out.println("added activity");
 
             Toast.makeText(this, "Activity Added", Toast.LENGTH_SHORT).show();
         }
-
-
 
 //
 
@@ -130,7 +126,8 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
     public void onItemSelected(AdapterView<?> adapterView,
                                View view,
                                int i,
-                               long l) {
+                               long l)
+    {
 
         String text = adapterView.getItemAtPosition(i).toString();
 //        Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();

@@ -36,7 +36,7 @@ public class AddServiceActivity extends AppCompatActivity implements AdapterView
 
         nameField = findViewById(R.id.editTextName);
         emailField = findViewById(R.id.editTextEmail);
-        descriptionField = findViewById(R.id.editTextDescription);
+        descriptionField = findViewById(R.id.editTextPrice);
 
         Spinner spinner = findViewById(R.id.activityTypeSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
