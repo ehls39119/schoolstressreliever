@@ -1,5 +1,6 @@
 package com.example.schoolstressreliever.justin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,12 +8,18 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import com.example.schoolstressreliever.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 
 public class receivePrivActivityRequest extends AppCompatActivity {
 
@@ -27,7 +34,7 @@ public class receivePrivActivityRequest extends AppCompatActivity {
     String category;
     String owner;
     String prematureCapacity;
-    private FirebaseUser currUser;
+    private FirebaseUser mUser;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
     EditText dateEditText;
@@ -39,7 +46,7 @@ public class receivePrivActivityRequest extends AppCompatActivity {
 
         firestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        currUser = mAuth.getCurrentUser();
+        mUser = mAuth.getCurrentUser();
 
 
         Intent intent = getIntent();
@@ -61,8 +68,33 @@ public class receivePrivActivityRequest extends AppCompatActivity {
             Calendar calendar = Calendar.getInstance();
             calendar.set(year,month,day);
 
+            Intent i = getIntent();
+            String userObject = (String)i.getSerializableExtra("userObject");
 
-            SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM d, yyyy 'at' h:mm a");
+            String currUser = intent.getExtras().getString("currUser");
+            String currActivity = intent.getExtras().getString("currActivity");
+
+            firestore.collection("Users").document(mUser.getDisplayName()).collection(userObject).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                    if (task.isSuccessful())
+                    {
+                        List<DocumentSnapshot> ds = task.getResult().getDocuments();
+
+                        for(DocumentSnapshot doc : ds)
+                        {
+                            Map<String, Object> docData = doc.getData();
+
+                            String thisName = (String) docData.get("name");
+
+                            if (thisName.equals(currActivity))
+                            {
+//                                userInterest = (String) docData.get("interestArea");
+//                                userHours = (String) docData.get("hours");
+
+
+                                SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM d, yyyy 'at' h:mm a");
             dateEditText.setText(format.format(calendar.getTime()));
 
         }

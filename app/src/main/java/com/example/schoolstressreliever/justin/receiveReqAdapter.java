@@ -11,22 +11,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.schoolstressreliever.MainActivity;
 import com.example.schoolstressreliever.R;
-import com.example.schoolstressreliever.vico.BookServiceActivity;
-import com.example.schoolstressreliever.vico.ServiceViewHolder;
+
 
 import java.util.ArrayList;
 
-public class ActivityRecyclerViewAdapter extends RecyclerView.Adapter <ActivityViewHolder>{
+public class receiveReqAdapter extends RecyclerView.Adapter <ActivityViewHolder>{
 
     ArrayList<String> nameData;
     ArrayList<String> statusData;
     Context screen;
     String emailString;
 
-    public ActivityRecyclerViewAdapter(ArrayList<String> itemNames,
-                                      ArrayList<String> statusOutput,
-                                      Context screen,
-                                      String myUserEmail) {
+    public receiveReqAdapter(ArrayList<String> itemNames,
+                                       ArrayList<String> statusOutput,
+                                       Context screen,
+                                       String myUserEmail)
+    {
 
         nameData = itemNames;
         statusData = statusOutput;
@@ -40,7 +40,7 @@ public class ActivityRecyclerViewAdapter extends RecyclerView.Adapter <ActivityV
     @Override
     public ActivityViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        View myView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_row_view,
+        View myView = LayoutInflater.from(parent.getContext()).inflate(R.layout.privmeeting_row_view,
                 parent, false);
 
         ActivityViewHolder holder = new ActivityViewHolder(myView);
@@ -80,7 +80,7 @@ public class ActivityRecyclerViewAdapter extends RecyclerView.Adapter <ActivityV
 
     public void updateUI(String activityString)
     {
-        Intent intent = new Intent(this.screen, BookActivityActivity.class);
+        Intent intent = new Intent(this.screen, receiveReqAdapter.class);
         intent.putExtra("currActivity", activityString);
         intent.putExtra("currUser", emailString);
 
