@@ -9,26 +9,24 @@ public class User {
     private String password;
     private String yearLevel;
     private double hoursAvailable;
-    private String areaOfInterest;
+    private boolean formFilled;
+    private String interestArea;
+    private String hours;
     private ArrayList<String> userSubjectList;
 
-    public User(String ID, String name, String email, String yearLevel, String password, double hoursAvailable, String areaOfInterest) {
+    public User(String ID, String name, String email, String yearLevel, String password, double hoursAvailable, String areaOfInterest, boolean formFilled, String interestArea, String hours) {
         this.ID = ID;
         this.name = name;
         this.email = email;
         this.password = password;
         this.yearLevel = yearLevel;
         this.hoursAvailable = hoursAvailable;
-        this.areaOfInterest = areaOfInterest;
+        this.interestArea = areaOfInterest;
+        this.formFilled = formFilled;
+        this.interestArea = interestArea;
+        this.hours = hours;
     }
 
-    public String getAreaOfInterest() {
-        return areaOfInterest;
-    }
-
-    public void setAreaOfInterest(String areaOfInterest) {
-        this.areaOfInterest = areaOfInterest;
-    }
 
     public double getHoursAvailable()
     {
@@ -87,5 +85,29 @@ public class User {
 
     public void setUserSubjectList(ArrayList<String> userSubjectList) {
         this.userSubjectList = userSubjectList;
+    }
+
+    public boolean isFormFilled() {
+        return formFilled;
+    }
+
+    public void setFormFilled(boolean formFilled) {
+        this.formFilled = formFilled;
+    }
+
+    public String getInterestArea() {
+        return interestArea;
+    }
+
+    public void setInterestArea(String interestArea) {
+        this.interestArea = interestArea;
+    }
+
+    public String getHours() {
+        return hours;
+    }
+
+    public void setHours(String hours) {
+        this.hours = hours;
     }
 }
