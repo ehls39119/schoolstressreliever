@@ -7,13 +7,29 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import com.example.schoolstressreliever.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class receivePrivActivityRequest extends AppCompatActivity {
 
     int day;
     int month;
     int year;
-
+    String amOrPm;
+    String prematureDay;
+    String prematureMonth;
+    String prematureYear;
+    String time;
+    String category;
+    String owner;
+    String prematureCapacity;
+    private FirebaseUser currUser;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore firestore;
     EditText dateEditText;
 
     @Override
@@ -21,27 +37,29 @@ public class receivePrivActivityRequest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receive_priv_request);
 
+        firestore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        currUser = mAuth.getCurrentUser();
+
 
         Intent intent = getIntent();
 
-        intent.putExtra("Day",mDay);
-        intent.putExtra("Month",mMonth);
-        intent.putExtra("Year",mYear);
-        intent.putExtra("AM or PM",amPmStatus);
-        intent.putExtra("Time", timeStatus);
-        intent.putExtra("Category", categoryRequest);
-        intent.putExtra("Owner", ownerRequest);
-        intent.putExtra("Capacity", capacityRequest);
-
-
-
         if(intent != null){
-            day = intent.getIntExtra("Day",0);
-            month = intent.getIntExtra("Month",0);
-            year = intent.getIntExtra("Year",0);
+            prematureDay = intent.getStringExtra("Day");
+            prematureMonth = intent.getStringExtra("Month");
+            prematureYear = intent.getStringExtra("Year");
+            amOrPm = intent.getStringExtra("AM or PM");
+            time = intent.getStringExtra("Time");
+            category = intent.getStringExtra("Category");
+            owner = intent.getStringExtra("Owner");
+            prematureCapacity = intent.getStringExtra("Capacity");
+
+            day = Integer.parseInt(prematureDay);
+            month = Integer.parseInt(prematureMonth);
+            year = Integer.parseInt(prematureYear);
 
             Calendar calendar = Calendar.getInstance();
-            calendar.set(2013,5,23);
+            calendar.set(year,month,day);
 
 
             SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM d, yyyy 'at' h:mm a");

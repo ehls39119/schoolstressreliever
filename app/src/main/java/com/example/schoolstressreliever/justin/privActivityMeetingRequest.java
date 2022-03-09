@@ -30,16 +30,13 @@ public class privActivityMeetingRequest extends AppCompatActivity implements Ada
         categoryField = findViewById(R.id.meetingCategory);
         ownerField = findViewById(R.id.ownerName);
         capacityField =findViewById(R.id.meetingCapacity);
-
                 DatePicker datePicker = (DatePicker) findViewById(R.id.calendar);
         int mDay = datePicker.getDayOfMonth();
         int mMonth = datePicker.getMonth() + 1;
         int mYear = datePicker.getYear();
-
         String categoryRequest = categoryField.getText().toString();
         String ownerRequest = categoryField.getText().toString();
         String capacityRequest = capacityField.getText().toString();
-
         Spinner spinnerAMorPM = findViewById(R.id.amtothePM);
         ArrayAdapter<CharSequence> adapterAMorPM = ArrayAdapter.createFromResource(this,
                 R.array.meetingTimes, android.R.layout.simple_spinner_item);
