@@ -12,9 +12,6 @@ public class Student {
     private ArrayList<Map<String, Integer>> myHLBoundaries;
     private ArrayList<Map<String, Integer>> mySlBoundaries;
     public ArrayList<String> subjectNameList;
-
-
-
     public String myName;
 
     public Student(ArrayList<Map<String, Integer>> hlMap, ArrayList<Map<String, Integer>> slMap, String userName){
