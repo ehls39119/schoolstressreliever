@@ -14,14 +14,13 @@ public class User {
     private String hours;
     private ArrayList<String> userSubjectList;
 
-    public User(String ID, String name, String email, String yearLevel, String password, double hoursAvailable, String areaOfInterest, boolean formFilled, String interestArea) {
+    public User(String ID, String name, String email, String yearLevel, String password, double hoursAvailable, boolean formFilled, String interestArea) {
         this.ID = ID;
         this.name = name;
         this.email = email;
         this.password = password;
         this.yearLevel = yearLevel;
         this.hoursAvailable = hoursAvailable;
-        this.interestArea = areaOfInterest;
         this.formFilled = formFilled;
         this.interestArea = interestArea;
     }
