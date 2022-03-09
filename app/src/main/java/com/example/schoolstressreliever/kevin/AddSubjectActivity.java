@@ -7,7 +7,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.schoolstressreliever.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +24,7 @@ public class AddSubjectActivity extends AppCompatActivity {
     private FirebaseFirestore firestore;
     public ArrayList<String> subjectList = new ArrayList<>();
     Button select;
+    Button confirm;
     TextView showText;
 
     CharSequence[] subjects = {"\nEnglish Lan & Lit SL\n", "\nEnglish Lan & Lit HL\n", "\nEnglish Lit SL\n", "\nEnglish Lit HL\n",
@@ -42,8 +45,10 @@ public class AddSubjectActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
 
         select = findViewById(R.id.SelectSubject);
+        confirm = findViewById(R.id.ConfirmButton);
         showText = findViewById(R.id.SelectedTextView);
         showText.setText(itemsString());
+
 
         select.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +66,14 @@ public class AddSubjectActivity extends AppCompatActivity {
                 newBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        System.out.println("Show the subjects.");
-                        showText.setText(itemsString());
-                        System.out.println(showText);
-                        dialogInterface.dismiss();
+                       if(selectedSubjects.length == 6) {
+                           System.out.println("Show the subjects.");
+                           showText.setText(itemsString());
+                           System.out.println(showText);
+                           dialogInterface.dismiss();
+                       }else{
+                           Toast.makeText(getApplicationContext(), "Sorry, you need to enter all your IBDP subjects.", Toast.LENGTH_SHORT).show();
+                       }
                     }
                 });
 
@@ -80,6 +89,16 @@ public class AddSubjectActivity extends AppCompatActivity {
                 list.show();
             }
         });
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Store the subjects into the Firebase Database.");
+                String subjectInput = showText.getText().toString();
+                System.out.println(subjectInput);
+                firestore.collection("User").document(mUser.getUid()).set(subjectInput);
+            }
+        });
     }
 
     private String itemsString() {
@@ -90,11 +109,5 @@ public class AddSubjectActivity extends AppCompatActivity {
             }
         }
         return text.trim();
-    }
-
-    public void Store(View v) {
-        System.out.println("Store the subjects into the Firebase Database.");
-        //String subjectInput = showText.getText().toString();
-        //firestore.collection("User").document(mUser.getUid()).set(subjectInput);
     }
 }

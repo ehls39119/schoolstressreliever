@@ -46,8 +46,8 @@ public class AuthActivity extends AppCompatActivity {
                     Log.w("Log in.", "Successfully log in with email and password.");
                     FirebaseUser currentUser = mAuth.getCurrentUser();
                     updateUI(currentUser);
-
                     Toast.makeText(getApplicationContext(), "Correct email and password, welcome!", Toast.LENGTH_SHORT).show();
+
                 } else {
                     Log.w("Log in.", "Log in with email and password failed.");
                     updateUI(null);
