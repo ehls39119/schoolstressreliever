@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class SubjectRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SubjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     ArrayList studentData;
     Context currentContext;
 
-    public SubjectRecyclerViewAdapter(ArrayList<Student> studentInfoInput, Context context){
+    public SubjectAdapter(ArrayList<Student> studentInfoInput, Context context){
         studentData = studentInfoInput;
         this.currentContext = context;
     }
@@ -24,8 +24,8 @@ public class SubjectRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View myView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_vehicle_view_holder, parent, false );
-        return new SubjectViewHolder(myView);
+        View myView = LayoutInflater.from(parent.getContext()).inflate(R.layout.subject_holder, parent, false );
+        return new SubjectHolder(myView);
     }
 
     @Override
@@ -48,14 +48,14 @@ public class SubjectRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         String displayTranscript = Integer.toString(transcript_grade);
         String displayProgress = Integer.toString(progress_grade);
 
-        ((SubjectViewHolder) holder).nameText.setText(currSubject);
-        ((SubjectViewHolder) holder).statusText1.setText(displayProgress);
-        ((SubjectViewHolder) holder).statusText2.setText(displayTranscript);
+        ((SubjectHolder) holder).nameText.setText(currSubject);
+        ((SubjectHolder) holder).statusText1.setText(displayProgress);
+        ((SubjectHolder) holder).statusText2.setText(displayTranscript);
 
-        ((SubjectViewHolder) holder).getLayout().setOnClickListener(new View.OnClickListener() {
+        ((SubjectHolder) holder).getLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), SubjectInfoActivity.class);
+                Intent myIntent = new Intent(view.getContext(), GradeOverview.class);
                 myIntent.putExtra("Subject", currSubject);
                 myIntent.putExtra("Transcript", transcript_grade);
                 myIntent.putExtra("Progress", progress_grade);

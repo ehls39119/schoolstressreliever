@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class AddAcademicActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddSubject extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     FirebaseFirestore db;
     FirebaseUser mUser;
@@ -43,7 +43,7 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_academic);
+        setContentView(R.layout.add_subject);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -208,16 +208,16 @@ public class AddAcademicActivity extends AppCompatActivity implements AdapterVie
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(AddAcademicActivity.this, "Subjects Added", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddSubject.this, "Subjects Added", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(AddAcademicActivity.this, "Sorry auth failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddSubject.this, "Sorry auth failed.", Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 });
             }
 
-            Intent intent = new Intent(this, newAcademicOverview.class);
+            Intent intent = new Intent(this, SubjectOverview.class);
             startActivity(intent);
         }
         catch(FileNotFoundException fileNotFoundException) {

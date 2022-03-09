@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class newAcademicOverview extends AppCompatActivity {
+public class SubjectOverview extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -37,13 +36,13 @@ public class newAcademicOverview extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_academic_overview);
+        setContentView(R.layout.subject_overview);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
         recView = (RecyclerView) findViewById(R.id.recycler1ID);
-        SubjectRecyclerViewAdapter myAdapter = new SubjectRecyclerViewAdapter(studentInfo, this);
+        SubjectAdapter myAdapter = new SubjectAdapter(studentInfo, this);
         recView.setAdapter(myAdapter);
         recView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -62,7 +61,7 @@ public class newAcademicOverview extends AppCompatActivity {
                         studentInfo.add(info);
                     }
 
-                    SubjectRecyclerViewAdapter recAdapter = (SubjectRecyclerViewAdapter) recView.getAdapter();
+                    SubjectAdapter recAdapter = (SubjectAdapter) recView.getAdapter();
                     assert recAdapter != null;
                     recAdapter.setVehiclesData(studentInfo);
                     recAdapter.notifyDataSetChanged();
@@ -72,7 +71,7 @@ public class newAcademicOverview extends AppCompatActivity {
     }
 
     public void goToAcademicOverview (View v){
-        Intent z = new Intent(this, AddAcademicActivity.class);
+        Intent z = new Intent(this, AddSubject.class);
         startActivity(z);
     }
 

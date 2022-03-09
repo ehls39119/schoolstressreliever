@@ -1,42 +1,34 @@
 package com.example.schoolstressreliever.Ernest;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
+
+import com.example.schoolstressreliever.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.schoolstressreliever.R;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-
-public class GradeRecyclerViewAdapter extends AppCompatActivity {
-    ArrayList gradeData;
+public class GradeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    ArrayList studentData;
     Context currentContext;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grade_recycler_view_adapter);
-    }
-
-    public GradeRecyclerViewAdapter(ArrayList<Double> grades, Context context) {
+    public GradeAdapter(ArrayList<Double> studentInfoInput, Context context){
+        studentData = studentInfoInput;
         this.currentContext = context;
-        gradeData = grades;
     }
 
     @NonNull
+    @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View myView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_grade_vehicle_holder, parent, false);
-        return new SubjectViewHolder(myView);
+        View myView = LayoutInflater.from(parent.getContext()).inflate(R.layout.grade_holder, parent, false );
+        return new SubjectHolder(myView);
     }
 
+    @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 //        int pos = position;
 //        Student newStudent = (Student) studentData.get(position);
@@ -72,14 +64,14 @@ public class GradeRecyclerViewAdapter extends AppCompatActivity {
 //        });
     }
 
-
+    @Override
     public int getItemCount() {
-        return gradeData.size();
+        return studentData.size();
     }
 
-    public void setGradeData(ArrayList<Double> grades)
+    public void setVehiclesData(ArrayList<Student> students)
     {
-        this.gradeData = gradeData;
+        this.studentData = students;
     }
 
 

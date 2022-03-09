@@ -4,27 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ernest.SubjectInfoActivity">
+    tools:context=".Ernest.SubjectOverview">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler2ID"
-        android:layout_width="296dp"
-        android:layout_height="149dp"
-        app:layout_constraintBottom_toTopOf="@+id/addGradesID"
+        android:id="@+id/recycler1ID"
+        android:layout_width="368dp"
+        android:layout_height="275dp"
+        app:layout_constraintBottom_toTopOf="@+id/newAddID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        tools:itemCount="6" />
 
     <Button
-        android:id="@+id/addGradesID"
+        android:id="@+id/newAddID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Grades "
+        android:onClick="goToAcademicOverview"
+        android:text="Add Classes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycler2ID" />
+        app:layout_constraintTop_toBottomOf="@+id/recycler1ID" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="getAndPopulateData"
+        android:text="Get Data"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newAddID" />
 </androidx.constraintlayout.widget.ConstraintLayout>

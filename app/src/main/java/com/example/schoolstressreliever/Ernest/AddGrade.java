@@ -11,28 +11,35 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 
-public class SubjectInfoActivity extends AppCompatActivity {
+public class AddGrade extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     FirebaseFirestore db;
 
-    RecyclerView recView2;
-    ArrayList<Double> grades = new ArrayList<Double>();
-
+    RecyclerView recView;
+    ArrayList<Double> grades = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subject_info);
-        recView2 = (RecyclerView) findViewById(R.id.recycler2ID);
+        setContentView(R.layout.add_grade);
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        db = FirebaseFirestore.getInstance();
 
-        GradeRecyclerViewAdapter myAdapter = new GradeRecyclerViewAdapter(grades, this);
-//        recView2.setAdapter(myAdapter);
-//        recView2.setLayoutManager(new LinearLayoutManager(this));
+        recView = (RecyclerView) findViewById(R.id.recycler2ID);
+        GradeAdapter myAdapter = new GradeAdapter(grades, this);
+        recView.setAdapter(myAdapter);
+        recView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    public void addGrade(View v){
+        System.out.println("bruh");
 
     }
 

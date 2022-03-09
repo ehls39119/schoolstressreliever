@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.schoolstressreliever.Ernest.newAcademicOverview;
+import com.example.schoolstressreliever.Ernest.SubjectOverview;
 import com.example.schoolstressreliever.R;
 import com.example.schoolstressreliever.vico.ServiceOverviewActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -77,7 +77,7 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     public void goToAcademicOverview(View v){
-        Intent newIntent = new Intent(this, newAcademicOverview.class);
+        Intent newIntent = new Intent(this, SubjectOverview.class);
         startActivity(newIntent);
     }
 }

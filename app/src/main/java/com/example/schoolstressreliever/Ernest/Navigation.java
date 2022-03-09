@@ -13,7 +13,7 @@ import com.example.schoolstressreliever.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class NavigationActivity extends AppCompatActivity {
+public class Navigation extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser mUser;
 
