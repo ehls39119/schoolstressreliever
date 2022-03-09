@@ -14,7 +14,7 @@ public class User {
     private String hours;
     private ArrayList<String> userSubjectList;
 
-    public User(String ID, String name, String email, String yearLevel, String password, double hoursAvailable, String areaOfInterest, boolean formFilled, String interestArea, String hours) {
+    public User(String ID, String name, String email, String yearLevel, String password, double hoursAvailable, String areaOfInterest, boolean formFilled, String interestArea) {
         this.ID = ID;
         this.name = name;
         this.email = email;
@@ -24,7 +24,6 @@ public class User {
         this.interestArea = areaOfInterest;
         this.formFilled = formFilled;
         this.interestArea = interestArea;
-        this.hours = hours;
     }
 
 
