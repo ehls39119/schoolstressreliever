@@ -9,8 +9,8 @@ public class Student {
     Double myProgressPercent;
     Integer myTranscriptGrade;
 
-    private ArrayList<Map<String, Integer>> myHLBoundaries;
-    private ArrayList<Map<String, Integer>> mySlBoundaries;
+    public ArrayList<Map<String, Integer>> myHLBoundaries;
+    public ArrayList<Map<String, Integer>> mySlBoundaries;
     public ArrayList<String> subjectNameList;
     public String myName;
 
@@ -21,6 +21,7 @@ public class Student {
         myProgressGrade = 0;
         myProgressPercent = 0.0;
         myTranscriptGrade = 0;
+        subjectNameList = new ArrayList<String>();
     }
 
     public int getProgressGrade() {
@@ -32,19 +33,33 @@ public class Student {
     }
 
     public ArrayList<String> getSubjects(){
-        for (Map<String, Integer>  x: myHLBoundaries){
-            Map.Entry<String,Integer> entry = x.entrySet().iterator().next();
-            String key = entry.getKey();
-            subjectNameList.add(key);
-        }
-        for (Map<String, Integer>  x: mySlBoundaries){
-            Map.Entry<String,Integer> entry = x.entrySet().iterator().next();
-            String key = entry.getKey();
-            subjectNameList.add(key);
-        }
+        subjectNameList.add("sub1");
+        subjectNameList.add("sub2");
+        subjectNameList.add("sub3");
+        subjectNameList.add("sub4");
+        subjectNameList.add("sub5");
+        subjectNameList.add("sub6");
+
+//        for (Map<String, Integer>  x: myHLBoundaries){
+//            Map.Entry<String,Integer> entry = x.entrySet().iterator().next();
+//            String key = entry.getKey();
+//            subjectNameList.add(key);
+//        }
+//        for (Map<String, Integer>  x: mySlBoundaries){
+//            Map.Entry<String,Integer> entry = x.entrySet().iterator().next();
+//            String key = entry.getKey();
+//            subjectNameList.add(key);
+//        }
 
         return subjectNameList;
     }
 
+    public ArrayList<Map<String, Integer>> getHLBoundaries(){
+        return myHLBoundaries;
+    }
+
+    public ArrayList<Map<String, Integer>> getMySlBoundaries(){
+        return mySlBoundaries;
+    }
 
 }
