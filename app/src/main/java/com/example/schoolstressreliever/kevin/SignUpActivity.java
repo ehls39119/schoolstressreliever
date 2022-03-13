@@ -32,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText userYearLevel;
     private EditText userPassword;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +55,28 @@ public class SignUpActivity extends AppCompatActivity {
         String userYearLevelInput = userYearLevel.getText().toString();
         String userPasswordInput = userPassword.getText().toString();
 
+        User currentUser = new User(userID, userNameInput, userEmailInput, userYearLevelInput, userPasswordInput, 0, false, "");
+        fireStore.collection("User").document(mUser.getUid()).set(currentUser);
+        //maybe need to add the Info into an ArrayList.
+        //subjects are added after the Info.
+
+
+        /*edited by vico*/
+
         mAuth.createUserWithEmailAndPassword(userEmailInput, userPasswordInput).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.d("Sign up.", "SignUpWithEmail: success!");
                     FirebaseUser currUser = mAuth.getCurrentUser();
-                    updateUI(currUser);
+
                     Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome" + userNameInput, Toast.LENGTH_SHORT).show();
+
+                    fireStore.collection("everything").document("all users")
+                            .collection("users").document(userNameInput).set(currentUser);
+
+                    updateUI(currUser);
+
                 } else {
                     Log.w("Sign up.", "SignUpWithEmail: failed.");
                     updateUI(null);
@@ -70,10 +85,6 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        User currentUser = new User(userID, userNameInput, userEmailInput, userYearLevelInput, userPasswordInput, 0, "");
-        fireStore.collection("User").document(mUser.getUid()).set(currentUser);
-        //maybe need to add the Info into an ArrayList.
-        //subjects are added after the Info.
     }
 
     public void updateUI(FirebaseUser currUser) {

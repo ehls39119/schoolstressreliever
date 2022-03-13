@@ -4,28 +4,33 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_academic_overview.xml" value="0.309375" />
-        <entry key="app/src/main/res/layout/activity_add_academic.xml" value="0.4191419912996592" />
-        <entry key="app/src/main/res/layout/activity_add_activity.xml" value="0.2401752944724701" />
+        <entry key="app/src/main/res/layout/activity_add_academic.xml" value="0.3128771893087989" />
+        <entry key="app/src/main/res/layout/activity_add_activity.xml" value="0.5357722980526524" />
+        <entry key="app/src/main/res/layout/activity_add_grade.xml" value="0.2755208333333333" />
         <entry key="app/src/main/res/layout/activity_add_service.xml" value="0.309375" />
-        <entry key="app/src/main/res/layout/activity_add_service_meeting.xml" value="0.30300277313780444" />
         <entry key="app/src/main/res/layout/activity_add_subject.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_add_subject2.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_add_vehicle.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.3561668411262033" />
+        <entry key="app/src/main/res/layout/activity_book_service.xml" value="0.1359375" />
         <entry key="app/src/main/res/layout/activity_ecinfo.xml" value="0.1359375" />
         <entry key="app/src/main/res/layout/activity_grade_recycler_view_adapter.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/activity_grade_vehicle_holder.xml" value="0.309375" />
+        <entry key="app/src/main/res/layout/activity_info_recycler_view_adapter.xml" value="0.1359375" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.35318433706789937" />
         <entry key="app/src/main/res/layout/activity_navigation.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/activity_navigation2.xml" value="0.2953125" />
-        <entry key="app/src/main/res/layout/activity_priv_meeting_request.xml" value="0.20935567138041208" />
-        <entry key="app/src/main/res/layout/activity_receive_priv_request.xml" value="0.24114583333333334" />
-        <entry key="app/src/main/res/layout/activity_service_meeting_overview.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/activity_new_academic_overview.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/activity_service_overview.xml" value="0.309375" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.309375" />
+        <entry key="app/src/main/res/layout/activity_service_row_view.xml" value="0.1484375" />
+        <entry key="app/src/main/res/layout/activity_show_info.xml" value="0.1359375" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_subject_info.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/activity_vehicle_view_holder.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_vehicles_info.xml" value="0.309375" />
-        <entry key="app/src/main/res/layout/privmeeting_row_view.xml" value="0.25364583333333335" />
+        <entry key="app/src/main/res/layout/recycler_view_item.xml" value="0.2755208333333333" />
+        <entry key="app/src/main/res/layout/recycler_view_item_1.xml" value="0.2755208333333333" />
+        <entry key="app/src/main/res/layout/recycler_view_item_2.xml" value="0.2755208333333333" />
         <entry key="app/src/main/res/layout/service_row_view.xml" value="0.309375" />
       </map>
     </option>
