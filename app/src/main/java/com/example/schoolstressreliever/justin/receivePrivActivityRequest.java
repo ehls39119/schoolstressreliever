@@ -7,15 +7,30 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import com.example.schoolstressreliever.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class receivePrivActivityRequest extends AppCompatActivity {
 
-    int day;
-    int month;
-    int year;
+    String day;
+    String month;
+    String year;
+    int mDay;
+    int mMonth;
+    int mYear;
+    String amOrPm;
+    String time;
+    String category;
+    String owner;
+    String capacity;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore firestore;
+    private FirebaseUser mUser;
+
 
     EditText dateEditText;
 
@@ -25,30 +40,36 @@ public class receivePrivActivityRequest extends AppCompatActivity {
         setContentView(R.layout.activity_receive_priv_request);
 
 
+
         Intent intent = getIntent();
-//
-//        intent.putExtra("Day",mDay);
-//        intent.putExtra("Month",mMonth);
-//        intent.putExtra("Year",mYear);
-//        intent.putExtra("AM or PM",amPmStatus);
-//        intent.putExtra("Time", timeStatus);
-//        intent.putExtra("Category", categoryRequest);
-//        intent.putExtra("Owner", ownerRequest);
-//        intent.putExtra("Capacity", capacityRequest);
-
-
-
         if(intent != null){
-            day = intent.getIntExtra("Day",0);
-            month = intent.getIntExtra("Month",0);
-            year = intent.getIntExtra("Year",0);
-
+            day = intent.getStringExtra("Day");
+            month = intent.getStringExtra("Month");
+            year = intent.getStringExtra("Year");
+            amOrPm = intent.getStringExtra("AM or PM");
+            time = intent.getStringExtra("Time");
+            category = intent.getStringExtra("Category");
+            owner = intent.getStringExtra("Owner");
+            capacity = intent.getStringExtra("Capacity");
             Calendar calendar = Calendar.getInstance();
-            calendar.set(2013,5,23);
+
+            mDay = Integer.parseInt(day);
+            mMonth = Integer.parseInt(month);
+            mYear = Integer.parseInt(year);
+            calendar.set(mYear,mMonth,mDay);
 
 
             SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM d, yyyy 'at' h:mm a");
             dateEditText.setText(format.format(calendar.getTime()));
+
+
+            /*
+            1. Make everything show in a RecyclerViewer
+            2. Format calendar
+            3. Check firebase data i.e are you part of the category
+            4. Allow rejection (similar to open close mechanism)
+            5. Create a way to communicate
+            */
 
         }
 
