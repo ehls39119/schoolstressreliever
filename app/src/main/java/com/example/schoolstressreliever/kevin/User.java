@@ -25,6 +25,9 @@ public class User {
         this.interestArea = interestArea;
     }
 
+    public User(String uid, String displayName, String email, String yearLevel, String password, double hoursAvailable, String arts) {
+    }
+
 
     public double getHoursAvailable()
     {

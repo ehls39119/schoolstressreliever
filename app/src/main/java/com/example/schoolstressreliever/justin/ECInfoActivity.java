@@ -23,11 +23,10 @@ import java.io.Serializable;
 public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Serializable {
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
-    private FirebaseUser mUser;
     private EditText emailField;
     private EditText passwordField;
     private EditText nameField;
-
+    private FirebaseUser mUser;
 
     public String timeLeft;
     @Override
@@ -95,7 +94,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
 
             if(serviceOptions.equals("Arts"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), "", "", 0.5, true, "Arts");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), "", "", 0.5, "Arts");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -107,7 +106,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Sport"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5,true,  "Sport");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Sport");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -118,7 +117,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Academic"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, true,  "Academic");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Academic");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -129,7 +128,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Fundraising"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, true, "Fundraising");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Fundraising");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -140,7 +139,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Social"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, true, "Social");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Social");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -151,7 +150,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Sustainability"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, true,  "Sustainability");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Sustainability");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -170,7 +169,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             timeLeft = "1.0";
             if(serviceOptions.equals("Arts"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, true,  "Arts");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Arts");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -181,7 +180,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Sport"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, true, "Sport");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Sport");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this,ServiceOverviewActivity.class);
@@ -192,7 +191,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Academic"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, true, "Academic");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Academic");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -203,7 +202,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Fundraising"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, true, "Fundraising");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Fundraising");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -214,7 +213,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Social"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, true, "Social");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Social");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -225,7 +224,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Sustainability"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, true,  "Sustainability");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Sustainability");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -244,7 +243,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
 
             if(serviceOptions.equals("Arts"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, true, "Arts");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Arts");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -255,7 +254,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Sport"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, true, "Sport");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Sport");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -266,7 +265,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Academic"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, true, "Academic");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Academic");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -277,7 +276,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Fundraising"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, true, "Fundraising");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Fundraising");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -288,7 +287,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Social"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, true,  "Social");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Social");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -299,7 +298,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Sustainability"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, true, "Sustainability");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Sustainability");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -316,7 +315,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             timeLeft = "3.0";
             if(serviceOptions.equals("Arts"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, true, "Arts");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Arts");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -327,7 +326,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Sport"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, true, "Sport");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Sport");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -338,7 +337,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Academic"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, true,  "Academic");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Academic");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -349,7 +348,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Fundraising"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, true, "Fundraising");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Fundraising");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -360,7 +359,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Social"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, true, "Social");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Social");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);
@@ -371,7 +370,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
             }
             if(serviceOptions.equals("Sustainability"))
             {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, true, "Sustainability");
+                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Sustainability");
                 firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
                 Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, ServiceOverviewActivity.class);

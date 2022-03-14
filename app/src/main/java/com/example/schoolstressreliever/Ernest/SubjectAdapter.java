@@ -30,26 +30,24 @@ public class SubjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        int pos = position;
+
         Student newStudent = (Student) studentData.get(position);
 
         int transcript_grade = newStudent.getTranscriptGrade();
         int progress_grade = newStudent.getProgressGrade();
 
+        newStudent.updateList();
         ArrayList<String> x = newStudent.getSubjects();
+        System.out.println("after updating " + x);
+
+
         String currSubject = x.get(position);
-
-//        String str = "";
-//        for (String fruit : newVehicle.getRiderIDs()) {
-//            str += fruit;
-//            str += "\n";
-//        }
-
         String displayTranscript = Integer.toString(transcript_grade);
         String displayProgress = Integer.toString(progress_grade);
 
         ((SubjectHolder) holder).nameText.setText(currSubject);
         ((SubjectHolder) holder).statusText1.setText(displayProgress);
+//        System.out.println("display trans and prog" + displayTranscript + " " + displayProgress);
         ((SubjectHolder) holder).statusText2.setText(displayTranscript);
 
         ((SubjectHolder) holder).getLayout().setOnClickListener(new View.OnClickListener() {

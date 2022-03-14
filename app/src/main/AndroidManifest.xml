@@ -16,6 +16,9 @@
             android:name=".Ernest.AddGrade"
             android:exported="false" />
         <activity
+            android:name=".Ernest.GradeOverview"
+            android:exported="false" />
+        <activity
             android:name=".Ernest.GradeHolder"
             android:exported="false" />
         <activity
@@ -31,7 +34,7 @@
             android:name=".justin.AddActivityActivity"
             android:exported="true" />
         <activity
-            android:name=".kevin.ShowSubjectActivity"
+            android:name=".kevin.ShowInfoActivity"
             android:exported="true" />
         <activity
             android:name=".kevin.AddSubjectActivity"

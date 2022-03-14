@@ -5,16 +5,22 @@ import java.util.Map;
 
 public class Student {
 
-    Integer myProgressGrade;
+    int myProgressGrade;
     Double myProgressPercent;
-    Integer myTranscriptGrade;
+    int myTranscriptGrade;
 
     public ArrayList<Map<String, Integer>> myHLBoundaries;
     public ArrayList<Map<String, Integer>> mySlBoundaries;
+
     public ArrayList<String> subjectNameList;
     public String myName;
 
-    public Student(ArrayList<Map<String, Integer>> hlMap, ArrayList<Map<String, Integer>> slMap, String userName){
+    public ArrayList<Map<String, Map<String, Double>>> gradeInfo;
+
+//    [{"History": {"Progress": 7, "Transcript": 7, Grade}
+
+
+    public Student(ArrayList<Map<String, Integer>> hlMap, ArrayList<Map<String, Integer>> slMap, String userName, ArrayList<Map<String, Map<String, Double>>> gradeInfo){
         myHLBoundaries = hlMap;
         mySlBoundaries = slMap;
         myName = userName;
@@ -22,6 +28,20 @@ public class Student {
         myProgressPercent = 0.0;
         myTranscriptGrade = 0;
         subjectNameList = new ArrayList<String>();
+        gradeInfo = new ArrayList<Map<String, Map<String, Double>>>();
+
+    }
+
+    public Student(){
+
+    }
+
+    public void updateGradeInfo(){
+
+    }
+
+    public ArrayList<Map<String, Map<String, Integer>>> defaultGradeInfo(){
+        return null;
     }
 
     public int getProgressGrade() {
@@ -29,28 +49,40 @@ public class Student {
     }
 
     public int getTranscriptGrade() {
-        return myTranscriptGrade ;
+        return myTranscriptGrade;
+    }
+
+    public void updateList(){
+        System.out.println("inside " + myHLBoundaries);
+        System.out.println("inside " + mySlBoundaries);
+
+        for (Map<String, Integer>  x: myHLBoundaries) {
+            for (Map.Entry<String, Integer> entry : x.entrySet()) {
+                String ke = entry.getKey();
+                if (ke.length() > 4) {
+                    System.out.println("hl ke "+ ke);
+                    subjectNameList.add(ke);
+                }
+            }
+        }
+
+        for (Map<String, Integer>  y: mySlBoundaries) {
+            for (Map.Entry<String, Integer> entry : y.entrySet()) {
+                String ke = entry.getKey();
+                if (ke.length() > 4) {
+                    System.out.println("sl ke "+ ke);
+                    subjectNameList.add(ke);
+                }
+            }
+        }
+
+    }
+
+    public String getMyName(){
+        return myName;
     }
 
     public ArrayList<String> getSubjects(){
-        subjectNameList.add("sub1");
-        subjectNameList.add("sub2");
-        subjectNameList.add("sub3");
-        subjectNameList.add("sub4");
-        subjectNameList.add("sub5");
-        subjectNameList.add("sub6");
-
-//        for (Map<String, Integer>  x: myHLBoundaries){
-//            Map.Entry<String,Integer> entry = x.entrySet().iterator().next();
-//            String key = entry.getKey();
-//            subjectNameList.add(key);
-//        }
-//        for (Map<String, Integer>  x: mySlBoundaries){
-//            Map.Entry<String,Integer> entry = x.entrySet().iterator().next();
-//            String key = entry.getKey();
-//            subjectNameList.add(key);
-//        }
-
         return subjectNameList;
     }
 

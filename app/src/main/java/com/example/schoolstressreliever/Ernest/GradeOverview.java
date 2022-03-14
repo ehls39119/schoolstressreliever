@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class GradeOverview extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class GradeOverview extends AppCompatActivity {
     FirebaseFirestore db;
 
     RecyclerView recView;
-    ArrayList<Double> grades = new ArrayList<>();
+    ArrayList<Map<String, Map<String, Double>>> grades;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

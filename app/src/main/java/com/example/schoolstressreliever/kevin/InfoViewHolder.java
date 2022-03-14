@@ -9,11 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.schoolstressreliever.R;
 
 public class InfoViewHolder extends RecyclerView.ViewHolder {
-    protected TextView nameText;
+    protected TextView subjectText;
+    //protected TextView selectedSubjects;
 
     public InfoViewHolder(@NonNull View itemView) {
         super(itemView);
-
-        nameText = itemView.findViewById(R.id.TextName);
+        subjectText = itemView.findViewById(R.id.SubjectText1);
+        //selectedSubjects = itemView.findViewById(R.id.SelectSubject);
     }
 }

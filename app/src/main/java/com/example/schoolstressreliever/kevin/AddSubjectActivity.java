@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -49,7 +50,6 @@ public class AddSubjectActivity extends AppCompatActivity {
         showText = findViewById(R.id.SelectedTextView);
         showText.setText(itemsString());
 
-
         select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,14 +66,10 @@ public class AddSubjectActivity extends AppCompatActivity {
                 newBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                       if(selectedSubjects.length == 6) {
                            System.out.println("Show the subjects.");
                            showText.setText(itemsString());
                            System.out.println(showText);
                            dialogInterface.dismiss();
-                       }else{
-                           Toast.makeText(getApplicationContext(), "Sorry, you need to enter all your IBDP subjects.", Toast.LENGTH_SHORT).show();
-                       }
                     }
                 });
 
@@ -90,16 +86,21 @@ public class AddSubjectActivity extends AppCompatActivity {
             }
         });
 
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("Store the subjects into the Firebase Database.");
-                String subjectInput = showText.getText().toString();
-                System.out.println(subjectInput);
-                firestore.collection("User").document(mUser.getUid()).set(subjectInput);
-            }
-        });
+       confirm.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               System.out.println("Store the subjects into the Firebase Database.");
+               String subjectInput = showText.getText().toString();
+               System.out.println(subjectInput);
+               subjectList.add(subjectInput);
+               Toast.makeText(getApplicationContext(), "You have successfully added/changed your IBDP subjects.", Toast.LENGTH_SHORT).show();
+               //firestore.collection("User").document(mUser.getUid()).set(subjectInput);
+           }
+       });
+        //Intent startPage = new Intent(this, ShowInfoActivity.class);
+        //startActivity(startPage);
     }
+
 
     private String itemsString() {
         String text = " ";

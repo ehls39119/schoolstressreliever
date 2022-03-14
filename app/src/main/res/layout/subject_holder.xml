@@ -17,63 +17,69 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/transcriptViewID"
+            android:id="@+id/progressGradeID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
-            android:layout_marginEnd="57dp"
-            android:text="transcriptView"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Transcript"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/gradeTextView1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/statusTextView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/progressViewID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="117dp"
-            android:layout_marginTop="23dp"
             android:text="Progress"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/statusTextView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/nameTextView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/statusTextView2"
+            android:id="@+id/gradeTextView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="348dp"
-            android:layout_marginBottom="12dp"
             android:text="Status"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/progressGradeID"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="20dp"
             android:text="Name"
             android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/progressViewID"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/subjectNameID"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/statusTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="184dp"
-            android:layout_marginBottom="12dp"
             android:text="Status"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/progressGradeID"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/progressViewID"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/subjectNameID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
             android:text="Subject"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/nameTextView"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
