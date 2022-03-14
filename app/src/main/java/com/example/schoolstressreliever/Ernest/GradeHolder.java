@@ -1,16 +1,22 @@
 package com.example.schoolstressreliever.Ernest;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
+import android.widget.TextView;
 
-import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.schoolstressreliever.R;
 
+public class GradeHolder extends RecyclerView.ViewHolder {
+    protected TextView progressPercentView;
 
-public class GradeHolder extends AppCompatActivity {
+    public GradeHolder(@NonNull View itemView) {
+        super(itemView);
+        progressPercentView = (itemView).findViewById(R.id.gradeTextView1);
+    }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.grade_holder);
+    public ConstraintLayout getLayout(){
+        return itemView.findViewById(R.id.rowLayout);
     }
 }

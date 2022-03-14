@@ -94,6 +94,7 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
             ArrayList<Map<String, Integer>> hlSubjects = new ArrayList<>();
             ArrayList<Map<String, Integer>> sLSubjects = new ArrayList<>();
 
+
 //            System.out.println("checkpoint1");
 
             AssetManager am = this.getAssets();
@@ -190,7 +191,29 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
 
                 System.out.println("HL MAP: " + myHL);
                 System.out.println("SL MAP: " + mySL);
-                Student newStudent = new Student(myHL, mySL, name);
+
+
+//                [
+//                {History= {Progress = null, Transcript = Null}, Grades={test=99, test2=43}},
+//                {Physics= {Progress = null, Transcript = Null}, Grades={test=53, test2=20}}
+//                ]
+
+                ArrayList<Map<String, Map<String, Double>>> gradeInfo = new ArrayList<Map<String, Map<String, Double>>>();
+
+//                gradeInfo.add()
+                for (int i=0; i<gradeInfo.size(); i++){
+                    Map<String, Map<String, Double>> test1 = gradeInfo.get(i);
+
+
+
+
+
+                }
+
+
+
+
+                Student newStudent = new Student(myHL, mySL, name, gradeInfo);
                 System.out.println(newStudent);
                 db.collection("Students").add(newStudent).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override

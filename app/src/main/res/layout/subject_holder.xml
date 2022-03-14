@@ -17,12 +17,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/transcriptViewID"
+            android:id="@+id/progressGradeID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Transcript"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/statusTextView2"
+            app:layout_constraintEnd_toStartOf="@+id/gradeTextView1"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/statusTextView"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,14 +39,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/statusTextView2"
+            android:id="@+id/gradeTextView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Status"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/transcriptViewID"
+            app:layout_constraintStart_toEndOf="@+id/progressGradeID"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:text="Status"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/transcriptViewID"
+            app:layout_constraintEnd_toStartOf="@+id/progressGradeID"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/progressViewID"
             app:layout_constraintTop_toTopOf="parent" />

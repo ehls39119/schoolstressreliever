@@ -14,12 +14,13 @@ public class Student {
 
     public ArrayList<String> subjectNameList;
     public String myName;
-    public ArrayList<Map<String, Map<String, Integer>>> everything;
+
+    public ArrayList<Map<String, Map<String, Double>>> gradeInfo;
 
 //    [{"History": {"Progress": 7, "Transcript": 7, Grade}
 
 
-    public Student(ArrayList<Map<String, Integer>> hlMap, ArrayList<Map<String, Integer>> slMap, String userName){
+    public Student(ArrayList<Map<String, Integer>> hlMap, ArrayList<Map<String, Integer>> slMap, String userName, ArrayList<Map<String, Map<String, Double>>> gradeInfo){
         myHLBoundaries = hlMap;
         mySlBoundaries = slMap;
         myName = userName;
@@ -27,12 +28,20 @@ public class Student {
         myProgressPercent = 0.0;
         myTranscriptGrade = 0;
         subjectNameList = new ArrayList<String>();
-//        everything = new ArrayList<Map<String, Integer>>();
+        gradeInfo = new ArrayList<Map<String, Map<String, Double>>>();
 
     }
 
     public Student(){
 
+    }
+
+    public void updateGradeInfo(){
+
+    }
+
+    public ArrayList<Map<String, Map<String, Integer>>> defaultGradeInfo(){
+        return null;
     }
 
     public int getProgressGrade() {
@@ -69,6 +78,9 @@ public class Student {
 
     }
 
+    public String getMyName(){
+        return myName;
+    }
 
     public ArrayList<String> getSubjects(){
         return subjectNameList;

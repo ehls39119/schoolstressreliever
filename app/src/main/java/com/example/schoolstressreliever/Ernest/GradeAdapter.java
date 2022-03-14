@@ -11,13 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class GradeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList studentData;
+    ArrayList gradeData;
     Context currentContext;
 
-    public GradeAdapter(ArrayList<Double> studentInfoInput, Context context){
-        studentData = studentInfoInput;
+    public GradeAdapter(ArrayList<Map<String, Map<String, Double>>> studentInfoInput, Context context){
+        gradeData = studentInfoInput;
         this.currentContext = context;
     }
 
@@ -66,12 +67,12 @@ public class GradeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return studentData.size();
+        return gradeData.size();
     }
 
     public void setVehiclesData(ArrayList<Student> students)
     {
-        this.studentData = students;
+        this.gradeData = students;
     }
 
 
