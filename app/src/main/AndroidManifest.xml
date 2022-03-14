@@ -13,6 +13,9 @@
             android:name=".Ernest.AddGrade"
             android:exported="false" />
         <activity
+            android:name=".Ernest.GradeOverview"
+            android:exported="false" />
+        <activity
             android:name=".Ernest.GradeHolder"
             android:exported="false" />
         <activity
