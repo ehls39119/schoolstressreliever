@@ -23,10 +23,11 @@ import java.io.Serializable;
 public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Serializable {
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
+    private FirebaseUser mUser;
     private EditText emailField;
     private EditText passwordField;
     private EditText nameField;
-    private FirebaseUser mUser;
+
 
     public String timeLeft;
     @Override
