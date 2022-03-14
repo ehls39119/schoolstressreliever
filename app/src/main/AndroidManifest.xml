@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Schoolstressreliever">
         <activity
+            android:name=".justin.reviewRequestActivity"
+            android:exported="true" />
+        <activity
             android:name=".Ernest.AddGrade"
             android:exported="false" />
         <activity
