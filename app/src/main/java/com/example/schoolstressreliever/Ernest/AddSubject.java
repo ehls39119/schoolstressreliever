@@ -118,7 +118,7 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
                 System.out.println(hlAL);
 
                 Map<String, Integer> hlMap = new HashMap<>();
-                hlMap.put(hlAL.get(0), null);
+                hlMap.put(hlAL.get(0), 0);
                 hlMap.put("7", Integer.parseInt(hlAL.get(1)));
                 hlMap.put("6", Integer.parseInt(hlAL.get(2)));
                 hlMap.put("5", Integer.parseInt(hlAL.get(3)));
@@ -137,7 +137,7 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
 //                System.out.println(slAL);
 
                 Map<String, Integer> slMap = new HashMap<>();
-                slMap.put(slAL.get(0), null);
+                slMap.put(slAL.get(0), 0);
                 slMap.put("7", Integer.parseInt(slAL.get(1)));
                 slMap.put("6", Integer.parseInt(slAL.get(2)));
                 slMap.put("5", Integer.parseInt(slAL.get(3)));
