@@ -28,7 +28,7 @@
             android:name=".justin.AddActivityActivity"
             android:exported="true" />
         <activity
-            android:name=".kevin.ShowSubjectActivity"
+            android:name=".kevin.ShowInfoActivity"
             android:exported="true" />
         <activity
             android:name=".kevin.AddSubjectActivity"

@@ -39,7 +39,6 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
     private Spinner slSubject3;
     private EditText userName;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
