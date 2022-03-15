@@ -1,5 +1,6 @@
 package com.example.schoolstressreliever.justin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,11 +15,18 @@ import android.widget.Toast;
 import com.example.schoolstressreliever.R;
 import com.example.schoolstressreliever.kevin.User;
 import com.example.schoolstressreliever.vico.ServiceOverviewActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Serializable {
     private FirebaseAuth mAuth;
@@ -80,6 +88,9 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
         String activityTimeText = activityOptions.getSelectedItem().toString();
         System.out.println("Button Clicked");
 
+        Intent intent = getIntent();
+        Serializable myUser = intent.getExtras().getString("currUser");
+
 //        this.ID = ID;
 //        this.name = name;
 //        this.email = email;
@@ -88,299 +99,321 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
 //        this.hoursAvailable = hoursAvailable;
 //        this.areaOfInterest = areaOfInterest;
 //
-        if(dummyServiceTime == 0.5)
-        {
-            timeLeft = "0.5";
 
-            if(serviceOptions.equals("Arts"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), "", "", 0.5, "Arts");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
+        firestore.collection("Users")
+                .document(mUser.getDisplayName()).update("hoursAvailableService", serviceTimeText);
 
-            }
-            if(serviceOptions.equals("Sport"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Sport");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Academic"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Academic");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Fundraising"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Fundraising");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Social"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Social");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Sustainability"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Sustainability");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
+        firestore.collection("Users")
+                .document(mUser.getDisplayName()).update("interestAreaService", serviceText);
 
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
+        firestore.collection("Users")
+                .document(mUser.getDisplayName()).update("hoursAvailableActivity", activityTimeText);
+
+        firestore.collection("Users")
+                .document(mUser.getDisplayName()).update("interestAreaActivity", activityText);
+
+        firestore.collection("Users")
+                .document(mUser.getDisplayName()).update("fillFormed", true);
 
 
-        }
+        Intent i = new Intent(this, BookActivityActivity.class);
+        i.putExtra("userObject", (Serializable) mUser);
+        startActivity(i);
 
-        if(dummyServiceTime == 1.0)
-        {
-            timeLeft = "1.0";
-            if(serviceOptions.equals("Arts"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Arts");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Sport"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Sport");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this,ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Academic"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Academic");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Fundraising"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Fundraising");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Social"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Social");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Sustainability"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Sustainability");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-
-
-        }
-
-        if(dummyServiceTime == 2.0)
-        {
-            timeLeft = "2.0";
-
-            if(serviceOptions.equals("Arts"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Arts");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Sport"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Sport");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Academic"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Academic");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Fundraising"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Fundraising");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Social"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Social");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Sustainability"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Sustainability");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-
-        }
-
-        if(dummyServiceTime == 3.0)
-        {
-            timeLeft = "3.0";
-            if(serviceOptions.equals("Arts"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Arts");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Sport"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Sport");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Academic"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Academic");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Fundraising"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Fundraising");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Social"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Social");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-            if(serviceOptions.equals("Sustainability"))
-            {
-                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Sustainability");
-                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
-                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, ServiceOverviewActivity.class);
-                startActivity(intent);
-                Intent i = new Intent(this, BookActivityActivity.class);
-                i.putExtra("userObject", (Serializable) userObject);
-                startActivity(i);
-            }
-
-        }
+//
+//        if(dummyServiceTime == 0.5)
+//        {
+//            timeLeft = "0.5";
+//
+//            if(serviceOptions.equals("Arts"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), "", "", 0.5, "Arts");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//
+//            }
+//            if(serviceOptions.equals("Sport"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Sport");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Academic"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Academic");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Fundraising"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Fundraising");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Social"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Social");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Sustainability"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  0.5, "Sustainability");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//
+//
+//        }
+//
+//        if(dummyServiceTime == 1.0)
+//        {
+//            timeLeft = "1.0";
+//            if(serviceOptions.equals("Arts"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Arts");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Sport"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Sport");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this,ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Academic"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Academic");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Fundraising"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Fundraising");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Social"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Social");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Sustainability"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  1.0, "Sustainability");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//
+//
+//        }
+//
+//        if(dummyServiceTime == 2.0)
+//        {
+//            timeLeft = "2.0";
+//
+//            if(serviceOptions.equals("Arts"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Arts");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Sport"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Sport");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Academic"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Academic");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Fundraising"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Fundraising");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Social"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Social");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Sustainability"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  2.0, "Sustainability");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//
+//        }
+//
+//        if(dummyServiceTime == 3.0)
+//        {
+//            timeLeft = "3.0";
+//            if(serviceOptions.equals("Arts"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Arts");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Sport"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Sport");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Academic"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Academic");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Fundraising"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Fundraising");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Social"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Social");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//            if(serviceOptions.equals("Sustainability"))
+//            {
+//                User userObject = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail() ,"","",  3.0, "Sustainability");
+//                firestore.collection("Users").document(mUser.getDisplayName()).set(userObject);
+//                Toast.makeText(ECInfoActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(this, ServiceOverviewActivity.class);
+//                startActivity(intent);
+//                Intent i = new Intent(this, BookActivityActivity.class);
+//                i.putExtra("userObject", (Serializable) userObject);
+//                startActivity(i);
+//            }
+//
+//        }
 
 
 

@@ -8,35 +8,60 @@ public class User {
     private String email;
     private String password;
     private String yearLevel;
-    private double hoursAvailable;
     private boolean formFilled;
-    private String interestArea;
+    private String interestAreaService;
+    private double hoursAvailableService;
+    private String interestAreaActivity;
+    private double hoursAvailableActivity;
     private String hours;
     private ArrayList<String> userSubjectList;
 
-    public User(String ID, String name, String email, String yearLevel, String password, double hoursAvailable, boolean formFilled, String interestArea) {
+    public User(String ID, String name, String email, String yearLevel, String password, boolean formFilled, String interestAreaService, double hoursAvailableService, String interestAreaActivity, double hoursAvailableActivity)  {
         this.ID = ID;
         this.name = name;
         this.email = email;
         this.password = password;
         this.yearLevel = yearLevel;
-        this.hoursAvailable = hoursAvailable;
         this.formFilled = formFilled;
-        this.interestArea = interestArea;
+        this.interestAreaService = interestAreaService;
+        this.hoursAvailableService = hoursAvailableService;
+        this.interestAreaActivity = interestAreaActivity;
+        this.hoursAvailableActivity = hoursAvailableActivity;
     }
 
     public User(String uid, String displayName, String email, String yearLevel, String password, double hoursAvailable, String arts) {
     }
 
-
-    public double getHoursAvailable()
-    {
-        return hoursAvailable;
+    public String getInterestAreaService() {
+        return interestAreaService;
     }
 
-    public void setHoursAvailable(double hoursAvailable)
-    {
-        this.hoursAvailable = hoursAvailable;
+    public void setInterestAreaService(String interestAreaService) {
+        this.interestAreaService = interestAreaService;
+    }
+
+    public double getHoursAvailableService() {
+        return hoursAvailableService;
+    }
+
+    public void setHoursAvailableService(double hoursAvailableService) {
+        this.hoursAvailableService = hoursAvailableService;
+    }
+
+    public String getInterestAreaActivity() {
+        return interestAreaActivity;
+    }
+
+    public void setInterestAreaActivity(String interestAreaActivity) {
+        this.interestAreaActivity = interestAreaActivity;
+    }
+
+    public double getHoursAvailableActivity() {
+        return hoursAvailableActivity;
+    }
+
+    public void setHoursAvailableActivity(double hoursAvailableActivity) {
+        this.hoursAvailableActivity = hoursAvailableActivity;
     }
 
     public String getID() {
@@ -94,14 +119,6 @@ public class User {
 
     public void setFormFilled(boolean formFilled) {
         this.formFilled = formFilled;
-    }
-
-    public String getInterestArea() {
-        return interestArea;
-    }
-
-    public void setInterestArea(String interestArea) {
-        this.interestArea = interestArea;
     }
 
     public String getHours() {
