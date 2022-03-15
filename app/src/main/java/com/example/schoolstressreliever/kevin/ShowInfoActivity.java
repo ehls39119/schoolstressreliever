@@ -19,7 +19,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class ShowInfoActivity extends AppCompatActivity{
+public class ShowInfoActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private FirebaseFirestore data;
@@ -56,7 +56,8 @@ public class ShowInfoActivity extends AppCompatActivity{
 
         getAndPopulateData();
     }
-    public void getAndPopulateData(){
+
+    public void getAndPopulateData() {
 
     }
 }

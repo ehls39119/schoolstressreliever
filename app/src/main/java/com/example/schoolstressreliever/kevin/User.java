@@ -29,16 +29,14 @@ public class User {
     }
 
     public User(String uid, String displayName, String email, String yearLevel, String password, double hoursAvailable, String arts) {
+
     }
 
-
-    public double getHoursAvailable()
-    {
+    public double getHoursAvailable() {
         return hoursAvailable;
     }
 
-    public void setHoursAvailable(double hoursAvailable)
-    {
+    public void setHoursAvailable(double hoursAvailable) {
         this.hoursAvailable = hoursAvailable;
     }
 
@@ -66,8 +64,7 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword()
-    {
+    public String getPassword() {
         return password;
     }
 

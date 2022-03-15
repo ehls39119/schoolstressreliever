@@ -89,19 +89,17 @@ public class AddSubjectActivity extends AppCompatActivity {
         });
 
 
-
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("Store the subjects into the Firebase Database.");
                 selected = showText.getText().toString();
                 int number = selected.length();
-                if(number == 6){
+                if (number == 6) {
                     System.out.println("Correct!");
                     Toast.makeText(getApplicationContext(), "You have successfully added/changed your IBDP subjects.", Toast.LENGTH_SHORT).show();
                     firestore.collection("User").document(mUser.getUid()).set(selected);
-                }
-                else{
+                } else {
                     System.out.println("Incorrect!");
                     Toast.makeText(getApplicationContext(), "You need to fulfill all your IBDP subjects, please tey again", Toast.LENGTH_LONG).show();
                 }

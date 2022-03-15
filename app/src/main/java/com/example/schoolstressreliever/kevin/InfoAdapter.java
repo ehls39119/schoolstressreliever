@@ -18,7 +18,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoViewHolder> {
     ArrayList<String> yData;
     ArrayList<String> pData;
 
-    public InfoAdapter(ArrayList idData, ArrayList nameData, ArrayList emailData, ArrayList yearData, ArrayList passwordData){
+    public InfoAdapter(ArrayList idData, ArrayList nameData, ArrayList emailData, ArrayList yearData, ArrayList passwordData) {
         iData = idData;
         mData = nameData;
         eData = emailData;
@@ -31,7 +31,6 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoViewHolder> {
     public InfoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View reView = LayoutInflater.from(parent.getContext()).inflate(R.layout.info_recycler_layout, parent, false);
         InfoViewHolder holder = new InfoViewHolder(reView);
-
         return holder;
     }
 

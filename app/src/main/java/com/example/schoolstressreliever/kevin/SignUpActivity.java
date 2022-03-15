@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.schoolstressreliever.Ernest.AddSubject;
+import com.example.schoolstressreliever.MainActivity;
 import com.example.schoolstressreliever.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,14 +27,8 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private FirebaseFirestore fireStore;
-    public ArrayList infoList = new ArrayList();
     public ArrayList<String> subjectList;
     public String subjectC;
-
-    void setValue(String selected){
-        subjectC = selected;
-    }
-
     private String userID;
     private EditText userName;
     private EditText userEmail;
@@ -52,7 +48,6 @@ public class SignUpActivity extends AppCompatActivity {
         userEmail = findViewById(R.id.UserEmail);
         userYearLevel = findViewById(R.id.UserYearLevel);
         userPassword = findViewById(R.id.UserPassword);
-        subjectC = "";
     }
 
     public void Signup(View v) {
@@ -77,7 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Log.d("Sign up.", "SignUpWithEmail: success!");
                     FirebaseUser currUser = mAuth.getCurrentUser();
 
-                    Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome" + userNameInput, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome " + userNameInput, Toast.LENGTH_SHORT).show();
 
                     updateUI(currUser);
 
@@ -94,7 +89,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void updateUI(FirebaseUser currUser) {
         if (currUser != null) {
-            Intent startPage = new Intent(this, ShowInfoActivity.class);
+            Intent startPage = new Intent(this, AddSubject.class);
             startActivity(startPage);
         }
     }
