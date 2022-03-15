@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/layout/activity_add_subject2.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_add_vehicle.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.3561668411262033" />
+        <entry key="app/src/main/res/layout/activity_book_activity.xml" value="0.34270833333333334" />
         <entry key="app/src/main/res/layout/activity_book_service.xml" value="0.1359375" />
         <entry key="app/src/main/res/layout/activity_ecinfo.xml" value="0.1359375" />
         <entry key="app/src/main/res/layout/activity_grade_recycler_view_adapter.xml" value="0.2953125" />
@@ -24,6 +25,7 @@
         <entry key="app/src/main/res/layout/activity_receive_priv_request.xml" value="0.2871376811594203" />
         <entry key="app/src/main/res/layout/activity_review_request.xml" value="0.1770516717325228" />
         <entry key="app/src/main/res/layout/activity_row_view.xml" value="0.1802536231884058" />
+        <entry key="app/src/main/res/layout/activity_service_meeting_overview.xml" value="0.34270833333333334" />
         <entry key="app/src/main/res/layout/activity_service_overview.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_service_row_view.xml" value="0.1484375" />
         <entry key="app/src/main/res/layout/activity_show_info.xml" value="0.1359375" />
