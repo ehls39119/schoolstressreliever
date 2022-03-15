@@ -71,11 +71,11 @@ public class SignUpActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Log.d("Sign up.", "SignUpWithEmail: success!");
                     FirebaseUser currUser = mAuth.getCurrentUser();
-
                     Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome " + userNameInput, Toast.LENGTH_SHORT).show();
 
                     updateUI(currUser);
-
+                    User currentUser = new User(userID, userNameInput, userEmailInput, userYearLevelInput, userPasswordInput, 0, false, "", subjectC);
+                    fireStore.collection("everything").document("all users").collection("users").document(userNameInput).set(currentUser);
                 } else {
                     Log.w("Sign up.", "SignUpWithEmail: failed.");
                     updateUI(null);
@@ -83,8 +83,6 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
-        User currentUser = new User(userID, userNameInput, userEmailInput, userYearLevelInput, userPasswordInput, 0, false, "", subjectC);
-        fireStore.collection("everything").document("all users").collection("users").document(userNameInput).set(currentUser);
     }
 
     public void updateUI(FirebaseUser currUser) {
