@@ -13,6 +13,8 @@ import com.example.schoolstressreliever.R;
 import com.example.schoolstressreliever.vico.ServiceRecyclerViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -24,16 +26,21 @@ import java.util.Map;
 public class ServiceMeetingOverviewActivity extends AppCompatActivity {
 
     RecyclerView recView;
-    private FirebaseFirestore firestore;
     ArrayList<String> nameInfo = new ArrayList<>();
     ArrayList<String> statusInfo = new ArrayList<>();
+
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore firestore;
+    private FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_meeting_overview);
 
+        mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+        mUser = mAuth.getCurrentUser();
 
         recView = findViewById(R.id.recView);
 
@@ -52,48 +59,45 @@ public class ServiceMeetingOverviewActivity extends AppCompatActivity {
 
     public void updateRecView()
     {
-        firestore.collection("everything").document("all meetings")
-                .collection("meetings").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
-                {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task)
-                    {
-                        if (task.isSuccessful())
-                        {
-                            List<DocumentSnapshot> ds = task.getResult().getDocuments();
-
-                            for(DocumentSnapshot doc : ds)
-                            {
-                                Map<String, Object> docData = doc.getData();
-
-                                String currService = (String) docData.get("service");
-                                nameInfo.add(currService);
-
-                                String currDate = (String) docData.get("date");
-                                String currTime = (String) docData.get("time");
-
-                                statusInfo.add("Date: " + currDate + "     Time: "
-                                        + currTime);
-
-                                System.out.println(statusInfo);
-                            }
-
-                            ServiceMeetingRecyclerViewAdapter a = (ServiceMeetingRecyclerViewAdapter)
-                                    recView.getAdapter();
-                            a.changeInfo(nameInfo, statusInfo);
-                            a.notifyDataSetChanged();
-                        }
-                    }
-                });
+//        firestore.collection("Service Meetings").get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
+//                {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task)
+//                    {
+//                        if (task.isSuccessful())
+//                        {
+//                            List<DocumentSnapshot> ds = task.getResult().getDocuments();
+//
+//                            for(DocumentSnapshot doc : ds)
+//                            {
+//                                Map<String, Object> docData = doc.getData();
+//
+//                                String currService = (String) docData.get("service");
+//                                nameInfo.add(currService);
+//
+//                                String currDate = (String) docData.get("date");
+//                                String currTime = (String) docData.get("time");
+//
+//                                statusInfo.add("Date: " + currDate + "     Time: "
+//                                        + currTime);
+//
+//                                System.out.println(statusInfo);
+//                            }
+//
+//                            ServiceMeetingRecyclerViewAdapter a = (ServiceMeetingRecyclerViewAdapter)
+//                                    recView.getAdapter();
+//                            a.changeInfo(nameInfo, statusInfo);
+//                            a.notifyDataSetChanged();
+//                        }
+//                    }
+//                });
     }
 
     public void goToAddServiceMeeting(View v){
 
         Intent newIntent = new Intent(this, AddServiceMeetingActivity.class);
-        Intent intent = getIntent();
-        String currUser = intent.getExtras().getString("currUser");
-        newIntent.putExtra("currUser", currUser);
+
         startActivity(newIntent);
     }
 }

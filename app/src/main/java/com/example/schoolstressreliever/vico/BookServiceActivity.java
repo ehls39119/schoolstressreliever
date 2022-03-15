@@ -33,6 +33,8 @@ import java.util.Map;
 public class BookServiceActivity extends AppCompatActivity {
 
     private FirebaseFirestore firestore;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +43,11 @@ public class BookServiceActivity extends AppCompatActivity {
 
         firestore = FirebaseFirestore.getInstance();
 
+        mAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+        mUser = mAuth.getCurrentUser();
+
         Intent intent = getIntent();
-        String currUser = intent.getExtras().getString("currUser");
         String currService = intent.getExtras().getString("currService");
 
         TextView nameView = (TextView)findViewById(R.id.activityNameTextView);
@@ -51,10 +56,7 @@ public class BookServiceActivity extends AppCompatActivity {
         TextView emailView = (TextView)findViewById(R.id.emailTextView);
         TextView descriptionView = (TextView)findViewById(R.id.priceView);
 
-        firestore = FirebaseFirestore.getInstance();
-
-        firestore.collection("everything").document("all services")
-                .collection("services").get()
+        firestore.collection("Services").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task)
@@ -94,8 +96,7 @@ public class BookServiceActivity extends AppCompatActivity {
     {
         firestore = FirebaseFirestore.getInstance();
 
-        firestore.collection("everything").document("all services")
-                .collection("services").get()
+        firestore.collection("Services").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task)
@@ -105,7 +106,6 @@ public class BookServiceActivity extends AppCompatActivity {
                             List<DocumentSnapshot> ds = task.getResult().getDocuments();
 
                             Intent intent = getIntent();
-                            String myUserEmail = intent.getExtras().getString("currUser");
                             String currService = intent.getExtras().getString("currService");
 
                             for(DocumentSnapshot doc : ds)
@@ -126,11 +126,9 @@ public class BookServiceActivity extends AppCompatActivity {
 
                                 if(thisService.equals(currService))
                                 {
-                                    allParticipants.add(myUserEmail);
+                                    allParticipants.add(mUser.getEmail());
 
-                                    firestore.collection("everything")
-                                            .document("all services")
-                                            .collection("services")
+                                    firestore.collection("Services")
                                             .document(currService)
                                             .update("participants", allParticipants);
 

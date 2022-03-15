@@ -23,7 +23,8 @@ public class AddSubjectActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private FirebaseFirestore firestore;
-    public ArrayList<String> subjectList = new ArrayList<>();
+    public ArrayList<String> selectedList = new ArrayList<>();
+    public String selected;
     Button select;
     Button confirm;
     TextView showText;
@@ -36,6 +37,7 @@ public class AddSubjectActivity extends AppCompatActivity {
             "\nMathematics AA SL\n", "\nMathematics AA HL\n", "\nMathematics AI SL\n", "\nMathematics AI HL\n",
             "\nVisual Arts SL\n", "\nVisual Arts HL\n", "\nMusic SL\n", "\nMusic HL\n", "\nTheatre SL\n", "\nTheatre HL\n", "\nFilm SL\n", "\nFilm HL\n"};
     boolean[] selectedSubjects = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +68,10 @@ public class AddSubjectActivity extends AppCompatActivity {
                 newBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                           System.out.println("Show the subjects.");
-                           showText.setText(itemsString());
-                           System.out.println(showText);
-                           dialogInterface.dismiss();
+                        System.out.println("Show the subjects.");
+                        showText.setText(itemsString());
+                        System.out.println(showText);
+                        dialogInterface.dismiss();
                     }
                 });
 
@@ -86,21 +88,28 @@ public class AddSubjectActivity extends AppCompatActivity {
             }
         });
 
-       confirm.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               System.out.println("Store the subjects into the Firebase Database.");
-               String subjectInput = showText.getText().toString();
-               System.out.println(subjectInput);
-               subjectList.add(subjectInput);
-               Toast.makeText(getApplicationContext(), "You have successfully added/changed your IBDP subjects.", Toast.LENGTH_SHORT).show();
-               //firestore.collection("User").document(mUser.getUid()).set(subjectInput);
-           }
-       });
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Store the subjects into the Firebase Database.");
+                selected = showText.getText().toString();
+                int number = selected.length();
+                if (number == 6) {
+                    System.out.println("Correct!");
+                    Toast.makeText(getApplicationContext(), "You have successfully added/changed your IBDP subjects.", Toast.LENGTH_SHORT).show();
+                    firestore.collection("User").document(mUser.getUid()).set(selected);
+                } else {
+                    System.out.println("Incorrect!");
+                    Toast.makeText(getApplicationContext(), "You need to fulfill all your IBDP subjects, please tey again", Toast.LENGTH_LONG).show();
+                }
+                //selectedList.add(subjectInput);
+                //System.out.println(selectedList);
+            }
+        });
         //Intent startPage = new Intent(this, ShowInfoActivity.class);
         //startActivity(startPage);
     }
-
 
     private String itemsString() {
         String text = " ";
