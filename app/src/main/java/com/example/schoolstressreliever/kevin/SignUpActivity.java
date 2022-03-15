@@ -25,13 +25,19 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private FirebaseFirestore fireStore;
+    public ArrayList infoList = new ArrayList();
+    public ArrayList<String> subjectList;
+    public String subjectC;
+
+    void setValue(String selected){
+        subjectC = selected;
+    }
 
     private String userID;
     private EditText userName;
     private EditText userEmail;
     private EditText userYearLevel;
     private EditText userPassword;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
         userEmail = findViewById(R.id.UserEmail);
         userYearLevel = findViewById(R.id.UserYearLevel);
         userPassword = findViewById(R.id.UserPassword);
+        subjectC = "";
     }
 
     public void Signup(View v) {
@@ -55,11 +62,11 @@ public class SignUpActivity extends AppCompatActivity {
         String userYearLevelInput = userYearLevel.getText().toString();
         String userPasswordInput = userPassword.getText().toString();
 
-        User currentUser = new User(userID, userNameInput, userEmailInput, userYearLevelInput, userPasswordInput, 0, false, "");
-        fireStore.collection("User").document(mUser.getUid()).set(currentUser);
+        //infoList.add(currentUser);
+        //System.out.println(infoList);
+        //fireStore.collection("User").document(mUser.getUid()).set(currentUser);
         //maybe need to add the Info into an ArrayList.
         //subjects are added after the Info.
-
 
         /*edited by vico*/
 
@@ -72,9 +79,6 @@ public class SignUpActivity extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome" + userNameInput, Toast.LENGTH_SHORT).show();
 
-                    fireStore.collection("everything").document("all users")
-                            .collection("users").document(userNameInput).set(currentUser);
-
                     updateUI(currUser);
 
                 } else {
@@ -84,12 +88,13 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
-
+        User currentUser = new User(userID, userNameInput, userEmailInput, userYearLevelInput, userPasswordInput, 0, false, "", subjectC);
+        fireStore.collection("everything").document("all users").collection("users").document(userNameInput).set(currentUser);
     }
 
     public void updateUI(FirebaseUser currUser) {
         if (currUser != null) {
-            Intent startPage = new Intent(this, AddSubjectActivity.class);
+            Intent startPage = new Intent(this, ShowInfoActivity.class);
             startActivity(startPage);
         }
     }

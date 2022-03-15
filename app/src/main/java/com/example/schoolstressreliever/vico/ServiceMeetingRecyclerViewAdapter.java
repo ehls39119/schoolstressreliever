@@ -38,7 +38,7 @@ public class ServiceMeetingRecyclerViewAdapter extends RecyclerView.Adapter <Ser
     @Override
     public ServiceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        View myView = LayoutInflater.from(parent.getContext()).inflate(R.layout.service_row_view,
+        View myView = LayoutInflater.from(parent.getContext()).inflate(R.layout.privmeeting_row_view,
                 parent, false);
 
         ServiceViewHolder holder = new ServiceViewHolder(myView);

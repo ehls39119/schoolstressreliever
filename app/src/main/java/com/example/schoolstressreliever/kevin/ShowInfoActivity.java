@@ -23,16 +23,15 @@ public class ShowInfoActivity extends AppCompatActivity{
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private FirebaseFirestore data;
-    ArrayList<String> recyclerSubjectList;
+    ArrayList<String> recyclerInfoList;
     private InfoAdapter adapter;
     RecyclerView subjectRecycler;
-    public static Student subjectS;
 
+    private ArrayList<String> idData;
     private ArrayList<String> nameData;
-
-    public ShowInfoActivity(ArrayList subjectList){
-        recyclerSubjectList = subjectList;
-    }
+    private ArrayList<String> emailData;
+    private ArrayList<String> yearData;
+    private ArrayList<String> passwordData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +41,16 @@ public class ShowInfoActivity extends AppCompatActivity{
         mAuth = FirebaseAuth.getInstance();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         data = FirebaseFirestore.getInstance();
+        idData = new ArrayList<>();
         nameData = new ArrayList<>();
-        nameData.add("Kevin");
-        nameData.add("Kim");
+        emailData = new ArrayList<>();
+        yearData = new ArrayList<>();
+        passwordData = new ArrayList<>();
+        idData.add(mUser.getUid());
+        nameData.add(mUser.getDisplayName());
+        emailData.add(mUser.getEmail());
 
-        adapter = new InfoAdapter(nameData);
+        adapter = new InfoAdapter(idData, nameData, emailData, yearData, passwordData);
         subjectRecycler.setAdapter(adapter);
         subjectRecycler.setLayoutManager(new LinearLayoutManager(this));
 
