@@ -55,9 +55,7 @@ public class SignUpActivity extends AppCompatActivity {
         String userYearLevelInput = userYearLevel.getText().toString();
         String userPasswordInput = userPassword.getText().toString();
 
-        ArrayList<String> nullList = new ArrayList<>();
-
-        User currentUser = new User(userID, userNameInput, userEmailInput, userYearLevelInput, userPasswordInput, false, "",0, "", 0);
+        User currentUser = new User(userID, userNameInput, userEmailInput, userYearLevelInput, userPasswordInput, 0, false, "");
         fireStore.collection("User").document(mUser.getUid()).set(currentUser);
         //maybe need to add the Info into an ArrayList.
         //subjects are added after the Info.
