@@ -10,9 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.schoolstressreliever.R;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class privActivityMeetingRequest extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -20,6 +23,7 @@ public class privActivityMeetingRequest extends AppCompatActivity implements Ada
     EditText categoryField;
     EditText ownerField;
     EditText capacityField;
+    FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,6 +71,16 @@ public class privActivityMeetingRequest extends AppCompatActivity implements Ada
         intent.putExtra("Owner", ownerRequest);
         intent.putExtra("Capacity", capacityRequest);
         startActivity(intent);
+
+        ArrayList<String> emptyList = new ArrayList<>();
+        privateMeeting privateMeetingObject = new privateMeeting(categoryRequest, ownerRequest, capacityRequest, true, emptyList);
+        firestore.collection("Meetings").document("Private").set(privateMeetingObject);
+        Toast.makeText(privActivityMeetingRequest.this, "Success!", Toast.LENGTH_SHORT).show();
+        Intent intentRequest = new Intent(this, receivePrivActivityRequest.class);
+        startActivity(intentRequest);
+
+
+
     }
 
     @Override

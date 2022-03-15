@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class InfoAdapter extends RecyclerView.Adapter<InfoViewHolder> {
     ArrayList<String> mData;
+    String subjectInfo = "IBDP subjects selected:";
 
     public InfoAdapter(ArrayList nameData){
         mData = nameData;
@@ -29,7 +30,8 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull InfoViewHolder holder, int position) {
-        holder.nameText.setText(mData.get(position));
+        holder.subjectText.setText(mData.get(position));
+        //holder.selectedSubjects.setText(mData.get(position));
     }
 
     @Override

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Schoolstressreliever">
         <activity
+            android:name=".justin.reviewRequestActivity"
+            android:exported="true" />
+        <activity
             android:name=".Ernest.AddGrade"
             android:exported="false" />
         <activity
@@ -31,7 +34,7 @@
             android:name=".justin.AddActivityActivity"
             android:exported="true" />
         <activity
-            android:name=".kevin.ShowSubjectActivity"
+            android:name=".kevin.ShowInfoActivity"
             android:exported="true" />
         <activity
             android:name=".kevin.AddSubjectActivity"

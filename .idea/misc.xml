@@ -3,14 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../../../layout/custom_preview.xml" value="0.1390625" />
         <entry key="app/src/main/res/layout/activity_academic_overview.xml" value="0.309375" />
-        <entry key="app/src/main/res/layout/activity_activity_overview.xml" value="0.17737388188077294" />
         <entry key="app/src/main/res/layout/activity_add_academic.xml" value="0.3128771893087989" />
         <entry key="app/src/main/res/layout/activity_add_activity.xml" value="0.5357722980526524" />
         <entry key="app/src/main/res/layout/activity_add_grade.xml" value="0.2755208333333333" />
         <entry key="app/src/main/res/layout/activity_add_service.xml" value="0.309375" />
-        <entry key="app/src/main/res/layout/activity_add_service_meeting.xml" value="0.23489583333333333" />
         <entry key="app/src/main/res/layout/activity_add_subject.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_add_subject2.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_add_vehicle.xml" value="0.309375" />
@@ -24,6 +21,9 @@
         <entry key="app/src/main/res/layout/activity_navigation.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/activity_navigation2.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/activity_new_academic_overview.xml" value="0.21875" />
+        <entry key="app/src/main/res/layout/activity_receive_priv_request.xml" value="0.2871376811594203" />
+        <entry key="app/src/main/res/layout/activity_review_request.xml" value="0.1770516717325228" />
+        <entry key="app/src/main/res/layout/activity_row_view.xml" value="0.1802536231884058" />
         <entry key="app/src/main/res/layout/activity_service_overview.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_service_row_view.xml" value="0.1484375" />
         <entry key="app/src/main/res/layout/activity_show_info.xml" value="0.1359375" />
@@ -31,17 +31,12 @@
         <entry key="app/src/main/res/layout/activity_subject_info.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/activity_vehicle_view_holder.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_vehicles_info.xml" value="0.309375" />
-        <entry key="app/src/main/res/layout/add_grade.xml" value="0.30416666666666664" />
-        <entry key="app/src/main/res/layout/add_subject.xml" value="0.23489583333333333" />
-        <entry key="app/src/main/res/layout/grade_holder.xml" value="0.4384525205158265" />
-        <entry key="app/src/main/res/layout/grade_overview.xml" value="0.30416666666666664" />
-        <entry key="app/src/main/res/layout/info_recycler_layout.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/layout/info_recycler_layout.xml" value="0.1802536231884058" />
+        <entry key="app/src/main/res/layout/receive_row_view.xml" value="0.4952715301469145" />
         <entry key="app/src/main/res/layout/recycler_view_item.xml" value="0.2755208333333333" />
         <entry key="app/src/main/res/layout/recycler_view_item_1.xml" value="0.2755208333333333" />
         <entry key="app/src/main/res/layout/recycler_view_item_2.xml" value="0.2755208333333333" />
         <entry key="app/src/main/res/layout/service_row_view.xml" value="0.309375" />
-        <entry key="app/src/main/res/layout/subject_holder.xml" value="0.292682563031609" />
-        <entry key="app/src/main/res/layout/subject_overview.xml" value="0.21302083333333333" />
       </map>
     </option>
   </component>

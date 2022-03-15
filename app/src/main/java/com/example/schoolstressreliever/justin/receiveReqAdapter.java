@@ -5,86 +5,93 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.schoolstressreliever.MainActivity;
 import com.example.schoolstressreliever.R;
-
+import com.example.schoolstressreliever.justin.Holder;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class receiveReqAdapter extends RecyclerView.Adapter <ActivityViewHolder>{
+public class receiveReqAdapter extends RecyclerView.Adapter<Holder>
+{
 
-    ArrayList<String> nameData;
-    ArrayList<String> statusData;
-    Context screen;
-    String emailString;
+    private List<String> mData;
+    private LayoutInflater mInflater;
+    private ItemClickListener mClickListener;
+    private ArrayList<String>capacityData;
+    private ArrayList<String>makerData;
+    private ArrayList<String>typeData;
+    private Context context;
 
-    public receiveReqAdapter(ArrayList<String> itemNames,
-                                       ArrayList<String> statusOutput,
-                                       Context screen,
-                                       String myUserEmail)
-    {
 
-        nameData = itemNames;
-        statusData = statusOutput;
+    // data is passed into the constructor
 
-        this.screen = screen;
 
-        emailString = myUserEmail;
+
+    receiveReqAdapter(Context context, List<String> data) {
+        this.mInflater = LayoutInflater.from(context);
+        this.mData = data;
+
     }
 
-    @NonNull
+    public void updateInfo(ArrayList<String> statusData, ArrayList<String>lolData,ArrayList<String> lmaoData )
+    {
+        this.capacityData = statusData;
+        this.makerData = lolData;
+        this.typeData = lmaoData;
+    }
+
+    // inflates the row layout from xml when needed
     @Override
-    public ActivityViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    public Holder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View myView = LayoutInflater.from(parent.getContext()).inflate(R.layout.privmeeting_row_view,
-                parent, false);
-
-        ActivityViewHolder holder = new ActivityViewHolder(myView);
-
-        return holder;
+        View view = mInflater.inflate(R.layout.receive_row_view, parent, false);
+        return new Holder(view, mClickListener);
     }
 
+    // binds the data to the TextView in each row
     @Override
-    public void onBindViewHolder(@NonNull ActivityViewHolder holder, int position)
+    public void onBindViewHolder(Holder holder, int position)
     {
-        /*set name and STATUS*/
-        holder.nameText.setText(nameData.get(position));
-        holder.statusText.setText(statusData.get(position));
-
-        holder.returnLayout().setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                String nameString = holder.getNameText();
-
-                updateUI(nameString);
-            }
-        });
+        holder.capacityText.setText(capacityData.get(position));
+        holder.makerText.setText(makerData.get(position));
+        holder.typeText.setText(typeData.get(position));
     }
 
+    // total number of rows
     @Override
     public int getItemCount() {
-        return nameData.size();
+        return mData.size();
     }
 
-    public void changeInfo(ArrayList<String> nameData, ArrayList<String> statusData)
+
+    // convenience method for getting data at click position
+    String getItem(int id) {
+        return mData.get(id);
+    }
+
+    // allows clicks events to be caught
+    public void setClickListener(ItemClickListener itemClickListener)
     {
-        this.nameData = nameData;
-        this.statusData = statusData;
+        this.mClickListener = itemClickListener;
     }
 
-    public void updateUI(String activityString)
+    public interface ItemClickListener
     {
-        Intent intent = new Intent(this.screen, receiveReqAdapter.class);
-        intent.putExtra("currActivity", activityString);
-        intent.putExtra("currUser", emailString);
-
-        this.screen.startActivity(intent);
+        void onItemClick(View view, int position);
     }
+
+
+
+
+
+
+
 
 }
+
