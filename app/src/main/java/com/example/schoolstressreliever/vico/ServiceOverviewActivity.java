@@ -12,6 +12,8 @@ import android.view.View;
 import com.example.schoolstressreliever.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -23,10 +25,13 @@ import java.util.Map;
 public class ServiceOverviewActivity extends AppCompatActivity {
 
     RecyclerView recView;
-    private FirebaseFirestore firestore;
     ArrayList<String> nameInfo = new ArrayList<>();
     ArrayList<String> statusInfo = new ArrayList<>();
     String myUserEmail;
+
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore firestore;
+    private FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,9 @@ public class ServiceOverviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_service_overview);
 
         recView = findViewById(R.id.recView);
+        mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+        mUser = mAuth.getCurrentUser();
 
 //        Intent intent = getIntent();
 //        String myUserEmail = intent.getExtras().getString("currUser");
@@ -56,8 +63,7 @@ public class ServiceOverviewActivity extends AppCompatActivity {
 
     public void updateRecView()
     {
-        firestore.collection("everything").document("all services")
-                .collection("services").get()
+        firestore.collection("Services").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
                 {
                     @Override
@@ -78,8 +84,7 @@ public class ServiceOverviewActivity extends AppCompatActivity {
                 });
 
 
-        firestore.collection("everything").document("all users")
-                .collection("users").get()
+        firestore.collection("Users").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
                 {
                     @Override
@@ -93,7 +98,7 @@ public class ServiceOverviewActivity extends AppCompatActivity {
                             {
                                 Map<String, Object> userData = doc.getData();
 
-                                if(userData.get("email").equals(myUserEmail))
+                                if(userData.get("email").equals(mUser.getEmail()))
                                 {
                                     currInterest = (String) userData.get("interestArea");
                                     currHours = (String) userData.get("hours");

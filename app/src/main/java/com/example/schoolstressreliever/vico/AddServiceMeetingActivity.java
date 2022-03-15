@@ -18,6 +18,8 @@ import com.example.schoolstressreliever.vico.ServiceMeeting;
 import com.example.schoolstressreliever.vico.ServiceRecyclerViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -33,14 +35,19 @@ public class AddServiceMeetingActivity extends AppCompatActivity implements Date
     private EditText serviceField;
     private EditText timeField;
     private EditText descriptionField;
+
+    private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
+    private FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_service_meeting);
 
+        mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+        mUser = mAuth.getCurrentUser();
 
         serviceField = findViewById(R.id.editTextService);
         timeField = findViewById(R.id.editTextTime);
@@ -74,15 +81,11 @@ public class AddServiceMeetingActivity extends AppCompatActivity implements Date
             Toast.makeText(this, "Parameters Missing", Toast.LENGTH_SHORT).show();
         }
 
-        Intent intent = getIntent();
-        String myUserEmail = intent.getExtras().getString("currUser");
-
         Boolean[] correctEmail = {false};
 
-        System.out.println("curr email is" + myUserEmail);
+        System.out.println("curr email is" + mUser.getEmail());
 
-        firestore.collection("everything").document("all services")
-                .collection("services").get()
+        firestore.collection("Services").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
                 {
                     @Override
@@ -98,7 +101,7 @@ public class AddServiceMeetingActivity extends AppCompatActivity implements Date
 
                                 if (docData.get("name").equals(serviceString))
                                 {
-                                    if (docData.get("email").equals(myUserEmail))
+                                    if (docData.get("email").equals(mUser.getEmail()))
                                     {
                                         correctEmail[0] = true;
 
@@ -120,10 +123,9 @@ public class AddServiceMeetingActivity extends AppCompatActivity implements Date
         if(parametersFilled)
         {
             ServiceMeeting currMeeting = new ServiceMeeting(date, serviceString, timeString
-                    , descriptionString, myUserEmail);
+                    , descriptionString, mUser.getEmail());
 
-            firestore.collection("everything").document("all meetings")
-                    .collection("meetings").document(serviceString
+            firestore.collection("Service Meetings").document(serviceString
                     + timeString).set(currMeeting);
 
             Toast.makeText(this, "Meeting Added", Toast.LENGTH_SHORT).show();

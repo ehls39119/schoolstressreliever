@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.schoolstressreliever.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class AddServiceActivity extends AppCompatActivity implements AdapterView
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
+    private FirebaseUser mUser;
 
     private EditText nameField;
     private EditText emailField;
@@ -33,6 +35,7 @@ public class AddServiceActivity extends AppCompatActivity implements AdapterView
 
         mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+        mUser = mAuth.getCurrentUser();
 
         nameField = findViewById(R.id.editTextName);
         emailField = findViewById(R.id.editTextEmail);
@@ -99,8 +102,7 @@ public class AddServiceActivity extends AppCompatActivity implements AdapterView
 
                 System.out.println("got service");
 
-                firestore.collection("everything").document("all services")
-                        .collection("services").document(nameString).set(currService);
+                firestore.collection("Services").document(nameString).set(currService);
 
                 System.out.println("added service");
 
