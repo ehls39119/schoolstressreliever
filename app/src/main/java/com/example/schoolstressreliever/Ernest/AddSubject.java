@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.collection.ArraySet;
+
 import com.example.schoolstressreliever.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -187,32 +189,43 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
                         }
                     }
                 }
+//
+//                System.out.println("HL MAP: " + myHL);
+//                System.out.println("SL MAP: " + mySL);
 
-                System.out.println("HL MAP: " + myHL);
-                System.out.println("SL MAP: " + mySL);
-
-
-//                [
+                //                [
 //                {History= {Progress = null, Transcript = Null}, Grades={test=99, test2=43}},
 //                {Physics= {Progress = null, Transcript = Null}, Grades={test=53, test2=20}}
 //                ]
 
+
+                ArrayList<String> subjectNameList = new ArrayList<String>();
+                subjectNameList.add(hl1);
+                subjectNameList.add(hl2);
+                subjectNameList.add(hl3);
+                subjectNameList.add(sl1);
+                subjectNameList.add(sl2);
+                subjectNameList.add(sl3);
+
                 ArrayList<Map<String, Map<String, Double>>> gradeInfo = new ArrayList<Map<String, Map<String, Double>>>();
 
-//                gradeInfo.add()
-                for (int i=0; i<gradeInfo.size(); i++){
-                    Map<String, Map<String, Double>> test1 = gradeInfo.get(i);
 
-
-
-
-
-
+                for (String x: subjectNameList){
+                    Map<String, Double> studentGrade = new HashMap<>();
+                    Map<String, Double> allGrades = new HashMap<>();
+                    studentGrade.put("Progress", 0.0);
+                    studentGrade.put("Transcript", 0.0);
+                    allGrades.put("Test", 0.0);
+                    Map<String, Map<String, Double>> z = new HashMap<>();
+                    z.put(x, studentGrade);
+                    z.put("Grades", allGrades);
+                    gradeInfo.add(z);
+//                    System.out.println("grade info " + gradeInfo);
                 }
 
 
 
-
+                System.out.println("Final grade info " + gradeInfo);
                 Student newStudent = new Student(myHL, mySL, name, gradeInfo);
                 System.out.println(newStudent);
                 db.collection("Students").add(newStudent).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
