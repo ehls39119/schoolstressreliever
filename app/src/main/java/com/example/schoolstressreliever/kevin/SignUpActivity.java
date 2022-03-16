@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.schoolstressreliever.Ernest.AddSubject;
 import com.example.schoolstressreliever.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -56,7 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
         String userPasswordInput = userPassword.getText().toString();
 
         User currentUser = new User(userID, userNameInput, userEmailInput, userYearLevelInput, userPasswordInput, 0, false, "");
-        fireStore.collection("Users").document(userEmailInput).set(currentUser);
+        //fireStore.collection("Users").document(userEmailInput).set(currentUser);
         //maybe need to add the Info into an ArrayList.
         //subjects are added after the Info.
 
@@ -71,9 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
                     FirebaseUser currUser = mAuth.getCurrentUser();
 
                     Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome" + userNameInput, Toast.LENGTH_SHORT).show();
-
-                    fireStore.collection("everything").document("all users")
-                            .collection("users").document(userNameInput).set(currentUser);
+                    fireStore.collection("Users").document(userNameInput).set(currentUser);
 
                     updateUI(currUser);
 
@@ -89,7 +88,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void updateUI(FirebaseUser currUser) {
         if (currUser != null) {
-            Intent startPage = new Intent(this, AddSubjectActivity.class);
+            Intent startPage = new Intent(this, AddSubject.class);
+            //the page should go to AddSubject.class
+            /*edited by kevin*/
             startActivity(startPage);
         }
     }
