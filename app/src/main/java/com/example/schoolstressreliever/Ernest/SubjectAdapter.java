@@ -63,6 +63,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         ((SubjectHolder) holder).getLayout().setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+
                                 Intent myIntent = new Intent(view.getContext(), GradeOverview.class);
                                 myIntent.putExtra("Subject", subjectToShow);
                                 myIntent.putExtra("Progress", progressToShow);
@@ -89,7 +90,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return studentData.size();
     }
 
-    public void setVehiclesData(ArrayList<Student> students)
+    public void setSubjectData(ArrayList<Student> students)
     {
         this.studentData = students;
     }

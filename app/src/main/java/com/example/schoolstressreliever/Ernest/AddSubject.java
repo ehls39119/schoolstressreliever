@@ -215,7 +215,7 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
                     Map<String, Double> allGrades = new HashMap<>();
                     studentGrade.put("Progress", 0.0);
                     studentGrade.put("Transcript", 0.0);
-                    allGrades.put("Test", 0.0);
+                    allGrades.put("Test", 11.0);
                     Map<String, Map<String, Double>> z = new HashMap<>();
                     z.put(x, studentGrade);
                     z.put("Grades", allGrades);
@@ -224,21 +224,10 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
                 }
 
 
-
                 System.out.println("Final grade info " + gradeInfo);
                 Student newStudent = new Student(myHL, mySL, name, gradeInfo);
                 System.out.println(newStudent);
-                db.collection("Students").add(newStudent).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(AddSubject.this, "can add", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(AddSubject.this, "cannot add.", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                });
+                db.collection("Students").document(name).set(newStudent);
             }
 
             Intent intent = new Intent(this, SubjectOverview.class);

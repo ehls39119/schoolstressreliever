@@ -63,14 +63,14 @@ public class SubjectOverview extends AppCompatActivity {
 
                     SubjectAdapter recAdapter = (SubjectAdapter) recView.getAdapter();
                     assert recAdapter != null;
-                    recAdapter.setVehiclesData(studentInfo);
+                    recAdapter.setSubjectData(studentInfo);
                     recAdapter.notifyDataSetChanged();
                 }
             }
         });
     }
 
-    public void goToAcademicOverview (View v){
+    public void goToAdd(View v){
         Intent z = new Intent(this, AddSubject.class);
         startActivity(z);
     }

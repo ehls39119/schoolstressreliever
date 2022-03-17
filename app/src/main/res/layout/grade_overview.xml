@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="goToAddGrade"
     tools:context=".Ernest.GradeOverview">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -21,10 +22,23 @@
         android:id="@+id/addGradesID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="goToAddGrade"
         android:text="Add Grades "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recycler2ID" />
+
+    <Button
+        android:id="@+id/refreshGradeID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="getAndPopulateData"
+        android:text="refresh grades"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addGradesID" />
 </androidx.constraintlayout.widget.ConstraintLayout>
