@@ -33,6 +33,7 @@
         android:layout_height="95dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:text="2022 03 19 4:00-5:00 PM"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.556"
@@ -40,5 +41,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.765"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/imageFilterView"
+        android:layout_width="279dp"
+        android:layout_height="161dp"
+        android:src="@drawable/meeting"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.522" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="207dp"
+        android:layout_height="69dp"
+        android:text="Meeting Requests (Private)"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="617dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
