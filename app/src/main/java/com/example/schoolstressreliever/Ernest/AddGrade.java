@@ -36,12 +36,11 @@ public class AddGrade extends AppCompatActivity {
     public EditText name;
     public EditText subject;
     public EditText total;
+    public EditText taskName;
+
 
     RecyclerView recView;
     ArrayList<Map<String, Map<String, Double>>> grades;
-    int count=0;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +54,7 @@ public class AddGrade extends AppCompatActivity {
         total = findViewById(R.id.totalMarksID);
         name = findViewById(R.id.name2ID);
         subject = findViewById(R.id.checkSubjectID);
-
-
-
-
+        taskName = findViewById(R.id.taskNameID);
 
     }
 
@@ -66,8 +62,10 @@ public class AddGrade extends AppCompatActivity {
         String nameCheck = name.getText().toString();
         String subjectCheck = subject.getText().toString();
         System.out.println("got name " +  nameCheck);
-
+        String task = taskName.getText().toString();
         System.out.println("sub " +  subjectCheck);
+//        System.out.println("sub " +  subjectCheck);
+
         String ob = obtained.getText().toString();
         String to = total.getText().toString();
 
@@ -81,8 +79,6 @@ public class AddGrade extends AppCompatActivity {
 
             public void onEvent(@Nullable QuerySnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
 
-                count++;
-                String updatedCount = String.valueOf(count);
 
                 if (documentSnapshot != null && !documentSnapshot.getDocuments().isEmpty()) {
                     List<DocumentSnapshot> documents = documentSnapshot.getDocuments();
@@ -97,21 +93,24 @@ public class AddGrade extends AppCompatActivity {
                             double totalMarks = Double.parseDouble(to);
                             double exact = (double) Math.round((obtainedMarks/totalMarks*100) * 100d) / 100d; //3dp
 
-
                             Map<String, Map<String, Double>> bigMap = new HashMap<>();
                             for (int i=0; i<allInfo.size(); i++) {
                                 if (allInfo.get(i).containsKey(subjectCheck)) {
+
                                     bigMap = allInfo.get(i);
                                     for (Map.Entry<String, Map<String, Double>> entry : bigMap.entrySet()) {
                                         if (entry.getKey().equals("Grades")) {
+
                                             Map<String, Double> allGrades = new HashMap<>();
                                             allGrades = entry.getValue();
                                             if (allGrades.containsKey("Test")) {
                                                 allGrades.remove("Test", 11.0);
                                             }
-                                            allGrades.put(updatedCount, exact);
+
+
+                                            allGrades.put(task, exact);
                                             Student student = new Student(myHLBoundaries, mySlBoundaries, nameCheck, allInfo);
-                                            db.collection("Students").document(nameCheck).set(student);
+//                                            db.collection("Students").document(nameCheck).set(student);
                                             break;
                                         }
                                     }

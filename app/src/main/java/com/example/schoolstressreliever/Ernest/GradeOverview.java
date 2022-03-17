@@ -75,5 +75,9 @@ public class GradeOverview extends AppCompatActivity {
         startActivity(z);
     }
 
+//    [{Grades={1: double, 2: double,}, History={Transcript=0.0, Progress=0.0}}
+    //    [{Grades={1: double, 2: double,}, History={Transcript=0.0, Progress=0.0}}
+
+
 
 }

@@ -226,8 +226,17 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
 
                 System.out.println("Final grade info " + gradeInfo);
                 Student newStudent = new Student(myHL, mySL, name, gradeInfo);
-                System.out.println(newStudent);
-                db.collection("Students").document(name).set(newStudent);
+
+                System.out.println("1" +newStudent.getGradeInfo());
+                System.out.println("2" +newStudent.getMyName());
+                System.out.println("3" +newStudent.getHLBoundaries());
+                System.out.println("4" +newStudent.getMySlBoundaries());
+
+                db.collection("Students").add(newStudent);
+//                db.collection("Students").document(name).set(newStudent);
+
+
+
             }
 
             Intent intent = new Intent(this, SubjectOverview.class);
