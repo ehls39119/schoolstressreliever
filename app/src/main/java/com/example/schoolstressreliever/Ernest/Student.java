@@ -32,9 +32,7 @@ public class Student {
         return gradeInfo;
     }
 
-    public void updateGradeInfo(){
 
-    }
 
     public String getMyName(){
         return myName;

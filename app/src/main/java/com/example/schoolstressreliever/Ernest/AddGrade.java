@@ -78,9 +78,12 @@ public class AddGrade extends AppCompatActivity {
         db.collection("Students").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
+
             public void onEvent(@Nullable QuerySnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+
                 count++;
                 String updatedCount = String.valueOf(count);
+
                 if (documentSnapshot != null && !documentSnapshot.getDocuments().isEmpty()) {
                     List<DocumentSnapshot> documents = documentSnapshot.getDocuments();
                     for (DocumentSnapshot value : documents) {
@@ -92,12 +95,10 @@ public class AddGrade extends AppCompatActivity {
 
                             double obtainedMarks = Double.parseDouble(ob);
                             double totalMarks = Double.parseDouble(to);
-                            double exact = (double) Math.round((obtainedMarks/totalMarks*100) * 1000d) / 1000d; //3dp
+                            double exact = (double) Math.round((obtainedMarks/totalMarks*100) * 100d) / 100d; //3dp
 
 
                             Map<String, Map<String, Double>> bigMap = new HashMap<>();
-
-
                             for (int i=0; i<allInfo.size(); i++) {
                                 if (allInfo.get(i).containsKey(subjectCheck)) {
                                     bigMap = allInfo.get(i);
@@ -111,17 +112,25 @@ public class AddGrade extends AppCompatActivity {
                                             allGrades.put(updatedCount, exact);
                                             Student student = new Student(myHLBoundaries, mySlBoundaries, nameCheck, allInfo);
                                             db.collection("Students").document(nameCheck).set(student);
-
+                                            break;
                                         }
                                     }
+                                    break;
                                 }
                             }
+                            break;
                         }
+                        break;
                     }
                 }
             }
+
         });
+        Intent z = new Intent(this, GradeOverview.class);
+        startActivity(z);
     }
+
+
 
 
 }
