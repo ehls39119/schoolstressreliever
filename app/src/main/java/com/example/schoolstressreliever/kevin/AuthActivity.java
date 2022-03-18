@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.schoolstressreliever.Ernest.SubjectOverview;
 import com.example.schoolstressreliever.R;
+import com.example.schoolstressreliever.justin.defaultActivity;
 import com.example.schoolstressreliever.vico.ServiceOverviewActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -59,7 +60,7 @@ public class AuthActivity extends AppCompatActivity {
 
     public void SignIn(View v) {
         //go to SignUpActivity
-        Intent startPage = new Intent(this, SignUpActivity.class);
+        Intent startPage = new Intent(this, defaultActivity.class);
         startActivity(startPage);
     }
 
