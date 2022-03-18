@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Schoolstressreliever">
         <activity
+            android:name=".justin.ECHomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".justin.defaultActivity"
+            android:exported="true" />
+        <activity
             android:name=".justin.reviewRequestActivity"
             android:exported="true" />
         <activity
