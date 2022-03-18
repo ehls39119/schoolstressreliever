@@ -89,7 +89,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
         System.out.println("Button Clicked");
 
         Intent intent = getIntent();
-        Serializable myUser = intent.getExtras().getString("currUser");
+//        Serializable myUser = intent.getExtras().getString("currUser");
 
 //        this.ID = ID;
 //        this.name = name;
@@ -99,6 +99,8 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
 //        this.hoursAvailable = hoursAvailable;
 //        this.areaOfInterest = areaOfInterest;
 //
+
+        System.out.println(mUser.getDisplayName());
 
         firestore.collection("Users")
                 .document(mUser.getDisplayName()).update("hoursAvailableService", serviceTimeText);
@@ -116,7 +118,7 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
                 .document(mUser.getDisplayName()).update("fillFormed", true);
 
 
-        Intent i = new Intent(this, BookActivityActivity.class);
+        Intent i = new Intent(this, ECHomeActivity.class);
         i.putExtra("userObject", (Serializable) mUser);
         startActivity(i);
 

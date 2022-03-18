@@ -46,7 +46,7 @@ public class AuthActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Log.w("Log in.", "Successfully log in with email and password.");
                     FirebaseUser currentUser = mAuth.getCurrentUser();
-                    updateUI(currentUser);
+                    SignIn(currentUser);
                     Toast.makeText(getApplicationContext(), "Correct email and password, welcome!", Toast.LENGTH_SHORT).show();
 
                 } else {
@@ -58,9 +58,14 @@ public class AuthActivity extends AppCompatActivity {
         });
     }
 
-    public void SignIn(View v) {
-        //go to SignUpActivity
+    public void SignIn(FirebaseUser currentUser) {
         Intent startPage = new Intent(this, defaultActivity.class);
+        startActivity(startPage);
+    }
+
+    public void SignUp(View v) {
+        //go to SignUpActivity
+        Intent startPage = new Intent(this, SignUpActivity.class);
         startActivity(startPage);
     }
 
