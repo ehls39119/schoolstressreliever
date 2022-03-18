@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SubjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     ArrayList studentData;
@@ -32,42 +34,63 @@ public class SubjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         Student newStudent = (Student) studentData.get(position);
-
-        int transcript_grade = newStudent.getTranscriptGrade();
-        int progress_grade = newStudent.getProgressGrade();
-
-        newStudent.updateList();
-        ArrayList<String> x = newStudent.getSubjects();
-        System.out.println("after updating " + x);
+        ArrayList<Map<String, Map<String, Double>>> gradeInfo = new ArrayList<Map<String, Map<String, Double>>>();
+        gradeInfo = newStudent.getGradeInfo();
+        System.out.println("retrieved info " + gradeInfo);
 
 
-        String currSubject = x.get(position);
-        String displayTranscript = Integer.toString(transcript_grade);
-        String displayProgress = Integer.toString(progress_grade);
-
-        ((SubjectHolder) holder).nameText.setText(currSubject);
-        ((SubjectHolder) holder).statusText1.setText(displayProgress);
-//        System.out.println("display trans and prog" + displayTranscript + " " + displayProgress);
-        ((SubjectHolder) holder).statusText2.setText(displayTranscript);
-
-        ((SubjectHolder) holder).getLayout().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), GradeOverview.class);
-                myIntent.putExtra("Subject", currSubject);
-                myIntent.putExtra("Transcript", transcript_grade);
-                myIntent.putExtra("Progress", progress_grade);
-                currentContext.startActivity(myIntent);
+        Map<String, Map<String, Double>> bigMap = new HashMap<>();
+        bigMap = gradeInfo.get(position);
+        for (Map.Entry<String, Map<String, Double>> entry : bigMap.entrySet()) {
+            if (entry.getKey().equals("Grades")){
+                Map<String, Double> allGrades = new HashMap<>();
+                allGrades = entry.getValue();
             }
-        });
+            else{
+                // map for progress and transcript
+                String subjectToShow = entry.getKey();
+                Map<String, Double> progressAndTranscript = entry.getValue();
+                for (Map.Entry<String, Double> z : progressAndTranscript.entrySet()) {
+                    if (z.getKey().equals("Progress")) {
+                        Double pGrade = z.getValue();
+                        String progressToShow = Double.toString(pGrade);
+
+
+                        ((SubjectHolder) holder).nameText.setText(subjectToShow);
+                        ((SubjectHolder) holder).statusText1.setText(progressToShow);
+                        ((SubjectHolder) holder).statusText2.setText(progressToShow);
+
+                        ((SubjectHolder) holder).getLayout().setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                Intent myIntent = new Intent(view.getContext(), GradeOverview.class);
+                                myIntent.putExtra("Subject", subjectToShow);
+                                myIntent.putExtra("Progress", progressToShow);
+                                myIntent.putExtra("Transcript", "notime");
+
+                                currentContext.startActivity(myIntent);
+                            }
+                        });
+                    }
+
+                }
+
+            }
+
+
+        }
+
     }
+
+
 
     @Override
     public int getItemCount() {
         return studentData.size();
     }
 
-    public void setVehiclesData(ArrayList<Student> students)
+    public void setSubjectData(ArrayList<Student> students)
     {
         this.studentData = students;
     }
