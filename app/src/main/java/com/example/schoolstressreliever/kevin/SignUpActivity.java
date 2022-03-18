@@ -72,7 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
                     FirebaseUser currUser = mAuth.getCurrentUser();
 
                     Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome" + userNameInput, Toast.LENGTH_SHORT).show();
-                    fireStore.collection("Users").document(userNameInput).set(currentUser);
+                    fireStore.collection("Users").document(userEmailInput).set(currentUser);
 
                     updateUI(currUser);
 

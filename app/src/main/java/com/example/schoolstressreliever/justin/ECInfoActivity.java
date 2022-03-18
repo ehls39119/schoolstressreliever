@@ -100,26 +100,27 @@ public class ECInfoActivity extends AppCompatActivity implements AdapterView.OnI
 //        this.areaOfInterest = areaOfInterest;
 //
 
+        System.out.println(mUser.getEmail());
         System.out.println(mUser.getDisplayName());
 
         firestore.collection("Users")
-                .document(mUser.getDisplayName()).update("hoursAvailableService", serviceTimeText);
+                .document(mUser.getEmail()).update("hoursAvailableService", serviceTimeText);
 
         firestore.collection("Users")
-                .document(mUser.getDisplayName()).update("interestAreaService", serviceText);
+                .document(mUser.getEmail()).update("interestAreaService", serviceText);
 
         firestore.collection("Users")
-                .document(mUser.getDisplayName()).update("hoursAvailableActivity", activityTimeText);
+                .document(mUser.getEmail()).update("hoursAvailableActivity", activityTimeText);
 
         firestore.collection("Users")
-                .document(mUser.getDisplayName()).update("interestAreaActivity", activityText);
+                .document(mUser.getEmail()).update("interestAreaActivity", activityText);
 
         firestore.collection("Users")
-                .document(mUser.getDisplayName()).update("fillFormed", true);
+                .document(mUser.getEmail()).update("formFilled", true);
 
 
         Intent i = new Intent(this, ECHomeActivity.class);
-        i.putExtra("userObject", (Serializable) mUser);
+//        i.putExtra("userObject", (Serializable) mUser);
         startActivity(i);
 
 //

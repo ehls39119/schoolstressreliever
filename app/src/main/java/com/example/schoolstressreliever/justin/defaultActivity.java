@@ -17,6 +17,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +39,7 @@ public class defaultActivity extends AppCompatActivity
         firestore = FirebaseFirestore.getInstance();
         mUser = mAuth.getCurrentUser();
 
+
     }
 
     public void goToAcademics(View v)
@@ -49,7 +51,7 @@ public class defaultActivity extends AppCompatActivity
     public void goToExtracurriculars(View v)
     {
 
-        System.out.println(mUser);
+        System.out.println(mUser.getEmail());
 
 
         firestore.collection("Users").get()
@@ -60,7 +62,11 @@ public class defaultActivity extends AppCompatActivity
                     {
                         if (task.isSuccessful())
                         {
+                            System.out.println("reach here");
+
                             List<DocumentSnapshot> ds = task.getResult().getDocuments();
+
+                            System.out.println("reach here2");
 
                             for(DocumentSnapshot doc : ds)
                             {
@@ -68,8 +74,12 @@ public class defaultActivity extends AppCompatActivity
 
                                 String currUser = (String) docData.get("email");
 
+                                System.out.println(currUser);
+
                                 if(currUser.equals(mUser.getEmail()))
                                 {
+                                    System.out.println("reach here4");
+
                                     if(!(boolean)docData.get("formFilled"))
                                     {
                                         System.out.println("went to form");

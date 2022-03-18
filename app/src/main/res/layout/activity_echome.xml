@@ -6,4 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".justin.ECHomeActivity">
 
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="214dp"
+        android:layout_height="102dp"
+        android:text="Activity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.278" />
+
+    <Button
+        android:id="@+id/button16"
+        android:layout_width="207dp"
+        android:layout_height="98dp"
+        android:onClick="goToService"
+        android:text="Service"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
 </androidx.constraintlayout.widget.ConstraintLayout>

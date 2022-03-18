@@ -58,8 +58,6 @@ public class ServiceOverviewActivity extends AppCompatActivity {
     }
 
     ArrayList <Map> serviceList = new ArrayList<>();
-    String currInterest;
-    String currHours;
 
     public void updateRecView()
     {
@@ -78,138 +76,140 @@ public class ServiceOverviewActivity extends AppCompatActivity {
                                 Map<String, Object> serviceData = doc.getData();
                                 serviceList.add(serviceData);
 
+                                System.out.println("service added");
 
                                 /*temp check*/
-                                String currName = (String) serviceData.get("name");
+//                                String currName = (String) serviceData.get("name");
+//
+//                                nameInfo.add(currName);
+//
+//                                String currInterestArea = (String) serviceData.get("intrestArea");
+//                                String currHours = (String) serviceData.get("hours");
+//
+//                                statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+//                                        + currHours);
 
-                                nameInfo.add(currName);
+                                firestore.collection("Users").get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
+                                        {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task)
+                                            {
+                                                if (task.isSuccessful())
+                                                {
+                                                    List<DocumentSnapshot> ds = task.getResult().getDocuments();
 
-                                String currInterestArea = (String) serviceData.get("intrestArea");
-                                String currHours = (String) serviceData.get("hours");
+                                                    for(DocumentSnapshot doc : ds)
+                                                    {
+                                                        Map<String, Object> userData = doc.getData();
 
-                                statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
-                                        + currHours);
+                                                        if(userData.get("email").equals(mUser.getEmail()))
+                                                        {
+                                                            System.out.println(serviceList);
+
+                                                            ArrayList <Map> doubleMatch = new ArrayList<>();
+                                                            ArrayList <Map> singleMatch = new ArrayList<>();
+                                                            ArrayList <Map> noMatch = new ArrayList<>();
+
+                                                            String currUserInterest = (String) userData.get("interestAreaService");
+                                                            String currUserHours = (String) userData.get("hoursAvailableService");
+
+                                                            System.out.println(currUserInterest + currUserHours);
+
+                                                            for(Map service : serviceList)
+                                                            {
+                                                                Boolean interestMatch = false;
+                                                                Boolean hoursMatch = false;
+
+                                                                String currServiceArea = (String)service.get("interestArea");
+                                                                String currServiceHours = (String)service.get("hours");
+
+                                                                if(currServiceArea.equals(currUserInterest))
+                                                                {
+                                                                    interestMatch = true;
+                                                                }
+
+                                                                if(currServiceHours.equals(currUserHours))
+                                                                {
+                                                                    hoursMatch = true;
+                                                                }
+
+                                                                if(hoursMatch && interestMatch)
+                                                                {
+                                                                    doubleMatch.add(service);
+                                                                }
+                                                                else if(hoursMatch || interestMatch)
+                                                                {
+                                                                    singleMatch.add(service);
+                                                                }
+                                                                else
+                                                                {
+                                                                    noMatch.add(service);
+                                                                }
+                                                            }
+
+                                                            for(Map currService : doubleMatch)
+                                                            {
+                                                                String currName = (String) currService.get("name");
+                                                                nameInfo.add(currName);
+
+                                                                String currInterestArea = (String) currService.get("intrestArea");
+                                                                String currHours = (String) currService.get("hours");
+
+                                                                statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+                                                                        + currHours);
+
+                                                                System.out.println(statusInfo);
+                                                            }
+
+                                                            for(Map currService : singleMatch)
+                                                            {
+                                                                String currName = (String) currService.get("name");
+                                                                nameInfo.add(currName);
+
+                                                                String currInterestArea = (String) currService.get("intrestArea");
+                                                                String currHours = (String) currService.get("hours");
+
+                                                                statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+                                                                        + currHours);
+
+                                                                System.out.println(statusInfo);
+                                                            }
+
+                                                            for(Map currService : noMatch)
+                                                            {
+                                                                String currName = (String) currService.get("name");
+                                                                nameInfo.add(currName);
+
+                                                                String currInterestArea = (String) currService.get("intrestArea");
+                                                                String currHours = (String) currService.get("hours");
+
+                                                                statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+                                                                        + currHours);
+
+                                                                System.out.println(statusInfo);
+                                                            }
+
+                                                            ServiceRecyclerViewAdapter a = (ServiceRecyclerViewAdapter)
+                                                                    recView.getAdapter();
+                                                            a.changeInfo(nameInfo, statusInfo);
+                                                            a.notifyDataSetChanged();
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        });
 
                             }
-
-                            System.out.println(statusInfo);
-
-                            ServiceRecyclerViewAdapter a = (ServiceRecyclerViewAdapter)
-                                    recView.getAdapter();
-                            a.changeInfo(nameInfo, statusInfo);
-                            a.notifyDataSetChanged();
+//                            System.out.println(statusInfo);
+//
+//                            ServiceRecyclerViewAdapter a = (ServiceRecyclerViewAdapter)
+//                                    recView.getAdapter();
+//                            a.changeInfo(nameInfo, statusInfo);
+//                            a.notifyDataSetChanged();
                         }
                     }
                 });
-
-
-
-        /*uncomment when theres a user*/
-
-//        firestore.collection("Users").get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
-//                {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task)
-//                    {
-//                        if (task.isSuccessful())
-//                        {
-//                            List<DocumentSnapshot> ds = task.getResult().getDocuments();
-//
-//                            for(DocumentSnapshot doc : ds)
-//                            {
-//                                Map<String, Object> userData = doc.getData();
-//
-//                                if(userData.get("email").equals(mUser.getEmail()))
-//                                {
-//                                    currInterest = (String) userData.get("interestArea");
-//                                    currHours = (String) userData.get("hours");
-//                                }
-//                            }
-//                        }
-//                    }
-//                });
-//
-//        ArrayList <Map> doubleMatch = new ArrayList<>();
-//        ArrayList <Map> singleMatch = new ArrayList<>();
-//        ArrayList <Map> noMatch = new ArrayList<>();
-//
-//        for(Map service : serviceList)
-//        {
-//            Boolean interestMatch = false;
-//            Boolean hoursMatch = false;
-//
-//            if(service.get("interestArea").equals(currInterest))
-//            {
-//                interestMatch = true;
-//            }
-//
-//            if(service.get("hours").equals(currHours))
-//            {
-//                hoursMatch = true;
-//            }
-//
-//            if(hoursMatch && interestMatch)
-//            {
-//                doubleMatch.add(service);
-//            }
-//            else if(hoursMatch || interestMatch)
-//            {
-//                singleMatch.add(service);
-//            }
-//            else
-//            {
-//                noMatch.add(service);
-//            }
-//        }
-//
-//        for(Map currService : doubleMatch)
-//        {
-//            String currName = (String) currService.get("name");
-//            nameInfo.add(currName);
-//
-//            String currInterestArea = (String) currService.get("intrestArea");
-//            String currHours = (String) currService.get("hours");
-//
-//            statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
-//                    + currHours);
-//
-//            System.out.println(statusInfo);
-//        }
-//
-//        for(Map currService : singleMatch)
-//        {
-//            String currName = (String) currService.get("name");
-//            nameInfo.add(currName);
-//
-//            String currInterestArea = (String) currService.get("intrestArea");
-//            String currHours = (String) currService.get("hours");
-//
-//            statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
-//                    + currHours);
-//
-//            System.out.println(statusInfo);
-//        }
-//
-//        for(Map currService : noMatch)
-//        {
-//            String currName = (String) currService.get("name");
-//            nameInfo.add(currName);
-//
-//            String currInterestArea = (String) currService.get("intrestArea");
-//            String currHours = (String) currService.get("hours");
-//
-//            statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
-//                    + currHours);
-//
-//            System.out.println(statusInfo);
-//        }
-
-
-        ServiceRecyclerViewAdapter a = (ServiceRecyclerViewAdapter)
-                recView.getAdapter();
-        a.changeInfo(nameInfo, statusInfo);
-        a.notifyDataSetChanged();
 
     }
 

@@ -20,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.Serializable;
+
 public class AuthActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText email;
@@ -36,6 +38,7 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     public void LogIn(View v) {
+
         System.out.println("Log in!");
         String emailInput = email.getText().toString();
         String passwordInput = password.getText().toString();
@@ -73,6 +76,7 @@ public class AuthActivity extends AppCompatActivity {
         if (currentUser != null) {
             //go to MainActivity
             Intent startPage = new Intent(this, ShowInfoActivity.class);
+            startPage.putExtra("currUser", (Serializable) currentUser);
             startActivity(startPage);
         }
     }
