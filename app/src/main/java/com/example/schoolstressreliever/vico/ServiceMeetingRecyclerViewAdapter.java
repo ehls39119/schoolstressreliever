@@ -23,15 +23,13 @@ public class ServiceMeetingRecyclerViewAdapter extends RecyclerView.Adapter <Ser
 
     public ServiceMeetingRecyclerViewAdapter(ArrayList<String> itemNames,
                                       ArrayList<String> statusOutput,
-                                      Context screen,
-                                      String myUserEmail) {
+                                      Context screen) {
 
         nameData = itemNames;
         statusData = statusOutput;
 
         this.screen = screen;
 
-        emailString = myUserEmail;
     }
 
     @NonNull

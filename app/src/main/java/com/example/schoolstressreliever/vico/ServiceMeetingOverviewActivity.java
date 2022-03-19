@@ -45,7 +45,7 @@ public class ServiceMeetingOverviewActivity extends AppCompatActivity {
         recView = findViewById(R.id.recView);
 
         ServiceMeetingRecyclerViewAdapter myAdapter = new ServiceMeetingRecyclerViewAdapter(nameInfo, statusInfo
-                , this, mUser.getEmail());
+                , this);
 
         recView.setAdapter(myAdapter);
         recView.setLayoutManager(new LinearLayoutManager(this));

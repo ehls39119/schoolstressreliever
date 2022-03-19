@@ -199,12 +199,6 @@ public class ServiceOverviewActivity extends AppCompatActivity {
                                             }
                                         }
                                     });
-//                            System.out.println(statusInfo);
-//
-//                            ServiceRecyclerViewAdapter a = (ServiceRecyclerViewAdapter)
-//                                    recView.getAdapter();
-//                            a.changeInfo(nameInfo, statusInfo);
-//                            a.notifyDataSetChanged();
                         }
                     }
                 });
@@ -212,14 +206,15 @@ public class ServiceOverviewActivity extends AppCompatActivity {
     }
 
 
-    public void goToAddService(View v){
+    public void goToAddService(View v)
+    {
         Intent newIntent = new Intent(this, AddServiceActivity.class);
         startActivity(newIntent);
     }
 
-    public void goToServiceMeetingActivity(View v){
-
-        Intent newIntent = new Intent(this, ServiceMeetingOverviewActivity.class);
-        startActivity(newIntent);
+    public void goToServiceMeetingActivity(View v)
+    {
+        Intent thisIntent = new Intent(this, ServiceMeetingOverviewActivity.class);
+        startActivity(thisIntent);
     }
 }
