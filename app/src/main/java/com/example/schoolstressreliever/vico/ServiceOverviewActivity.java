@@ -43,10 +43,8 @@ public class ServiceOverviewActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         mUser = mAuth.getCurrentUser();
 
-        myUserEmail = "justinIsGay@student.cis.edu.hk";
-
         ServiceRecyclerViewAdapter myAdapter = new ServiceRecyclerViewAdapter(nameInfo, statusInfo
-                , this, myUserEmail);
+                , this);
 
         recView.setAdapter(myAdapter);
         recView.setLayoutManager(new LinearLayoutManager(this));
