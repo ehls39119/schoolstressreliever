@@ -75,6 +75,12 @@ public class GradeOverview extends AppCompatActivity {
         startActivity(z);
     }
 
+    public void goToAcademicOverview (View v){
+        Intent zz = new Intent(this, SubjectOverview.class);
+        startActivity(zz);
+
+    }
+
 //    [{Grades={1: double, 2: double,}, History={Transcript=0.0, Progress=0.0}}
     //    [{Grades={1: double, 2: double,}, History={Transcript=0.0, Progress=0.0}}
 

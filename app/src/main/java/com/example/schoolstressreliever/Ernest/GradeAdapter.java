@@ -45,24 +45,35 @@ public class GradeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         Map<String, Map<String, Double>> bigMap = new HashMap<>();
         bigMap = gradeInfo.get(position);
+
         for (Map.Entry<String, Map<String, Double>> entry : bigMap.entrySet()) {
             if (entry.getKey().equals("Grades")) {
                 Map<String, Double> allGrades = new HashMap<>();
+                Map<String, Double> x = new HashMap<>();
                 allGrades = entry.getValue();
+
+                String allGradesToShow = "";
+
                 for (Map.Entry<String, Double> testEntry : allGrades.entrySet()) {
+                    String taskNameToShow = testEntry.getKey();
                     Double testProgressGrade = testEntry.getValue();
                     String testProgressGradeToShow = Double.toString(testProgressGrade);
+                    allGradesToShow += taskNameToShow + ": ";
+                    allGradesToShow += testProgressGradeToShow;
+                    allGradesToShow += "\n";
 
-                    ((GradeHolder) holder).progressPercentView.setText(testProgressGradeToShow);
-                    ((GradeHolder) holder).getLayout().setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent myIntent = new Intent(view.getContext(), GradeOverview.class);
-                            myIntent.putExtra("Progress Percent", testProgressGradeToShow);
-                            currentContext.startActivity(myIntent);
-                        }
-                    });
                 }
+
+                ((GradeHolder) holder).progressPercentView.setText(allGradesToShow);
+                String finalAllGradesToShow = allGradesToShow;
+                ((GradeHolder) holder).getLayout().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent myIntent = new Intent(view.getContext(), GradeOverview.class);
+                        myIntent.putExtra("Progress Percent", finalAllGradesToShow);
+                        currentContext.startActivity(myIntent);
+                    }
+                });
 
             }
         }
