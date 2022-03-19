@@ -6,11 +6,9 @@ import java.util.Map;
 public class Student {
     private ArrayList<Map<String, Integer>> myHLBoundaries;
     private ArrayList<Map<String, Integer>> mySlBoundaries;
-    public ArrayList<String> subjectNameList;
 
 
     public ArrayList<Map<String, Map<String, Double>>> gradeInfo;
-
     public String myName;
 
 
@@ -19,7 +17,6 @@ public class Student {
         myHLBoundaries = hlMap;
         mySlBoundaries = slMap;
         myName = userName;
-        subjectNameList = new ArrayList<String>();
         gradeInfo = bruhPlsWork;
 
     }
@@ -32,17 +29,11 @@ public class Student {
         return gradeInfo;
     }
 
-
-
     public String getMyName(){
         return myName;
     }
 
-    public ArrayList<String> getSubjects(){
-        return subjectNameList;
-    }
-
-    public ArrayList<Map<String, Integer>> getHLBoundaries(){
+    public ArrayList<Map<String, Integer>> getMyHLBoundaries(){
         return myHLBoundaries;
     }
 

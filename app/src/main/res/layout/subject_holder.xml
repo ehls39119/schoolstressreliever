@@ -8,8 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rowLayout"
-        android:layout_width="396dp"
-        android:layout_height="55dp"
+        android:layout_width="356dp"
+        android:layout_height="47dp"
         android:layout_marginTop="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -17,36 +17,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/progressGradeID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Transcript"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/gradeTextView1"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/statusTextView"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/progressViewID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Progress"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/statusTextView"
+            app:layout_constraintEnd_toStartOf="@+id/progressTextView"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/nameTextView"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/gradeTextView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/progressGradeID"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -62,12 +40,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/statusTextView"
+            android:id="@+id/progressTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Status"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/progressGradeID"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/progressViewID"
             app:layout_constraintTop_toTopOf="parent" />

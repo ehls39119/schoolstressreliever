@@ -11,14 +11,12 @@ import com.example.schoolstressreliever.R;
 public class SubjectHolder extends RecyclerView.ViewHolder {
     protected TextView nameText;
     protected TextView statusText1;
-    protected TextView statusText2;
 
 
     public SubjectHolder(@NonNull View itemView) {
         super(itemView);
         nameText = (itemView).findViewById(R.id.nameTextView);
-        statusText1 = (itemView).findViewById(R.id.statusTextView);
-        statusText2 = (itemView).findViewById(R.id.statusTextView);
+        statusText1 = (itemView).findViewById(R.id.progressTextView);
     }
 
     public ConstraintLayout getLayout(){

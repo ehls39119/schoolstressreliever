@@ -38,7 +38,21 @@
         android:text="refresh grades"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addGradesID"
+        app:layout_constraintVertical_bias="0.684" />
+
+    <Button
+        android:id="@+id/goToSubjectOverviewID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goToAcademicOverview"
+        android:text="Go to Aca Overview"
+        app:layout_constraintBottom_toTopOf="@+id/addGradesID"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addGradesID" />
+        app:layout_constraintTop_toBottomOf="@+id/recycler2ID" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

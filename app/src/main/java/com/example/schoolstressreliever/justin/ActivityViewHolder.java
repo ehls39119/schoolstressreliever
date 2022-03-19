@@ -19,7 +19,7 @@ public class ActivityViewHolder extends RecyclerView.ViewHolder
         super(itemView);
 
         nameText = itemView.findViewById(R.id.nameTextView);
-        statusText = itemView.findViewById(R.id.statusTextView);
+        statusText = itemView.findViewById(R.id.progressTextView);
     }
 
     public ConstraintLayout returnLayout()
