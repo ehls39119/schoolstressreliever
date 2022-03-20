@@ -17,6 +17,8 @@ import com.example.schoolstressreliever.justin.ActivityRecyclerViewAdapter;
 import com.example.schoolstressreliever.vico.ServiceRecyclerViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -34,6 +36,8 @@ public class ActivityOverviewActivity extends AppCompatActivity {
     private FirebaseFirestore firestore;
     ArrayList<String> nameInfo = new ArrayList<>();
     ArrayList<String> statusInfo = new ArrayList<>();
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
 
     public int pointSystem;
 
@@ -44,14 +48,16 @@ public class ActivityOverviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_activity_overview);
         recView = findViewById(R.id.recView);
         firestore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
+        mUser = mAuth.getCurrentUser();
 
 //        Intent intent = getIntent();
 //        String myUserEmail = intent.getExtras().getString("currUser");
 
-        String myUserEmail = "justinIsStraight@student.cis.edu.hk";
 
         ActivityRecyclerViewAdapter myAdapter = new ActivityRecyclerViewAdapter(nameInfo, statusInfo
-                , this, myUserEmail);
+                , this, mUser.getEmail());
 
         recView.setAdapter(myAdapter);
         recView.setLayoutManager(new LinearLayoutManager(this));
@@ -63,41 +69,156 @@ public class ActivityOverviewActivity extends AppCompatActivity {
     }
 
 
+    ArrayList <Map> activityList = new ArrayList<>();
 
-
-    public void updateRecView() {
-        firestore.collection("everything").document("all activities")
-                .collection("activities").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    public void updateRecView()
+    {
+        firestore.collection("Activities").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
+                {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
+                    public void onComplete(@NonNull Task<QuerySnapshot> task)
+                    {
+                        if (task.isSuccessful())
+                        {
                             List<DocumentSnapshot> ds = task.getResult().getDocuments();
 
-                            for (DocumentSnapshot doc : ds) {
-                                Map<String, Object> docData = doc.getData();
+                            for(DocumentSnapshot doc : ds)
+                            {
+                                Map<String, Object> activityData = doc.getData();
+                                activityList.add(activityData);
 
-                                String currName = (String) docData.get("name");
-                                nameInfo.add(currName);
+                                System.out.println("activity added");
 
-                                String currInterestArea = (String) docData.get("interestArea");
-                                String currHours = (String) docData.get("hours");
+                                /*temp check*/
+//                                String currName = (String) serviceData.get("name");
+//
+//                                nameInfo.add(currName);
+//
+//                                String currInterestArea = (String) serviceData.get("intrestArea");
+//                                String currHours = (String) serviceData.get("hours");
+//
+//                                statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+//                                        + currHours);
 
-                                String compatibilityRating = getIntent().getExtras().getString("compatibility");
-                                statusInfo.add(compatibilityRating + "Interest Area: " + currInterestArea + "     Hours: "
-                                        + currHours);
-
-                                System.out.println(statusInfo);
                             }
 
-                            ActivityRecyclerViewAdapter a = (ActivityRecyclerViewAdapter)
-                                    recView.getAdapter();
-                            a.changeInfo(nameInfo, statusInfo);
-                            a.notifyDataSetChanged();
+                            firestore.collection("Users").get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
+                                    {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task)
+                                        {
+                                            if (task.isSuccessful())
+                                            {
+                                                List<DocumentSnapshot> ds = task.getResult().getDocuments();
+
+                                                for(DocumentSnapshot doc : ds)
+                                                {
+                                                    Map<String, Object> userData = doc.getData();
+
+                                                    if(userData.get("email").equals(mUser.getEmail()))
+                                                    {
+                                                        System.out.println(activityList);
+
+                                                        ArrayList <Map> doubleMatch = new ArrayList<>();
+                                                        ArrayList <Map> singleMatch = new ArrayList<>();
+                                                        ArrayList <Map> noMatch = new ArrayList<>();
+
+                                                        String currUserInterest = (String) userData.get("interestAreaActivity");
+                                                        String currUserHours = (String) userData.get("hoursAvailableActivity");
+
+                                                        System.out.println(currUserInterest + currUserHours);
+
+                                                        for(Map activity : activityList)
+                                                        {
+                                                            Boolean interestMatch = false;
+                                                            Boolean hoursMatch = false;
+
+                                                            String currServiceArea = (String) activity.get("intrestArea");
+                                                            String currServiceHours = (String) activity.get("hours");
+
+                                                            double currUserHoursInt = Double.parseDouble(currUserHours);
+                                                            double currServiceHoursInt = Double.parseDouble(currServiceHours);
+
+                                                            if(currServiceArea.equals(currUserInterest))
+                                                            {
+                                                                interestMatch = true;
+                                                            }
+
+                                                            if(currServiceHoursInt < currUserHoursInt)
+                                                            {
+                                                                hoursMatch = true;
+                                                            }
+
+                                                            if(hoursMatch && interestMatch)
+                                                            {
+                                                                doubleMatch.add(activity);
+                                                            }
+                                                            else if(hoursMatch || interestMatch)
+                                                            {
+                                                                singleMatch.add(activity);
+                                                            }
+                                                            else
+                                                            {
+                                                                noMatch.add(activity);
+                                                            }
+                                                        }
+
+                                                        for(Map currService : doubleMatch)
+                                                        {
+                                                            String currName = (String) currService.get("name");
+                                                            nameInfo.add(currName);
+
+                                                            String currInterestArea = (String) currService.get("intrestArea");
+                                                            String currHours = (String) currService.get("hours");
+
+                                                            statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+                                                                    + currHours);
+
+                                                            System.out.println(statusInfo);
+                                                        }
+
+                                                        for(Map currService : singleMatch)
+                                                        {
+                                                            String currName = (String) currService.get("name");
+                                                            nameInfo.add(currName);
+
+                                                            String currInterestArea = (String) currService.get("intrestArea");
+                                                            String currHours = (String) currService.get("hours");
+
+                                                            statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+                                                                    + currHours);
+
+                                                        }
+
+                                                        for(Map currService : noMatch)
+                                                        {
+                                                            String currName = (String) currService.get("name");
+                                                            nameInfo.add(currName);
+
+                                                            String currInterestArea = (String) currService.get("intrestArea");
+                                                            String currHours = (String) currService.get("hours");
+
+                                                            statusInfo.add("Interest Area: " + currInterestArea + "     Hours: "
+                                                                    + currHours);
+
+                                                        }
+
+                                                        ServiceRecyclerViewAdapter a = (ServiceRecyclerViewAdapter)
+                                                                recView.getAdapter();
+                                                        a.changeInfo(nameInfo, statusInfo);
+                                                        a.notifyDataSetChanged();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    });
                         }
                     }
                 });
 
+    }
 
 //        ArrayList <Map> activityList = new ArrayList<>();
 //        String currInterest;
@@ -186,7 +307,7 @@ public class ActivityOverviewActivity extends AppCompatActivity {
 //        a.notifyDataSetChanged();
 
 
-    }
+
     public void goToAddActivity (View v)
     {
         Intent newIntent = new Intent(this, AddActivityActivity.class);

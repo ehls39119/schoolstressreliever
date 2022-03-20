@@ -13,11 +13,20 @@
             android:name=".justin.ECHomeActivity"
             android:exported="true" />
         <activity
+            android:name=".justin.ActivityOverviewActivity"
+            android:exported="true" />
+        <activity
             android:name=".justin.defaultActivity"
             android:exported="true" />
         <activity
             android:name=".justin.reviewRequestActivity"
             android:exported="true" />
+        <activity
+            android:name=".justin.privActivityMeetingRequest"
+            android:exported="true"/>
+        <activity
+            android:name=".justin.receivePrivActivityRequest"
+            android:exported="true"/>
         <activity
             android:name=".Ernest.AddGrade"
             android:exported="false" />

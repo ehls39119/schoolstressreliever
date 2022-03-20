@@ -58,7 +58,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                         ((SubjectHolder) holder).nameText.setText(subjectToShow);
                         ((SubjectHolder) holder).statusText1.setText(progressToShow);
-                        ((SubjectHolder) holder).statusText2.setText(progressToShow);
+//                        ((SubjectHolder) holder).statusText2.setText(progressToShow);
 
                         ((SubjectHolder) holder).getLayout().setOnClickListener(new View.OnClickListener() {
                             @Override

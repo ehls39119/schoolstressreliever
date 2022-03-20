@@ -10,6 +10,7 @@
         android:id="@+id/button6"
         android:layout_width="214dp"
         android:layout_height="102dp"
+        android:onClick="goToActivity"
         android:text="Activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
