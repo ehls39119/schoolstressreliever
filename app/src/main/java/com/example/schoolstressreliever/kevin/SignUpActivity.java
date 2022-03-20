@@ -75,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome" + userNameInput, Toast.LENGTH_SHORT).show();
                     fireStore.collection("Users").document(userEmailInput).set(currentUser);
 
-                    updateUI(currUser);
+//                    updateUI(currUser);
 
                 } else {
                     Log.w("Sign up.", "SignUpWithEmail: failed.");

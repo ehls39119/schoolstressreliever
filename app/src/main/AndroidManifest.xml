@@ -37,6 +37,12 @@
             android:name=".vico.BookServiceActivity"
             android:exported="true" />
         <activity
+            android:name=".vico.JoinServiceMeetingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".vico.ServiceMeetingOverviewActivity"
+            android:exported="true" />
+        <activity
             android:name=".justin.AddActivityActivity"
             android:exported="true" />
         <activity
@@ -58,7 +64,7 @@
             android:name=".vico.JoinServiceMeetingActivity"
             android:exported="true" />
         <activity
-            android:name=".justin.AddActivityActivity"
+            android:name=".justin.ActivityOverviewActivity"
             android:exported="true" />
         <activity
             android:name=".justin.ECInfoActivity"

@@ -18,11 +18,11 @@ public class ECHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_echome);
     }
 
-//    public void goToActivity(View v)
-//    {
-//        Intent startPage = new Intent(this, ECHomeActivity.class);
-//        startActivity(startPage);
-//    }
+    public void goToActivity(View v)
+    {
+        Intent startPage = new Intent(this, ActivityOverviewActivity.class);
+        startActivity(startPage);
+    }
 
     public void goToService(View v)
     {

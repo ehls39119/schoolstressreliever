@@ -76,7 +76,7 @@ public class defaultActivity extends AppCompatActivity
 
                                 System.out.println(currUser);
 
-                                if(currUser.equals((String) mUser.getEmail()))
+                                if(currUser.equals(mUser.getEmail()))
                                 {
                                     System.out.println("reach here4");
 

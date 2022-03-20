@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.schoolstressreliever.Ernest.SubjectOverview;
+//import com.example.schoolstressreliever.Ernest.SubjectOverview;
 import com.example.schoolstressreliever.vico.ServiceOverviewActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(newIntent);
     }
 
-    public void goToAcademicOverview (View v){
-        Intent z = new Intent(this, SubjectOverview.class);
-        startActivity(z);
-    }
+//    public void goToAcademicOverview (View v){
+//        Intent z = new Intent(this, SubjectOverview.class);
+//        startActivity(z);
+//    }
 
 
 

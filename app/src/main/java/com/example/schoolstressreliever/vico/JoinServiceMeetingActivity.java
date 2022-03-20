@@ -116,15 +116,21 @@ public class JoinServiceMeetingActivity extends AppCompatActivity {
                                     allParticipants.add(IDString);
                                 }
 
+                                System.out.println(allParticipants);
+
                                 Intent intent = getIntent();
                                 String currServiceMeeting = intent.getExtras().getString("currServiceMeeting");
 
                                 if(currServiceMeeting.equals(thisService))
                                 {
+                                    System.out.println("got service");
+
                                     for(String i : allParticipants)
                                     {
                                         if(i.equals(mUser.getEmail()))
                                         {
+                                            System.out.println("found user");
+
                                             inService = true;
                                         }
                                     }
@@ -142,27 +148,34 @@ public class JoinServiceMeetingActivity extends AppCompatActivity {
 
                                                             for(DocumentSnapshot doc : ds)
                                                             {
+                                                                System.out.println("adding user to meeting");
+
                                                                 Map<String, Object> docData = doc.getData();
 
-                                                                String fianlServiceCheck = (String) docData.get("service");
+                                                                String finalServiceCheck = (String) docData.get("service");
 
-                                                                ArrayList<String> allParticipants = new ArrayList<>();
+                                                                ArrayList<String> currParticipants = new ArrayList<>();
 
                                                                 for (java.lang.String currID : (ArrayList<String>) docData
                                                                         .get("participants"))
                                                                 {
                                                                     String IDString = currID;
 
-                                                                    allParticipants.add(IDString);
+                                                                    currParticipants.add(IDString);
                                                                 }
 
-                                                                allParticipants.add(mUser.getEmail());
+                                                                currParticipants.add(mUser.getEmail());
+                                                                System.out.println(currParticipants);
 
-                                                                if(currServiceMeeting.equals(fianlServiceCheck))
+                                                                if(currServiceMeeting.equals(finalServiceCheck))
                                                                 {
+                                                                    String finalTime = (String) docData.get("time");
+
                                                                     firestore.collection("Service Meetings")
-                                                                            .document(currServiceMeeting)
-                                                                            .update("participants", allParticipants);
+                                                                            .document(currServiceMeeting + " " + finalTime)
+                                                                            .update("participants", currParticipants);
+
+                                                                    System.out.println("added user");
                                                                 }
                                                             }
                                                         }
@@ -175,14 +188,14 @@ public class JoinServiceMeetingActivity extends AppCompatActivity {
                     }
                 });
 
-        if(!inService)
-        {
-            Toast.makeText(this, "You are not in this service", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            Toast.makeText(this, "Service Signed Up", Toast.LENGTH_SHORT).show();
-        }
+//        if(!inService)
+//        {
+//            Toast.makeText(this, "You are not in this service", Toast.LENGTH_SHORT).show();
+//        }
+//        else
+//        {
+//            Toast.makeText(this, "Service Signed Up", Toast.LENGTH_SHORT).show();
+//        }
     }
 
 }
