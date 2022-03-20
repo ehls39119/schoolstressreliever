@@ -109,8 +109,7 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
 
             System.out.println("activity");
 
-            firestore.collection("everything").document("all activities")
-                    .collection("activities").document(nameString).set(activity);
+            firestore.collection("activities").document(nameString).set(activity);
 
             System.out.println("added activity");
 

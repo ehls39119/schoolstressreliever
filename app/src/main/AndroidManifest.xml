@@ -58,6 +58,9 @@
             android:name=".vico.JoinServiceMeetingActivity"
             android:exported="true" />
         <activity
+            android:name=".justin.AddActivityActivity"
+            android:exported="true" />
+        <activity
             android:name=".justin.ECInfoActivity"
             android:exported="true" />
         <activity

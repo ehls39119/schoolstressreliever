@@ -25,15 +25,13 @@ public class ActivityRecyclerViewAdapter extends RecyclerView.Adapter <ActivityV
 
     public ActivityRecyclerViewAdapter(ArrayList<String> itemNames,
                                       ArrayList<String> statusOutput,
-                                      Context screen,
-                                      String myUserEmail) {
+                                      Context screen) {
 
         nameData = itemNames;
         statusData = statusOutput;
 
         this.screen = screen;
 
-        emailString = myUserEmail;
     }
 
     @NonNull
@@ -82,7 +80,6 @@ public class ActivityRecyclerViewAdapter extends RecyclerView.Adapter <ActivityV
     {
         Intent intent = new Intent(this.screen, BookActivityActivity.class);
         intent.putExtra("currActivity", activityString);
-        intent.putExtra("currUser", emailString);
 
         this.screen.startActivity(intent);
     }
