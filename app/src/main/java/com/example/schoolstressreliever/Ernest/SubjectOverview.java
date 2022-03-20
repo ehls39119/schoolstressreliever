@@ -41,6 +41,7 @@ public class SubjectOverview extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
+        studentInfo = new ArrayList<User>();
 
         recView = (RecyclerView) findViewById(R.id.recycler1ID);
         SubjectAdapter myAdapter = new SubjectAdapter(studentInfo, this);
@@ -50,6 +51,7 @@ public class SubjectOverview extends AppCompatActivity {
 
 
     public void getAndPopulateData(View v) {
+        studentInfo.clear();
         db.collection("Users").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -57,14 +59,15 @@ public class SubjectOverview extends AppCompatActivity {
                 if (documentSnapshot != null && !documentSnapshot.getDocuments().isEmpty()) {
                     List<DocumentSnapshot> documents = documentSnapshot.getDocuments();
 
-
                     for (DocumentSnapshot value : documents) {
                         User info = value.toObject(User.class);
-                        studentInfo.add(info);
+                        if (info.getGradeInfo()!=null){
+                            studentInfo.add(info);
+                        }
                     }
 
                     for (User z: studentInfo){
-                        System.out.println("CHECK " + z.getName() + "\n");
+                        System.out.println("has grade info " + z.getName() + "\n");
                     }
 
                     SubjectAdapter recAdapter = (SubjectAdapter) recView.getAdapter();
