@@ -57,9 +57,14 @@ public class SubjectOverview extends AppCompatActivity {
                 if (documentSnapshot != null && !documentSnapshot.getDocuments().isEmpty()) {
                     List<DocumentSnapshot> documents = documentSnapshot.getDocuments();
 
+
                     for (DocumentSnapshot value : documents) {
                         User info = value.toObject(User.class);
                         studentInfo.add(info);
+                    }
+
+                    for (User z: studentInfo){
+                        System.out.println("CHECK " + z.getName() + "\n");
                     }
 
                     SubjectAdapter recAdapter = (SubjectAdapter) recView.getAdapter();

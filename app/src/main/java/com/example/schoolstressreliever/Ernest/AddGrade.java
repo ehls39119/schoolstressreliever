@@ -2,7 +2,6 @@ package com.example.schoolstressreliever.Ernest;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.schoolstressreliever.R;
@@ -22,7 +21,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -85,7 +83,7 @@ public class AddGrade extends AppCompatActivity {
                             ArrayList<Map<String, Map<String, Double>>> allInfo = info.getGradeInfo();
 
                             ArrayList<Map<String, Integer>> myHLBoundaries = info.getMyHLBoundaries();
-                            ArrayList<Map<String, Integer>> mySlBoundaries = info.getMySlBoundaries();
+                            ArrayList<Map<String, Integer>> mySlBoundaries = info.getMySLBoundaries();
 
                             double obtainedMarks = Double.parseDouble(ob);
                             double totalMarks = Double.parseDouble(to);
@@ -112,8 +110,9 @@ public class AddGrade extends AppCompatActivity {
 
                                         }
                                         String x = info.getEmail();
-                                        User newStudent = new User(myHLBoundaries, mySlBoundaries, nameCheck, allInfo);
-                                        db.collection("Users").document(mUser.getEmail()).set(newStudent);
+                                        db.collection("Users").document(mUser.getEmail()).update("MyHLBoundaries", myHLBoundaries);
+                                        db.collection("Users").document(mUser.getEmail()).update("MySLBoundaries", mySlBoundaries);
+                                        db.collection("Users").document(mUser.getEmail()).update("gradeInfo", allInfo);
                                         break;
                                     }
                                     break;
@@ -150,7 +149,7 @@ public class AddGrade extends AppCompatActivity {
                             ArrayList<Map<String, Map<String, Double>>> allInfo = info.getGradeInfo();
 
                             ArrayList<Map<String, Integer>> myHLBoundaries = info.getMyHLBoundaries();
-                            ArrayList<Map<String, Integer>> mySlBoundaries = info.getMySlBoundaries();
+                            ArrayList<Map<String, Integer>> mySlBoundaries = info.getMySLBoundaries();
                             System.out.println("here");
 
                             Map<String, Map<String, Double>> bigMap = new HashMap<>();
@@ -262,8 +261,8 @@ public class AddGrade extends AppCompatActivity {
                                     }
                                 }
                             }
-                            User newStudent = new User(myHLBoundaries, mySlBoundaries, nameCheck, allInfo);
-                            db.collection("Users").document(mUser.getEmail()).set(newStudent);
+                            db.collection("Users").document(mUser.getEmail()).update("gradeInfo", allInfo, "MyHLBoundaries", myHLBoundaries, "MySLBoundaries", mySlBoundaries);
+
                             break;
                         }
                     }

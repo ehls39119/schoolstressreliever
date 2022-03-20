@@ -36,6 +36,9 @@ public class SubjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         User newStudent = (User) studentData.get(position);
+        System.out.println("got student " + newStudent.getName());
+
+
         ArrayList<Map<String, Map<String, Double>>> gradeInfo = new ArrayList<Map<String, Map<String, Double>>>();
         gradeInfo = newStudent.getGradeInfo();
         System.out.println("retrieved info " + gradeInfo);

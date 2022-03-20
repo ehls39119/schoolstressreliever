@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class User {
     private String ID;
-    private String name;
-    private String email;
+    public String name;
+    public String email;
     private String password;
     private String yearLevel;
     private double hoursAvailable;
@@ -16,11 +16,11 @@ public class User {
     
     
     
-    private ArrayList<Map<String, Integer>> myHLBoundaries;
-    private ArrayList<Map<String, Integer>> mySlBoundaries;
+    public ArrayList<Map<String, Integer>> myHLBoundaries;
+    public ArrayList<Map<String, Integer>> mySLBoundaries;
     public ArrayList<Map<String, Map<String, Double>>> gradeInfo;
     
-    public User(String ID, String name, String email, String yearLevel, String password, double hoursAvailable, boolean formFilled, String interestArea, ArrayList<Map<String, Integer>> hlMap, ArrayList<Map<String, Integer>> slMap, ArrayList<Map<String, Map<String, Double>>> bruhPlsWork) {
+    public User(String ID, String name, String email, String yearLevel, String password, double hoursAvailable, boolean formFilled, String interestArea) {
         this.ID = ID;
         this.name = name;
         this.email = email;
@@ -35,10 +35,7 @@ public class User {
     public User(String uid, String displayName, String email, String yearLevel, String password, double hoursAvailable, String arts) {
     }
 
-    public User(ArrayList<Map<String, Integer>> hlMap, ArrayList<Map<String, Integer>> slMap, String userName, ArrayList<Map<String, Map<String, Double>>> bruhPlsWork){
-        myHLBoundaries = hlMap;
-        mySlBoundaries = slMap;
-        gradeInfo = bruhPlsWork;
+    public User(){
 
     }
 
@@ -134,7 +131,7 @@ public class User {
         return myHLBoundaries;
     }
 
-    public ArrayList<Map<String, Integer>> getMySlBoundaries(){
-        return mySlBoundaries;
+    public ArrayList<Map<String, Integer>> getMySLBoundaries(){
+        return mySLBoundaries;
     }
 }
