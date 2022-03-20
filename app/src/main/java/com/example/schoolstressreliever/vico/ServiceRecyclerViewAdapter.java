@@ -22,15 +22,13 @@ public class ServiceRecyclerViewAdapter extends RecyclerView.Adapter <ServiceVie
 
     public ServiceRecyclerViewAdapter(ArrayList<String> itemNames,
                                       ArrayList<String> statusOutput,
-                                      Context screen,
-                                      String myUserEmail) {
+                                      Context screen) {
 
         nameData = itemNames;
         statusData = statusOutput;
 
         this.screen = screen;
 
-        emailString = myUserEmail;
     }
 
     @NonNull

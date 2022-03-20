@@ -124,14 +124,26 @@ public class BookServiceActivity extends AppCompatActivity {
                                     allParticipants.add(IDString);
                                 }
 
+                                boolean inService = false;
+
                                 if(thisService.equals(currService))
                                 {
-                                    allParticipants.add(mUser.getEmail());
+                                    for(String i : allParticipants)
+                                    {
+                                        if(i.equals(mUser.getEmail()))
+                                        {
+                                            inService = true;
+                                        }
+                                    }
 
-                                    firestore.collection("Services")
-                                            .document(currService)
-                                            .update("participants", allParticipants);
+                                    if(!inService)
+                                    {
+                                        allParticipants.add(mUser.getEmail());
 
+                                        firestore.collection("Services")
+                                                .document(currService)
+                                                .update("participants", allParticipants);
+                                    }
                                 }
                             }
                         }
