@@ -215,4 +215,5 @@ public class ServiceOverviewActivity extends AppCompatActivity {
         Intent thisIntent = new Intent(this, ServiceMeetingOverviewActivity.class);
         startActivity(thisIntent);
     }
+
 }
