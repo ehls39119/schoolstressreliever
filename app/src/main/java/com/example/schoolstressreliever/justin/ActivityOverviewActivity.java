@@ -109,8 +109,8 @@ public class ActivityOverviewActivity extends AppCompatActivity {
                                                         ArrayList <Map> singleMatch = new ArrayList<>();
                                                         ArrayList <Map> noMatch = new ArrayList<>();
 
-                                                        String currUserInterest = (String) userData.get("interestAreaService");
-                                                        String currUserHours = (String) userData.get("hoursAvailableService");
+                                                        String currUserInterest = (String) userData.get("interestAreaActivity");
+                                                        String currUserHours = (String) userData.get("hoursAvailableActivity");
 
                                                         System.out.println(currUserInterest + currUserHours);
 
