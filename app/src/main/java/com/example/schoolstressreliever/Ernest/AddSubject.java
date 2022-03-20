@@ -9,16 +9,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.collection.ArraySet;
 
 import com.example.schoolstressreliever.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.schoolstressreliever.kevin.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
@@ -50,6 +46,7 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         mUser = mAuth.getCurrentUser();
+        String email = mUser.getEmail();
 
         userName = findViewById(R.id.userNameID);
 
@@ -223,18 +220,18 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
 //                    System.out.println("grade info " + gradeInfo);
                 }
 
-
                 System.out.println("Final grade info " + gradeInfo);
-                Student newStudent = new Student(myHL, mySL, name, gradeInfo);
 
-                System.out.println("1" +newStudent.getGradeInfo());
-                System.out.println("2" +newStudent.getMyName());
-                System.out.println("3" +newStudent.getMyHLBoundaries());
-                System.out.println("4" +newStudent.getMySlBoundaries());
+//                User newStudent = new User(myHL, mySL, name, gradeInfo);
 
-                db.collection("Students").document(name).set(newStudent);
+//                System.out.println("1" +newStudent.getGradeInfo());
+//                System.out.println("2" +newStudent.getName());
+//                System.out.println("3" +newStudent.getMyHLBoundaries());
+//                System.out.println("4" +newStudent.getMySLBoundaries());
+                System.out.println("bounds1" + myHL);
+                System.out.println("bounds2" + mySL);
 
-
+                db.collection("Users").document(mUser.getEmail()).update("gradeInfo", gradeInfo, "myHLBoundaries", myHL, "mySLBoundaries", mySL);
 
             }
 

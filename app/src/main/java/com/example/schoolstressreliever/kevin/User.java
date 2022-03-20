@@ -1,19 +1,25 @@
 package com.example.schoolstressreliever.kevin;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class User {
     private String ID;
-    private String name;
-    private String email;
+    public String name;
+    public String email;
     private String password;
     private String yearLevel;
     private double hoursAvailable;
     private boolean formFilled;
     private String interestArea;
     private String hours;
-    private ArrayList<String> userSubjectList;
-
+    
+    
+    
+    public ArrayList<Map<String, Integer>> myHLBoundaries;
+    public ArrayList<Map<String, Integer>> mySLBoundaries;
+    public ArrayList<Map<String, Map<String, Double>>> gradeInfo;
+    
     public User(String ID, String name, String email, String yearLevel, String password, double hoursAvailable, boolean formFilled, String interestArea) {
         this.ID = ID;
         this.name = name;
@@ -23,15 +29,15 @@ public class User {
         this.hoursAvailable = hoursAvailable;
         this.formFilled = formFilled;
         this.interestArea = interestArea;
+
     }
 
     public User(String uid, String displayName, String email, String yearLevel, String password, double hoursAvailable, String arts) {
     }
 
+    public User(){
 
-
-
-
+    }
 
     public double getHoursAvailable()
     {
@@ -84,13 +90,13 @@ public class User {
         this.yearLevel = yearLevel;
     }
 
-    public ArrayList<String> getUserSubjectList() {
-        return userSubjectList;
-    }
-
-    public void setUserSubjectList(ArrayList<String> userSubjectList) {
-        this.userSubjectList = userSubjectList;
-    }
+//    public ArrayList<String> getUserSubjectList() {
+//        return userSubjectList;
+//    }
+//
+//    public void setUserSubjectList(ArrayList<String> userSubjectList) {
+//        this.userSubjectList = userSubjectList;
+//    }
 
     public boolean isFormFilled() {
         return formFilled;
@@ -114,5 +120,18 @@ public class User {
 
     public void setHours(String hours) {
         this.hours = hours;
+    }
+
+    public ArrayList<Map<String, Map<String, Double>>> getGradeInfo(){
+        return gradeInfo;
+    }
+
+
+    public ArrayList<Map<String, Integer>> getMyHLBoundaries(){
+        return myHLBoundaries;
+    }
+
+    public ArrayList<Map<String, Integer>> getMySLBoundaries(){
+        return mySLBoundaries;
     }
 }

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.schoolstressreliever.Ernest.AddSubject;
+import com.example.schoolstressreliever.Ernest.Navigation;
 import com.example.schoolstressreliever.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -56,7 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
         String userYearLevelInput = userYearLevel.getText().toString();
         String userPasswordInput = userPassword.getText().toString();
 
-        User currentUser = new User(userID, userNameInput, userEmailInput, userYearLevelInput, userPasswordInput, 0, false, "");
+        User currentUser = new User(userID, userNameInput, userEmailInput, userYearLevelInput, userPasswordInput, 0.0, false, "");
         //fireStore.collection("Users").document(userEmailInput).set(currentUser);
         //maybe need to add the Info into an ArrayList.
         //subjects are added after the Info.
@@ -88,7 +89,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void updateUI(FirebaseUser currUser) {
         if (currUser != null) {
-            Intent startPage = new Intent(this, AddSubject.class);
+            Intent startPage = new Intent(this, Navigation.class);
             //the page should go to AddSubject.class
             /*edited by kevin*/
             startActivity(startPage);

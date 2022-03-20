@@ -24,6 +24,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -114,19 +115,21 @@ public class AddServiceMeetingActivity extends AppCompatActivity implements Date
                     }
                 });
 
-//        if(!correctEmail[0])
-//        {
-//            Toast.makeText(this, "You are not the leader of the service"
-//                    , Toast.LENGTH_SHORT).show();
-//        }
+        if(!correctEmail[0])
+        {
+            Toast.makeText(this, "You are not the leader of the service"
+                    , Toast.LENGTH_SHORT).show();
+        }
+
+        ArrayList<String> partcipantsList = new ArrayList<>();
 
         if(parametersFilled)
         {
             ServiceMeeting currMeeting = new ServiceMeeting(date, serviceString, timeString
-                    , descriptionString, mUser.getEmail());
+                    , descriptionString, mUser.getEmail(), partcipantsList);
 
             firestore.collection("Service Meetings").document(serviceString
-                    + timeString).set(currMeeting);
+                    + " " + timeString).set(currMeeting);
 
             Toast.makeText(this, "Meeting Added", Toast.LENGTH_SHORT).show();
         }

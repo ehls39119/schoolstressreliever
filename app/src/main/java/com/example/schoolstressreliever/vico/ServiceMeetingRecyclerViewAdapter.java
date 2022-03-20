@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.schoolstressreliever.MainActivity;
 import com.example.schoolstressreliever.R;
 
 import java.util.ArrayList;
@@ -76,9 +75,8 @@ public class ServiceMeetingRecyclerViewAdapter extends RecyclerView.Adapter <Ser
 
     public void updateUI(String serviceString)
     {
-        Intent intent = new Intent(this.screen, ServiceOverviewActivity.class);
-        intent.putExtra("currService", serviceString);
-        intent.putExtra("currUser", emailString);
+        Intent intent = new Intent(this.screen, JoinServiceMeetingActivity.class);
+        intent.putExtra("currServiceMeeting", serviceString);
 
         this.screen.startActivity(intent);
     }

@@ -22,33 +22,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class BookServiceActivity extends AppCompatActivity {
+public class JoinServiceMeetingActivity extends AppCompatActivity {
 
     private FirebaseFirestore firestore;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
 
+    String currServiceName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_service);
-
-        firestore = FirebaseFirestore.getInstance();
+        setContentView(R.layout.activity_join_service_meeting);
 
         mAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
         mUser = mAuth.getCurrentUser();
 
         Intent intent = getIntent();
-        String currService = intent.getExtras().getString("currService");
+        String currServiceMeeting = intent.getExtras().getString("currServiceMeeting");
 
         TextView nameView = (TextView)findViewById(R.id.meetingNameTextView);
-        TextView interestView = (TextView)findViewById(R.id.dateTextView);
+        TextView dateView = (TextView)findViewById(R.id.dateTextView);
         TextView hoursView = (TextView)findViewById(R.id.timeTextView);
         TextView emailView = (TextView)findViewById(R.id.emailTextView);
         TextView descriptionView = (TextView)findViewById(R.id.descriptionView);
 
-        firestore.collection("Services").get()
+        firestore.collection("Service Meetings").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task)
@@ -59,20 +59,23 @@ public class BookServiceActivity extends AppCompatActivity {
 
                             for(DocumentSnapshot doc : ds)
                             {
+
+                                System.out.println(currServiceMeeting);
+
                                 Map<String, Object> docData = doc.getData();
 
-                                String thisName = (String) docData.get("name");
+                                currServiceName = (String) docData.get("service");
 
-                                if (thisName.equals(currService))
+                                if (currServiceName.equals(currServiceMeeting))
                                 {
-                                    String thisInterest = (String) docData.get("intrestArea");
-                                    String thisHours = (String) docData.get("hours");
+                                    String thisDate = (String) docData.get("date");
                                     String thisEmail = (String) docData.get("email");
                                     String thisDescription = (String) docData.get("description");
+                                    String thisTime = (String) docData.get("time");
 
-                                    nameView.setText(thisName);
-                                    interestView.setText(thisInterest);
-                                    hoursView.setText("Hours demanded: " + thisHours);
+                                    nameView.setText(currServiceName);
+                                    dateView.setText(thisDate);
+                                    hoursView.setText(thisTime);
                                     emailView.setText("Person to contact for more information: \n"
                                             + thisEmail);
                                     descriptionView.setText(thisDescription);
@@ -84,10 +87,10 @@ public class BookServiceActivity extends AppCompatActivity {
                 });
     }
 
-    public void addService(View v)
-    {
-        firestore = FirebaseFirestore.getInstance();
+    boolean inService = false;
 
+    public void joinServiceMeeting(View v)
+    {
         firestore.collection("Services").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -96,9 +99,6 @@ public class BookServiceActivity extends AppCompatActivity {
                         if (task.isSuccessful())
                         {
                             List<DocumentSnapshot> ds = task.getResult().getDocuments();
-
-                            Intent intent = getIntent();
-                            String currService = intent.getExtras().getString("currService");
 
                             for(DocumentSnapshot doc : ds)
                             {
@@ -116,9 +116,10 @@ public class BookServiceActivity extends AppCompatActivity {
                                     allParticipants.add(IDString);
                                 }
 
-                                boolean inService = false;
+                                Intent intent = getIntent();
+                                String currServiceMeeting = intent.getExtras().getString("currServiceMeeting");
 
-                                if(thisService.equals(currService))
+                                if(currServiceMeeting.equals(thisService))
                                 {
                                     for(String i : allParticipants)
                                     {
@@ -128,13 +129,45 @@ public class BookServiceActivity extends AppCompatActivity {
                                         }
                                     }
 
-                                    if(!inService)
+                                    if(inService)
                                     {
-                                        allParticipants.add(mUser.getEmail());
+                                        firestore.collection("Service Meetings").get()
+                                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<QuerySnapshot> task)
+                                                    {
+                                                        if (task.isSuccessful())
+                                                        {
+                                                            List<DocumentSnapshot> ds = task.getResult().getDocuments();
 
-                                        firestore.collection("Services")
-                                                .document(currService)
-                                                .update("participants", allParticipants);
+                                                            for(DocumentSnapshot doc : ds)
+                                                            {
+                                                                Map<String, Object> docData = doc.getData();
+
+                                                                String fianlServiceCheck = (String) docData.get("service");
+
+                                                                ArrayList<String> allParticipants = new ArrayList<>();
+
+                                                                for (java.lang.String currID : (ArrayList<String>) docData
+                                                                        .get("participants"))
+                                                                {
+                                                                    String IDString = currID;
+
+                                                                    allParticipants.add(IDString);
+                                                                }
+
+                                                                allParticipants.add(mUser.getEmail());
+
+                                                                if(currServiceMeeting.equals(fianlServiceCheck))
+                                                                {
+                                                                    firestore.collection("Service Meetings")
+                                                                            .document(currServiceMeeting)
+                                                                            .update("participants", allParticipants);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                });
                                     }
                                 }
                             }
@@ -142,7 +175,14 @@ public class BookServiceActivity extends AppCompatActivity {
                     }
                 });
 
-        Toast.makeText(this, "Service Signed Up", Toast.LENGTH_SHORT).show();
+        if(!inService)
+        {
+            Toast.makeText(this, "You are not in this service", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(this, "Service Signed Up", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

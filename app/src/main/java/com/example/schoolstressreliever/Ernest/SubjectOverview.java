@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.schoolstressreliever.R;
 
 
+import com.example.schoolstressreliever.kevin.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -31,7 +32,7 @@ public class SubjectOverview extends AppCompatActivity {
     FirebaseFirestore db;
 
     RecyclerView recView;
-    ArrayList<Student> studentInfo = new ArrayList<Student>();
+    ArrayList<User> studentInfo = new ArrayList<User>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +50,21 @@ public class SubjectOverview extends AppCompatActivity {
 
 
     public void getAndPopulateData(View v) {
-        db.collection("Students").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("Users").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onEvent(@Nullable QuerySnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 if (documentSnapshot != null && !documentSnapshot.getDocuments().isEmpty()) {
                     List<DocumentSnapshot> documents = documentSnapshot.getDocuments();
 
+
                     for (DocumentSnapshot value : documents) {
-                        Student info = value.toObject(Student.class);
+                        User info = value.toObject(User.class);
                         studentInfo.add(info);
+                    }
+
+                    for (User z: studentInfo){
+                        System.out.println("CHECK " + z.getName() + "\n");
                     }
 
                     SubjectAdapter recAdapter = (SubjectAdapter) recView.getAdapter();

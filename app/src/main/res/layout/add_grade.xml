@@ -25,11 +25,11 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Obtained Marks"
-        app:layout_constraintBottom_toTopOf="@+id/button14"
+        app:layout_constraintBottom_toTopOf="@+id/totalMarksID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/taskNameID" />
 
     <EditText
         android:id="@+id/totalMarksID"
@@ -39,7 +39,7 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Total Marks"
-        app:layout_constraintBottom_toTopOf="@+id/button14"
+        app:layout_constraintBottom_toTopOf="@+id/button17"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="subject"
-        app:layout_constraintBottom_toTopOf="@+id/obtainedMarksID"
+        app:layout_constraintBottom_toTopOf="@+id/taskNameID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,10 +81,22 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Task Name"
-        app:layout_constraintBottom_toTopOf="@+id/totalMarksID"
+        app:layout_constraintBottom_toTopOf="@+id/obtainedMarksID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/obtainedMarksID" />
+        app:layout_constraintTop_toBottomOf="@+id/checkSubjectID" />
+
+    <Button
+        android:id="@+id/button17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="calculateIt"
+        android:text="calc"
+        app:layout_constraintBottom_toTopOf="@+id/button14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalMarksID" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

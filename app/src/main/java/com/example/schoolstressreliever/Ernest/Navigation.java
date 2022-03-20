@@ -36,7 +36,7 @@ public class Navigation extends AppCompatActivity {
 
     public void navigateToAcademic(View v) {
         if (mUser != null){
-            Intent intent = new Intent(this, ServiceOverviewActivity.class);
+            Intent intent = new Intent(this, SubjectOverview.class);
             startActivity(intent);
             finish();
         }

@@ -9,19 +9,30 @@ public class ServiceMeeting {
     private String time;
     private String description;
     private String email;
+    private ArrayList<String> participants;
 
     public ServiceMeeting(String date,
                           String service,
                           String time,
                           String description,
-                          String email) {
+                          String email,
+                          ArrayList<String> participants) {
 
         this.date = date;
         this.service = service;
         this.time = time;
         this.description = description;
         this.email = email;
+        this.participants = participants;
 
+    }
+
+    public ArrayList<String> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(ArrayList<String> participants) {
+        this.participants = participants;
     }
 
     public String getDate() {

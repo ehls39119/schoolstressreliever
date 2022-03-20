@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.schoolstressreliever.R;
-import com.example.schoolstressreliever.kevin.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -57,11 +56,11 @@ public class BookActivityActivity extends AppCompatActivity {
         String currUser = intent.getExtras().getString("currUser");
         String currActivity = intent.getExtras().getString("currActivity");
 
-        TextView nameView = (TextView)findViewById(R.id.activityNameTextView);
-        TextView interestView = (TextView)findViewById(R.id.interestAreaTextView);
-        TextView hoursView = (TextView)findViewById(R.id.hoursTextView);
+        TextView nameView = (TextView)findViewById(R.id.meetingNameTextView);
+        TextView interestView = (TextView)findViewById(R.id.dateTextView);
+        TextView hoursView = (TextView)findViewById(R.id.timeTextView);
         TextView emailView = (TextView)findViewById(R.id.emailTextView);
-        TextView priceView = (TextView)findViewById(R.id.priceView);
+        TextView priceView = (TextView)findViewById(R.id.descriptionView);
 
         firestore.collection("everything").document("all activities")
                 .collection("activities").get()
