@@ -184,4 +184,5 @@ public class JoinServiceMeetingActivity extends AppCompatActivity {
             Toast.makeText(this, "Service Signed Up", Toast.LENGTH_SHORT).show();
         }
     }
+
 }
