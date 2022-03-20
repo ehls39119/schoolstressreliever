@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.collection.ArraySet;
 
 import com.example.schoolstressreliever.R;
+import com.example.schoolstressreliever.kevin.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,6 +51,7 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         mUser = mAuth.getCurrentUser();
+        String email = mUser.getEmail();
 
         userName = findViewById(R.id.userNameID);
 
@@ -223,18 +225,16 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
 //                    System.out.println("grade info " + gradeInfo);
                 }
 
-
                 System.out.println("Final grade info " + gradeInfo);
-                Student newStudent = new Student(myHL, mySL, name, gradeInfo);
+
+                User newStudent = new User(myHL, mySL, name, gradeInfo);
 
                 System.out.println("1" +newStudent.getGradeInfo());
-                System.out.println("2" +newStudent.getMyName());
+                System.out.println("2" +newStudent.getName());
                 System.out.println("3" +newStudent.getMyHLBoundaries());
                 System.out.println("4" +newStudent.getMySlBoundaries());
 
-                db.collection("Students").document(name).set(newStudent);
-
-
+                db.collection("Users").document(mUser.getEmail()).set(newStudent);
 
             }
 

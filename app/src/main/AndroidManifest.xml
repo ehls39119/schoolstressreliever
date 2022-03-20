@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.schoolstressreliever">
 
     <application
@@ -13,6 +14,9 @@
             android:name=".justin.ECHomeActivity"
             android:exported="true" />
         <activity
+            android:name=".Ernest.Navigation"
+            android:exported="true" />
+        <activity
             android:name=".justin.defaultActivity"
             android:exported="true" />
         <activity
@@ -20,13 +24,14 @@
             android:exported="true" />
         <activity
             android:name=".Ernest.AddGrade"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Ernest.GradeOverview"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Ernest.GradeHolder"
-            android:exported="false" />
+            android:exported="true"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".Ernest.SubjectOverview"
             android:exported="true" />

@@ -3,6 +3,7 @@ package com.example.schoolstressreliever.Ernest;
 import android.content.Context;
 
 import com.example.schoolstressreliever.R;
+import com.example.schoolstressreliever.kevin.User;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -22,7 +23,7 @@ public class GradeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     ArrayList studentData;
     Context currentContext;
 
-    public GradeAdapter(ArrayList<Student> studentInfoInput, Context context) {
+    public GradeAdapter(ArrayList<User> studentInfoInput, Context context) {
         studentData = studentInfoInput;
         this.currentContext = context;
     }
@@ -36,7 +37,7 @@ public class GradeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Student newStudent = (Student) studentData.get(position);
+        User newStudent = (User) studentData.get(position);
 
         ArrayList<Map<String, Map<String, Double>>> gradeInfo = new ArrayList<Map<String, Map<String, Double>>>();
         gradeInfo = newStudent.getGradeInfo();
@@ -90,7 +91,7 @@ public class GradeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return studentData.size();
     }
 
-    public void setGradeData(ArrayList<Student> students)
+    public void setGradeData(ArrayList<User> students)
     {
         this.studentData = students;
     }
