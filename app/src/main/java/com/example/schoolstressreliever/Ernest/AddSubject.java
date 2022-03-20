@@ -93,8 +93,6 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
             ArrayList<Map<String, Integer>> sLSubjects = new ArrayList<>();
 
 
-//            System.out.println("checkpoint1");
-
             AssetManager am = this.getAssets();
             InputStream file1 = am.open("hl.txt");
             InputStream file2 = am.open("sl.txt");
@@ -223,7 +221,6 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
                 System.out.println("Final grade info " + gradeInfo);
 
 //                User newStudent = new User(myHL, mySL, name, gradeInfo);
-
 //                System.out.println("1" +newStudent.getGradeInfo());
 //                System.out.println("2" +newStudent.getName());
 //                System.out.println("3" +newStudent.getMyHLBoundaries());

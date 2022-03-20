@@ -3,6 +3,8 @@ package com.example.schoolstressreliever.Ernest;
 import android.content.Context;
 import android.content.Intent;
 import com.example.schoolstressreliever.R;
+import com.example.schoolstressreliever.kevin.User;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +20,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     ArrayList studentData;
     Context currentContext;
 
-    public SubjectAdapter(ArrayList<Student> studentInfoInput, Context context){
+    public SubjectAdapter(ArrayList<User> studentInfoInput, Context context){
         studentData = studentInfoInput;
         this.currentContext = context;
     }
@@ -33,7 +35,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        Student newStudent = (Student) studentData.get(position);
+        User newStudent = (User) studentData.get(position);
         ArrayList<Map<String, Map<String, Double>>> gradeInfo = new ArrayList<Map<String, Map<String, Double>>>();
         gradeInfo = newStudent.getGradeInfo();
         System.out.println("retrieved info " + gradeInfo);
@@ -58,7 +60,6 @@ public class SubjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                         ((SubjectHolder) holder).nameText.setText(subjectToShow);
                         ((SubjectHolder) holder).statusText1.setText(progressToShow);
-                        ((SubjectHolder) holder).statusText2.setText(progressToShow);
 
                         ((SubjectHolder) holder).getLayout().setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -67,7 +68,6 @@ public class SubjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                 Intent myIntent = new Intent(view.getContext(), GradeOverview.class);
                                 myIntent.putExtra("Subject", subjectToShow);
                                 myIntent.putExtra("Progress", progressToShow);
-                                myIntent.putExtra("Transcript", "notime");
 
                                 currentContext.startActivity(myIntent);
                             }
@@ -90,7 +90,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return studentData.size();
     }
 
-    public void setSubjectData(ArrayList<Student> students)
+    public void setSubjectData(ArrayList<User> students)
     {
         this.studentData = students;
     }

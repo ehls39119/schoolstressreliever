@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Schoolstressreliever">
         <activity
+            android:name=".Ernest.Navigation"
+            android:exported="true" />
+        <activity
             android:name=".justin.ECHomeActivity"
             android:exported="true" />
         <activity
@@ -20,13 +23,11 @@
             android:exported="true" />
         <activity
             android:name=".Ernest.AddGrade"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Ernest.GradeOverview"
-            android:exported="false" />
-        <activity
-            android:name=".Ernest.GradeHolder"
-            android:exported="false" />
+            android:exported="true" />
+
         <activity
             android:name=".Ernest.SubjectOverview"
             android:exported="true" />

@@ -64,7 +64,6 @@ public class AddGrade extends AppCompatActivity {
         String subjectCheck = subject.getText().toString();
         String task = taskName.getText().toString();
 
-
         String ob = obtained.getText().toString();
         String to = total.getText().toString();
 
@@ -73,8 +72,6 @@ public class AddGrade extends AppCompatActivity {
             @Override
 
             public void onEvent(@Nullable QuerySnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-
-
                 if (documentSnapshot != null && !documentSnapshot.getDocuments().isEmpty()) {
                     List<DocumentSnapshot> documents = documentSnapshot.getDocuments();
                     for (DocumentSnapshot value : documents) {
@@ -110,9 +107,8 @@ public class AddGrade extends AppCompatActivity {
 
                                         }
                                         String x = info.getEmail();
-                                        db.collection("Users").document(mUser.getEmail()).update("MyHLBoundaries", myHLBoundaries);
-                                        db.collection("Users").document(mUser.getEmail()).update("MySLBoundaries", mySlBoundaries);
-                                        db.collection("Users").document(mUser.getEmail()).update("gradeInfo", allInfo);
+                                        db.collection("Users").document(mUser.getEmail()).update("gradeInfo", allInfo, "MyHLBoundaries", myHLBoundaries, "MySLBoundaries", mySlBoundaries);
+
                                         break;
                                     }
                                     break;

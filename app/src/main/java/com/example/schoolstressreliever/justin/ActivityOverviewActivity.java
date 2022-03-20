@@ -211,10 +211,10 @@ public class ActivityOverviewActivity extends AppCompatActivity {
         startActivity(newIntent);
     }
 
-//    public void goToServiceMeetingActivity(View v)
-//    {
-//        Intent thisIntent = new Intent(this, ServiceMeetingOverviewActivity.class);
-//        startActivity(thisIntent);
-//    }
+    public void goToServiceMeetingActivity(View v)
+    {
+        Intent thisIntent = new Intent(this, ActivityMeetingOverviewActivity.class);
+        startActivity(thisIntent);
+    }
 
 }
