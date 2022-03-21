@@ -21,13 +21,10 @@
         <entry key="app/src/main/res/layout/activity_grade_recycler_view_adapter.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/activity_grade_vehicle_holder.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_info_recycler_view_adapter.xml" value="0.1359375" />
-        <entry key="app/src/main/res/layout/activity_join_service_meeting.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35318433706789937" />
-        <entry key="app/src/main/res/layout/activity_meeting_overview.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/activity_navigation.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/activity_navigation2.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/activity_new_academic_overview.xml" value="0.21875" />
-        <entry key="app/src/main/res/layout/activity_priv_meeting_request.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/activity_receive_priv_request.xml" value="0.2871376811594203" />
         <entry key="app/src/main/res/layout/activity_review_request.xml" value="0.1770516717325228" />
         <entry key="app/src/main/res/layout/activity_row_view.xml" value="0.1802536231884058" />
@@ -39,7 +36,7 @@
         <entry key="app/src/main/res/layout/activity_subject_info.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/activity_vehicle_view_holder.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_vehicles_info.xml" value="0.309375" />
-        <entry key="app/src/main/res/layout/add_grade.xml" value="0.48788279102327425" />
+        <entry key="app/src/main/res/layout/add_grade.xml" value="0.20055256772693664" />
         <entry key="app/src/main/res/layout/grade_overview.xml" value="0.25227616172417083" />
         <entry key="app/src/main/res/layout/info_recycler_layout.xml" value="0.1802536231884058" />
         <entry key="app/src/main/res/layout/receive_row_view.xml" value="0.4952715301469145" />
