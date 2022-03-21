@@ -19,6 +19,9 @@
             android:name=".justin.defaultActivity"
             android:exported="true" />
         <activity
+            android:name=".kevin.ViewSubjectActivity"
+            android:exported="true" />
+        <activity
             android:name=".justin.reviewRequestActivity"
             android:exported="true" />
         <activity
@@ -44,10 +47,13 @@
             android:name=".vico.ServiceMeetingOverviewActivity"
             android:exported="true" />
         <activity
+            android:name=".justin.ActivityMeetingOverviewActivity"
+            android:exported="true"/>
+        <activity
             android:name=".justin.AddActivityActivity"
             android:exported="true" />
         <activity
-            android:name=".kevin.ShowInfoActivity"
+            android:name=".kevin.ViewInfoActivity"
             android:exported="true" />
         <activity
             android:name=".kevin.AddSubjectActivity"

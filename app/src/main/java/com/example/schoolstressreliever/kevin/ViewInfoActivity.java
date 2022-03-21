@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
+import com.example.schoolstressreliever.MainActivity;
 import com.example.schoolstressreliever.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -14,17 +18,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class ShowInfoActivity extends AppCompatActivity {
+public class ViewInfoActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private FirebaseFirestore data;
-    ArrayList<String> recyclerInfoList;
+    ArrayList<User> recyclerInfoList;
     private InfoAdapter adapter;
-    RecyclerView subjectRecycler;
+    RecyclerView infoRecycler;
 
     private ArrayList<String> idData;
     private ArrayList<String> nameData;
@@ -35,8 +38,8 @@ public class ShowInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_info);
-        subjectRecycler = findViewById(R.id.recyclerView);
+        setContentView(R.layout.activity_view_info);
+        infoRecycler = findViewById(R.id.recyclerView);
         mAuth = FirebaseAuth.getInstance();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         data = FirebaseFirestore.getInstance();
@@ -45,18 +48,22 @@ public class ShowInfoActivity extends AppCompatActivity {
         emailData = new ArrayList<>();
         yearData = new ArrayList<>();
         passwordData = new ArrayList<>();
-        idData.add(mUser.getUid());
-        nameData.add(mUser.getDisplayName());
-        emailData.add(mUser.getEmail());
 
         adapter = new InfoAdapter(idData, nameData, emailData, yearData, passwordData);
-        subjectRecycler.setAdapter(adapter);
-        subjectRecycler.setLayoutManager(new LinearLayoutManager(this));
+        infoRecycler.setAdapter(adapter);
+        infoRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-        getAndPopulateData();
     }
 
-    public void getAndPopulateData() {
 
+
+    public void GoChangeInfo(View v){
+        Intent startPage = new Intent(this, SignUpActivity.class);
+        startActivity(startPage);
+    }
+
+    public void ConfirmAndGoMain(View v){
+        Intent startPage = new Intent(this, MainActivity.class);
+        startActivity(startPage);
     }
 }

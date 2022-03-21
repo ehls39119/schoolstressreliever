@@ -76,7 +76,7 @@ public class AuthActivity extends AppCompatActivity {
     public void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
             //go to MainActivity
-            Intent startPage = new Intent(this, ShowInfoActivity.class);
+            Intent startPage = new Intent(this, ViewInfoActivity.class);
             startPage.putExtra("currUser", (Serializable) currentUser);
             startActivity(startPage);
         }

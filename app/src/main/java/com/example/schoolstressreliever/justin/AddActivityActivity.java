@@ -43,7 +43,7 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
         nameField = findViewById(R.id.editTextName);
         teacherField = findViewById(R.id.editTextTeacher);
         emailField = findViewById(R.id.editTextEmail);
-        priceField = findViewById(R.id.editTextPrice);
+        priceField = findViewById(R.id.editTextDescription);
 
         Spinner spinner = findViewById(R.id.activityTypeSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -67,8 +67,8 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
         String teacherString = teacherField.getText().toString();
         String emailString = emailField.getText().toString();
         String price = priceField.getText().toString();
-        double priceConverted = 0.0;
-        priceConverted = Double.parseDouble(price);
+//        double priceConverted = 0.0;
+//        priceConverted = Double.parseDouble(price);
 
         Spinner spinner = (Spinner)findViewById(R.id.activityTypeSpinner);
         String interestArea = spinner.getSelectedItem().toString();
@@ -105,7 +105,7 @@ public class AddActivityActivity extends AppCompatActivity implements AdapterVie
         if(parametersFilled && validEmail)
         {
             CCA activity = new CCA(nameString,teacherString
-                    , priceConverted, emptyList, hours, interestArea);
+                    , price, emptyList, hours, interestArea);
 
             System.out.println("activity");
 

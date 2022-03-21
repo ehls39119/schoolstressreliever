@@ -44,6 +44,14 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoViewHolder> {
         //holder.selectedSubjects.setText(mData.get(position));
     }
 
+    public void newData(ArrayList idData, ArrayList nameData, ArrayList emailData, ArrayList yearData, ArrayList passwordData){
+        iData = idData;
+        mData = nameData;
+        eData = emailData;
+        yData = yearData;
+        pData = passwordData;
+    }
+
     @Override
     public int getItemCount() {
         return mData.size();

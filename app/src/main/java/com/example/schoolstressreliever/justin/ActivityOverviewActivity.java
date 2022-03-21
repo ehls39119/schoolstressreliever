@@ -37,7 +37,7 @@ public class ActivityOverviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_overview);
+        setContentView(R.layout.activity_activity_overview);
 
         recView = findViewById(R.id.recView);
         mAuth = FirebaseAuth.getInstance();
@@ -211,10 +211,10 @@ public class ActivityOverviewActivity extends AppCompatActivity {
         startActivity(newIntent);
     }
 
-    public void goToServiceMeetingActivity(View v)
+    public void goToPrivate(View v)
     {
-        Intent thisIntent = new Intent(this, ActivityMeetingOverviewActivity.class);
-        startActivity(thisIntent);
+        Intent wowIntent = new Intent(this, ActivityMeetingOverviewActivity.class);
+        startActivity(wowIntent);
     }
 
 }
