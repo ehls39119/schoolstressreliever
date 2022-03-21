@@ -211,10 +211,10 @@ public class ActivityOverviewActivity extends AppCompatActivity {
         startActivity(newIntent);
     }
 
-    public void goToServiceMeetingActivity(View v)
+    public void goToPrivate(View v)
     {
-        Intent thisIntent = new Intent(this, ActivityMeetingOverviewActivity.class);
-        startActivity(thisIntent);
+        Intent wowIntent = new Intent(this, ActivityMeetingOverviewActivity.class);
+        startActivity(wowIntent);
     }
 
 }
