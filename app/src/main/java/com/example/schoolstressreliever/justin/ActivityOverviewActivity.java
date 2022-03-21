@@ -37,7 +37,7 @@ public class ActivityOverviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_overview);
+        setContentView(R.layout.activity_activity_overview);
 
         recView = findViewById(R.id.recView);
         mAuth = FirebaseAuth.getInstance();

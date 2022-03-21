@@ -8,7 +8,7 @@ public class CCA {
     private String teacher;
     private ArrayList<String> intrestArea;
     ;
-    private double price;
+    private String price;
     private int capacity;
     private ArrayList<String> participants;
     private String hours;
@@ -16,7 +16,7 @@ public class CCA {
 
     public CCA(String name,
                String teacher,
-               double price,
+               String price,
                ArrayList<String> participants,
                String hours, String interestArea) {
 
@@ -58,13 +58,6 @@ public class CCA {
     }
 
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
     public int getCapacity() {
         return capacity;
