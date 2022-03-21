@@ -82,10 +82,6 @@ public class GradeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
 
-
-
-
-
     @Override
     public int getItemCount() {
         return studentData.size();
