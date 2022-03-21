@@ -72,7 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Log.d("Sign up.", "SignUpWithEmail: success!");
                     FirebaseUser currUser = mAuth.getCurrentUser();
 
-                    Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome" + userNameInput, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome " + userNameInput, Toast.LENGTH_SHORT).show();
                     fireStore.collection("Users").document(userEmailInput).set(currentUser);
 
 //                    updateUI(currUser);
@@ -89,7 +89,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void updateUI(FirebaseUser currUser) {
         if (currUser != null) {
-            Intent startPage = new Intent(this, Navigation.class);
+            Intent startPage = new Intent(this, AddSubject.class);
             //the page should go to AddSubject.class
             /*edited by kevin*/
             startActivity(startPage);
