@@ -67,6 +67,7 @@ public class AddGrade extends AppCompatActivity {
         String ob = obtained.getText().toString();
         String to = total.getText().toString();
 
+
         db.collection("Users").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -106,6 +107,7 @@ public class AddGrade extends AppCompatActivity {
                                             allGrades.put(task, exact);
 
                                         }
+                                        System.out.println("fuck");
                                         String x = info.getEmail();
                                         db.collection("Users").document(mUser.getEmail()).update("gradeInfo", allInfo, "MyHLBoundaries", myHLBoundaries, "MySLBoundaries", mySlBoundaries);
 
