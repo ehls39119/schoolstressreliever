@@ -38,6 +38,7 @@
         <entry key="app/src/main/res/layout/activity_vehicle_view_holder.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/activity_vehicles_info.xml" value="0.309375" />
         <entry key="app/src/main/res/layout/add_grade.xml" value="0.48788279102327425" />
+        <entry key="app/src/main/res/layout/add_subject.xml" value="0.134375" />
         <entry key="app/src/main/res/layout/grade_overview.xml" value="0.25227616172417083" />
         <entry key="app/src/main/res/layout/info_recycler_layout.xml" value="0.1802536231884058" />
         <entry key="app/src/main/res/layout/receive_row_view.xml" value="0.4952715301469145" />

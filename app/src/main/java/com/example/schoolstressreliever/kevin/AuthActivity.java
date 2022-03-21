@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 //import com.example.schoolstressreliever.Ernest.SubjectOverview;
+import com.example.schoolstressreliever.Ernest.SubjectOverview;
 import com.example.schoolstressreliever.R;
 import com.example.schoolstressreliever.justin.defaultActivity;
 import com.example.schoolstressreliever.vico.ServiceOverviewActivity;
@@ -86,8 +87,8 @@ public class AuthActivity extends AppCompatActivity {
         startActivity(newIntent);
     }
 
-//    public void goToAcademicOverview(View v){
-//        Intent newIntent = new Intent(this, SubjectOverview.class);
-//        startActivity(newIntent);
-//    }
+    public void goToAcademicOverview(View v){
+        Intent newIntent = new Intent(this, SubjectOverview.class);
+        startActivity(newIntent);
+    }
 }
