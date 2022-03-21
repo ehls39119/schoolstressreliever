@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.schoolstressreliever.R;
-import com.example.schoolstressreliever.kevin.ShowInfoActivity;
+import com.example.schoolstressreliever.kevin.ViewInfoActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,7 +44,7 @@ public class defaultActivity extends AppCompatActivity
 
     public void goToAcademics(View v)
     {
-        Intent startPage = new Intent(this, ShowInfoActivity.class);
+        Intent startPage = new Intent(this, ViewInfoActivity.class);
         startActivity(startPage);
     }
 
