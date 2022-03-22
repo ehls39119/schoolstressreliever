@@ -13,9 +13,7 @@ public class User {
     private boolean formFilled;
     private String interestArea;
     private String hours;
-    
-    
-    
+
     public ArrayList<Map<String, Integer>> myHLBoundaries;
     public ArrayList<Map<String, Integer>> mySLBoundaries;
     public ArrayList<Map<String, Map<String, Double>>> gradeInfo;

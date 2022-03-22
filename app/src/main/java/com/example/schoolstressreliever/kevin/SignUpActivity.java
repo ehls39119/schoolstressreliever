@@ -88,7 +88,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void updateUI(FirebaseUser currUser) {
         if (currUser != null) {
-            Intent startPage = new Intent(this, AddSubject.class);
+            Intent startPage = new Intent(this, Navigation.class);
             //the page should go to AddSubject.class
             /*edited by kevin*/
             startActivity(startPage);

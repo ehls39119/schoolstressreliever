@@ -1,15 +1,23 @@
 package com.example.schoolstressreliever.kevin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
+import com.example.schoolstressreliever.Ernest.AddSubject;
 import com.example.schoolstressreliever.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -45,6 +53,20 @@ public class ViewSubjectActivity extends AppCompatActivity {
     }
 
     public void getAndPopulateData(){
+        data.collection("User").whereEqualTo("myHLBoundaries", mUser.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for(DocumentSnapshot info : task.getResult().getDocuments()){
 
+                }
+            }
+        });
     }
+
+    public void Change(View v){
+        Intent startPage = new Intent(this, AddSubject.class);
+        startActivity(startPage);
+    }
+
+
 }

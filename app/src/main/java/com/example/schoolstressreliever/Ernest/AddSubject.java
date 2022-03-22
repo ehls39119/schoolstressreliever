@@ -202,6 +202,8 @@ public class AddSubject extends AppCompatActivity implements AdapterView.OnItemS
                 subjectNameList.add(sl2);
                 subjectNameList.add(sl3);
 
+
+
                 ArrayList<Map<String, Map<String, Double>>> gradeInfo = new ArrayList<Map<String, Map<String, Double>>>();
 
 
