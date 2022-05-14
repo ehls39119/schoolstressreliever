@@ -63,8 +63,6 @@ public class SignUpActivity extends AppCompatActivity {
         //subjects are added after the Info.
 
 
-        /*edited by vico*/
-
         mAuth.createUserWithEmailAndPassword(userEmailInput, userPasswordInput).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
