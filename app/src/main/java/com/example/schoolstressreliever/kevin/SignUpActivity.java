@@ -70,9 +70,13 @@ public class SignUpActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.d("Sign up.", "SignUpWithEmail: success!");
+                    System.out.println("its up");
                     FirebaseUser currUser = mAuth.getCurrentUser();
 
                     Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome " + userNameInput, Toast.LENGTH_SHORT).show();
+                    System.out.println(currentUser);
+
+                    System.out.println(currentUser.getEmail());
                     fireStore.collection("Users").document(userEmailInput).set(currentUser);
                     updateUI(currUser);
 
