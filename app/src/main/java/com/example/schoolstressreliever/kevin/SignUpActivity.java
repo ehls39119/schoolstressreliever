@@ -63,8 +63,6 @@ public class SignUpActivity extends AppCompatActivity {
         //subjects are added after the Info.
 
 
-        /*edited by vico*/
-
         mAuth.createUserWithEmailAndPassword(userEmailInput, userPasswordInput).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -92,7 +90,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void updateUI(FirebaseUser currUser) {
         if (currUser != null) {
-            Intent startPage = new Intent(this, AddSubject.class);
+            Intent startPage = new Intent(this, Navigation.class);
             //the page should go to AddSubject.class
             /*edited by kevin*/
             startActivity(startPage);

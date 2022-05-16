@@ -36,11 +36,11 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull InfoViewHolder holder, int position) {
-        holder.idText.setText(mData.get(position));
+        holder.idText.setText(iData.get(position));
         holder.nameText.setText(mData.get(position));
-        holder.emailText.setText(mData.get(position));
-        holder.yearText.setText(mData.get(position));
-        holder.passwordText.setText(mData.get(position));
+        holder.emailText.setText(eData.get(position));
+        holder.yearText.setText(yData.get(position));
+        holder.passwordText.setText(pData.get(position));
         //holder.selectedSubjects.setText(mData.get(position));
     }
 

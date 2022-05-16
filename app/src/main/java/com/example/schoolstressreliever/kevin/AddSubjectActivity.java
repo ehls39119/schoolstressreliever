@@ -36,6 +36,7 @@ public class AddSubjectActivity extends AppCompatActivity {
             "\nBiology SL\n", "\nBiology HL\n", "\nChemistry SL\n", "\nChemistry HL\n", "\nPhysics SL\n", "\nPhysics HL\n", "\nSport Science SL\n", "\nSport Science HL\n", "\nComputer Science SL\n", "\nComputer Science HL\n", "\nDesign Technology SL\n", "\nDesign Technology HL\n",
             "\nMathematics AA SL\n", "\nMathematics AA HL\n", "\nMathematics AI SL\n", "\nMathematics AI HL\n",
             "\nVisual Arts SL\n", "\nVisual Arts HL\n", "\nMusic SL\n", "\nMusic HL\n", "\nTheatre SL\n", "\nTheatre HL\n", "\nFilm SL\n", "\nFilm HL\n"};
+    //DP subjects.
     boolean[] selectedSubjects = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
 
 
@@ -66,6 +67,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                 });
 
                 newBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    //when the client click confirm, the subjects have been selected will show on the screen.
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         System.out.println("Show the subjects.");
@@ -76,6 +78,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                 });
 
                 newBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    //when the client click cancel, the selecting page should close, but the subjects will still be presented.
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         System.out.println("Leave the selection page.");
@@ -88,7 +91,7 @@ public class AddSubjectActivity extends AppCompatActivity {
             }
         });
 
-
+        //onClick for the confirm button.
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,6 +102,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                     System.out.println("Correct!");
                     Toast.makeText(getApplicationContext(), "You have successfully added/changed your IBDP subjects.", Toast.LENGTH_SHORT).show();
                     firestore.collection("User").document(mUser.getUid()).set(selected);
+                    //Store the data.
                 } else {
                     System.out.println("Incorrect!");
                     Toast.makeText(getApplicationContext(), "You need to fulfill all your IBDP subjects, please tey again", Toast.LENGTH_LONG).show();

@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 
@@ -59,7 +58,7 @@ public class receivePrivActivityRequest extends AppCompatActivity implements rec
         ArrayList<String> senderData = new ArrayList<>();
         ArrayList<String>typeData = new ArrayList<>();
         firestore = FirebaseFirestore.getInstance();
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.RecView);
         Intent intent = getIntent();
         if(intent != null){
             day = intent.getStringExtra("Day");

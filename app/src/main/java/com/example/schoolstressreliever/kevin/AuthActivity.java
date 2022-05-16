@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 //import com.example.schoolstressreliever.Ernest.SubjectOverview;
+import com.example.schoolstressreliever.Ernest.AddSubject;
+import com.example.schoolstressreliever.Ernest.Navigation;
 import com.example.schoolstressreliever.Ernest.SubjectOverview;
 import com.example.schoolstressreliever.R;
 import com.example.schoolstressreliever.justin.defaultActivity;
@@ -62,8 +64,20 @@ public class AuthActivity extends AppCompatActivity {
         });
     }
 
+    public void updateUI(FirebaseUser currentUser) {
+        if (currentUser != null) {
+            //go to MainActivity
+            Intent startPage = new Intent(this, SubjectOverview.class);
+            startPage.putExtra("currUser", (Serializable) currentUser);
+            startActivity(startPage);
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"Oops, we got some errors.", Toast.LENGTH_LONG).show();
+        }
+    }
+
     public void SignIn(FirebaseUser currentUser) {
-        Intent startPage = new Intent(this, defaultActivity.class);
+        Intent startPage = new Intent(this, Navigation.class);
         startActivity(startPage);
     }
 
@@ -71,15 +85,6 @@ public class AuthActivity extends AppCompatActivity {
         //go to SignUpActivity
         Intent startPage = new Intent(this, SignUpActivity.class);
         startActivity(startPage);
-    }
-
-    public void updateUI(FirebaseUser currentUser) {
-        if (currentUser != null) {
-            //go to MainActivity
-            Intent startPage = new Intent(this, ViewInfoActivity.class);
-            startPage.putExtra("currUser", (Serializable) currentUser);
-            startActivity(startPage);
-        }
     }
 
     public void goToServiceOverview(View v){
