@@ -68,6 +68,11 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         fireStore.collection("Users").document(userEmailInput).set(currentUser);
+        System.out.println("test fail");
+        Intent startPage = new Intent(this, Navigation.class);
+        //the page should go to AddSubject.class
+        /*edited by kevin*/
+        startActivity(startPage);
     }
 
         //maybe need to add the Info into an ArrayList.
