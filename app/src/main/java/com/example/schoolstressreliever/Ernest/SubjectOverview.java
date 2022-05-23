@@ -42,6 +42,7 @@ public class SubjectOverview extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
         studentInfo = new ArrayList<User>();
+        studentInfo.clear();
 
         recView = (RecyclerView) findViewById(R.id.recycler1ID);
         SubjectAdapter myAdapter = new SubjectAdapter(studentInfo, this);

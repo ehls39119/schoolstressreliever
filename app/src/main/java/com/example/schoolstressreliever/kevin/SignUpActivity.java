@@ -57,39 +57,59 @@ public class SignUpActivity extends AppCompatActivity {
         String userYearLevelInput = userYearLevel.getText().toString();
         String userPasswordInput = userPassword.getText().toString();
 
-        User currentUser = new User(userID, userNameInput, userEmailInput, userYearLevelInput, userPasswordInput, 0.0, false, "");
-        //fireStore.collection("Users").document(userEmailInput).set(currentUser);
+        User currentUser = new User(userID,
+                userNameInput, userEmailInput, userYearLevelInput,
+                userPasswordInput, 0.0, false, "");
+        System.out.println(currentUser.getID());
+        System.out.println(currentUser.getName());
+        System.out.println(currentUser.getYearLevel());
+        System.out.println(currentUser.getEmail());
+        System.out.println(currentUser.getPassword());
+
+
+        fireStore.collection("Users").document(userEmailInput).set(currentUser);
+        System.out.println("test fail");
+        Intent startPage = new Intent(this, Navigation.class);
+        //the page should go to AddSubject.class
+        /*edited by kevin*/
+        startActivity(startPage);
+    }
+
         //maybe need to add the Info into an ArrayList.
         //subjects are added after the Info.
+//
+//
+//        mAuth.createUserWithEmailAndPassword(userEmailInput, userPasswordInput).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                if (task.isSuccessful()) {
+//                    Log.d("Sign up.", "SignUpWithEmail: success!");
+//                    System.out.println("its up");
+//                    FirebaseUser currUser = mAuth.getCurrentUser();
+//
+//                    Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome " + userNameInput, Toast.LENGTH_SHORT).show();
+//                    System.out.println(currentUser);
+//
+//                    System.out.println(currentUser.getEmail());
+//                    fireStore.collection("Users").document(userEmailInput);
+//                    updateUI(currUser);
+//
+//                } else {
+//                    Log.w("Sign up.", "SignUpWithEmail: failed.");
+//                    updateUI(null);
+//                    Toast.makeText(getApplicationContext(), "Signing up by new user failed, maybe you have already signed up with this account", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//
+//    }
 
-
-        mAuth.createUserWithEmailAndPassword(userEmailInput, userPasswordInput).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Log.d("Sign up.", "SignUpWithEmail: success!");
-                    FirebaseUser currUser = mAuth.getCurrentUser();
-
-                    Toast.makeText(getApplicationContext(), "Successfully signed up by new user! Welcome " + userNameInput, Toast.LENGTH_SHORT).show();
-                    fireStore.collection("Users").document(userEmailInput).set(currentUser);
-                    updateUI(currUser);
-
-                } else {
-                    Log.w("Sign up.", "SignUpWithEmail: failed.");
-                    updateUI(null);
-                    Toast.makeText(getApplicationContext(), "Signing up by new user failed, maybe you have already signed up with this account", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-    }
-
-    public void updateUI(FirebaseUser currUser) {
-        if (currUser != null) {
-            Intent startPage = new Intent(this, Navigation.class);
-            //the page should go to AddSubject.class
-            /*edited by kevin*/
-            startActivity(startPage);
-        }
-    }
+//    public void updateUI(FirebaseUser currUser) {
+//        if (currUser != null) {
+//            Intent startPage = new Intent(this, Navigation.class);
+//            //the page should go to AddSubject.class
+//            /*edited by kevin*/
+//            startActivity(startPage);
+//        }
+//    }
 }

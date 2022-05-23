@@ -107,7 +107,6 @@ public class AddGrade extends AppCompatActivity {
                                             allGrades.put(task, exact);
 
                                         }
-                                        System.out.println("fuck");
                                         String x = info.getEmail();
                                         db.collection("Users").document(mUser.getEmail()).update("gradeInfo", allInfo, "MyHLBoundaries", myHLBoundaries, "MySLBoundaries", mySlBoundaries);
 
