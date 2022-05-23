@@ -78,6 +78,7 @@ public class Navigation extends AppCompatActivity {
                                     String currUser = (String) docData.get("email");
 
                                     System.out.println(currUser);
+                                    System.out.println(mUser.getEmail());
 
                                     if(currUser.equals(mUser.getEmail()))
                                     {
