@@ -70,6 +70,7 @@ public class Navigation extends AppCompatActivity {
                                 List<DocumentSnapshot> ds = task.getResult().getDocuments();
 
                                 System.out.println("reach here2");
+                                System.out.println("user email:" + mUser.getEmail());
 
                                 for(DocumentSnapshot doc : ds)
                                 {
@@ -78,7 +79,6 @@ public class Navigation extends AppCompatActivity {
                                     String currUser = (String) docData.get("email");
 
                                     System.out.println(currUser);
-                                    System.out.println(mUser.getEmail());
 
                                     if(currUser.equals(mUser.getEmail()))
                                     {
